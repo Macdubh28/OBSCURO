@@ -1,0 +1,47 @@
+{
+  "version": "1.3.0",
+  "updated": "2026-04-11",
+  "platforms": [
+    {
+      "id": "hegemonikon",
+      "name": "HEGEMONIKON",
+      "subtitle": "Discipline stoïcienne",
+      "url": "https://macdubh28.github.io/HEGEMONIKON/",
+      "local": "~/hegemonikon/",
+      "color": "#c9a961",
+      "icon": "⚔️",
+      "status": "live"
+    },
+    {
+      "id": "marc-aurele",
+      "name": "Aurelius Secundus",
+      "subtitle": "Philosophie stoïcienne",
+      "url": "https://macdubh28.github.io/marc-aurele/",
+      "local": "~/marc-aurele/",
+      "color": "#8b7355",
+      "icon": "📜",
+      "status": "live"
+    },
+    {
+      "id": "obscuro",
+      "name": "OBSCURO",
+      "subtitle": "Sang-froid et maîtrise de soi",
+      "url": "https://macdubh28.github.io/OBSCURO/",
+      "local": "~/obscuro/",
+      "color": "#5b8fd4",
+      "icon": "🦅",
+      "status": "live"
+    }
+  ],
+  "identity": {
+    "author": "Macdubh",
+    "alias": "Aurelius Secundus",
+    "github": "macdubh28",
+    "x": "@AigleRoyal28"
+  },
+  "palette": {
+    "hegemonikon": "#c9a961",
+    "marc-aurele": "#8b7355",
+    "obscuro": "#5b8fd4"
+  }
+}
