@@ -1,176 +1,417 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0f1e">
-<title>Citations — OBSCURO</title>
-<link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---noir:#0a0f1e;
---noir2:#0d1b3e;
---acier:#1a3a6e;
---bleu:#5b8fd4;
---glace:#b8cee8;
---blanc:#e8f0f8;
---font-titre:'Cinzel',serif;
---font-corps:'Montserrat',sans-serif;
-}
-html,body{height:100%;background:var(--noir);color:var(--blanc);font-family:var(--font-corps)}
-nav{position:fixed;top:0;width:100%;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(91,143,212,0.15)}
-.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.2em;color:var(--glace);text-decoration:none}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--glace);opacity:0.6;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:opacity 0.3s}
-.nav-links a:hover,.nav-links a.active{opacity:1}
-/* PAGE HEADER */
-.page-header{padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 30%, rgba(26,58,110,0.35) 0%, transparent 70%);pointer-events:none}
-.page-icon{font-size:2.8rem;margin-bottom:28px;opacity:0.75}
-.page-label{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--bleu);margin-bottom:16px;opacity:0.7}
-.page-titre{font-family:var(--font-titre);font-size:clamp(2rem,6vw,3.5rem);letter-spacing:0.2em;color:var(--blanc);margin-bottom:20px}
-.page-trait{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--bleu),transparent);margin:0 auto 28px}
-.page-intro{max-width:560px;margin:0 auto;font-size:0.9rem;line-height:1.9;color:var(--glace);opacity:0.6;font-weight:300;font-style:italic}
-/* CITATIONS */
-.contenu{max-width:760px;margin:0 auto;padding:60px 24px 120px}
-.citation-bloc{margin-bottom:56px;padding:40px 40px 40px 48px;border-left:2px solid rgba(91,143,212,0.2);position:relative;transition:border-color 0.3s}
-.citation-bloc:hover{border-color:rgba(91,143,212,0.5)}
-.citation-bloc::before{content:'"';font-family:var(--font-titre);font-size:4rem;color:rgba(91,143,212,0.08);position:absolute;top:16px;left:12px;line-height:1}
-.citation-texte{font-family:var(--font-titre);font-size:clamp(1rem,2.5vw,1.25rem);line-height:1.7;color:var(--glace);margin-bottom:20px;font-style:italic;letter-spacing:0.03em}
-.citation-auteur{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--bleu);opacity:0.7}
-.citation-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--glace);border:1px solid rgba(91,143,212,0.15);padding:3px 10px;margin-top:12px;opacity:0.4}
-.section-separateur{text-align:center;margin:72px 0 56px;position:relative}
-.section-separateur::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(91,143,212,0.08)}
-.section-separateur span{font-family:var(--font-titre);font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--bleu);opacity:0.4;background:var(--noir);padding:0 24px;position:relative}
-footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(91,143,212,0.08)}
-.footer-logo{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.3em;color:var(--glace);opacity:0.3;margin-bottom:12px}
-.footer-sub{font-size:0.7rem;letter-spacing:0.2em;color:var(--glace);opacity:0.2;text-transform:uppercase}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citations â OBSCURO</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --noir: #0a0e1a;
+      --bleu-nuit: #0d1526;
+      --acier: #8a9bb5;
+      --acier-clair: #b8c8dc;
+      --blanc: #e8edf5;
+      --argent: #c0ccd8;
+      --or: #8b7355;
+      --or-clair: #c4a96e;
+      --frontiere: rgba(138,155,181,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,14,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--frontiere);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--acier-clair);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--acier);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--blanc); }
+
+    /* HERO */
+    .hero {
+      padding: 9rem 3rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--blanc);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--acier);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 0.85rem;
+      color: var(--acier);
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* COMPTEUR */
+    .counter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--frontiere);
+      border-bottom: 1px solid var(--frontiere);
+      margin-bottom: 3rem;
+    }
+
+    .counter-item {
+      text-align: center;
+    }
+
+    .counter-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--or-clair);
+      display: block;
+    }
+
+    .counter-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--acier);
+      text-transform: uppercase;
+    }
+
+    /* FILTRES */
+    .filters-section {
+      padding: 0 3rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .filter-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      color: var(--acier);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .filter-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      padding: 0.5rem 1.1rem;
+      border: 1px solid var(--frontiere);
+      background: transparent;
+      color: var(--acier);
+      cursor: pointer;
+      transition: all 0.25s;
+      text-transform: uppercase;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--acier-clair);
+      color: var(--blanc);
+      background: rgba(138,155,181,0.08);
+    }
+
+    .filter-btn.active {
+      border-color: var(--or-clair);
+      color: var(--or-clair);
+    }
+
+    /* SEARCH */
+    .search-wrap {
+      padding: 0 3rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 450px;
+      background: rgba(138,155,181,0.05);
+      border: 1px solid var(--frontiere);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      padding: 0.7rem 1.2rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-input::placeholder { color: var(--acier); opacity: 0.6; }
+    .search-input:focus { border-color: var(--acier-clair); }
+
+    /* GRILLE CITATIONS */
+    .citations-grid {
+      padding: 0 3rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      columns: 3;
+      column-gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) { .citations-grid { columns: 2; } }
+    @media (max-width: 580px) { .citations-grid { columns: 1; padding: 0 1.5rem 4rem; } }
+
+    .citation-card {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid var(--frontiere);
+      background: rgba(13,21,38,0.6);
+      position: relative;
+      transition: all 0.3s;
+      cursor: default;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .citation-card:hover {
+      border-color: rgba(138,155,181,0.4);
+      background: rgba(13,21,38,0.85);
+      transform: translateY(-2px);
+    }
+
+    .citation-card.doctrine {
+      border-color: rgba(196,169,110,0.3);
+      background: rgba(139,115,85,0.06);
+    }
+
+    .citation-card.doctrine:hover {
+      border-color: rgba(196,169,110,0.6);
+    }
+
+    .card-category {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--acier);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-category::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: var(--acier);
+      opacity: 0.5;
+    }
+
+    .citation-card.doctrine .card-category {
+      color: var(--or);
+    }
+
+    .citation-card.doctrine .card-category::before {
+      background: var(--or);
+    }
+
+    .quote-text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--blanc);
+      font-style: italic;
+      margin-bottom: 1.2rem;
+    }
+
+    .citation-card.doctrine .quote-text {
+      color: var(--acier-clair);
+    }
+
+    .quote-author {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--acier);
+      font-style: normal;
+    }
+
+    .quote-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+    }
+
+    .quote-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--acier);
+      border: 1px solid var(--frontiere);
+      padding: 0.15rem 0.5rem;
+      opacity: 0.7;
+    }
+
+    .doctrine-badge {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    /* No results */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 4rem;
+      color: var(--acier);
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden { display: none !important; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--frontiere);
+      padding: 2rem 3rem;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--acier);
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
+
 <nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">OBSCURO</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Doctrine</a></li>
-      <li><a href="protocoles.html">Protocoles</a></li>
-      <li><a href="citations.html" class="active">Citations</a></li>
-      <li><a href="journal.html">Journal</a></li>
-    </ul>
-  </div>
+  <a href="index.html" class="nav-logo">OBSCURO</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Doctrine</a></li>
+    <li><a href="protocoles.html">Protocoles</a></li>
+    <li><a href="citations.html">Citations</a></li>
+    <li><a href="techniques.html">Techniques</a></li>
+    <li><a href="journal.html">Journal</a></li>
+  </ul>
 </nav>
 
-<div class="page-header">
-  <div class="page-icon">📜</div>
-  <p class="page-label">Textes fondateurs</p>
-  <h1 class="page-titre">Citations</h1>
-  <div class="page-trait"></div>
-  <p class="page-intro">Les paroles de ceux qui ont marché dans l'ombre avant nous. Chaque ligne est une arme forgée par l'expérience.</p>
+<section class="hero">
+  <span class="hero-icon">ð</span>
+  <h1>Textes Fondateurs</h1>
+  <p class="hero-sub">Les paroles des guerriers impassibles</p>
+  <p class="hero-desc">Chaque ligne est une arme forgÃ©e par l'expÃ©rience. Les anciens ont marchÃ© dans l'ombre avant nous â leurs mots sont des cartes.</p>
+</section>
+
+<div class="counter-bar">
+  <div class="counter-item">
+    <span class="counter-num" id="total-count">54</span>
+    <span class="counter-label">Citations</span>
+  </div>
+  <div class="counter-item">
+    <span class="counter-num">6</span>
+    <span class="counter-label">CatÃ©gories</span>
+  </div>
+  <div class="counter-item">
+    <span class="counter-num">20+</span>
+    <span class="counter-label">MaÃ®tres</span>
+  </div>
 </div>
 
-<div class="contenu">
-
-  <div class="section-separateur"><span>Maîtrise de soi</span></div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Celui qui se maîtrise lui-même est plus grand que celui qui prend une ville.</p>
-    <div class="citation-auteur">Proverbes</div>
-    <div class="citation-tag">Maîtrise</div>
+<div class="filters-section">
+  <p class="filter-title">Filtrer par thÃ¨me</p>
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">Toutes</button>
+    <button class="filter-btn" data-filter="maitrise">MaÃ®trise de Soi</button>
+    <button class="filter-btn" data-filter="silence">Silence & Ombre</button>
+    <button class="filter-btn" data-filter="adversite">AdversitÃ© & Trempe</button>
+    <button class="filter-btn" data-filter="hauteur">Hauteur & Vision</button>
+    <button class="filter-btn" data-filter="action">Action & VolontÃ©</button>
+    <button class="filter-btn" data-filter="doctrine">Doctrine Macdubh</button>
   </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Il n'y a pas de vent favorable pour celui qui ne sait pas où il va.</p>
-    <div class="citation-auteur">Sénèque</div>
-    <div class="citation-tag">Direction · Clarté</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">La première règle est de garder un esprit inébranlable. La deuxième est de regarder les choses en face et de les connaître telles qu'elles sont.</p>
-    <div class="citation-auteur">Marc Aurèle</div>
-    <div class="citation-tag">Stoïcisme · Lucidité</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Tu as du pouvoir sur ton esprit, pas sur les événements extérieurs. Réalise cela, et tu trouveras la force.</p>
-    <div class="citation-auteur">Marc Aurèle</div>
-    <div class="citation-tag">Intériorité · Puissance</div>
-  </div>
-
-  <div class="section-separateur"><span>L'ombre et le silence</span></div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Parle seulement si tu peux améliorer le silence.</p>
-    <div class="citation-auteur">Jorge Luis Borges</div>
-    <div class="citation-tag">Silence</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Mieux vaut être seul qu'en mauvaise compagnie.</p>
-    <div class="citation-auteur">George Washington</div>
-    <div class="citation-tag">Solitude · Discernement</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">L'homme supérieur est celui qui jamais ne se plaint de ce qui ne dépend pas de lui.</p>
-    <div class="citation-auteur">Épictète</div>
-    <div class="citation-tag">Acceptation · Force</div>
-  </div>
-
-  <div class="section-separateur"><span>L'adversité comme terrain</span></div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Le feu éprouve l'or, l'adversité éprouve les hommes forts.</p>
-    <div class="citation-auteur">Sénèque</div>
-    <div class="citation-tag">Adversité · Trempe</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Ce qui ne me tue pas me rend plus fort.</p>
-    <div class="citation-auteur">Friedrich Nietzsche</div>
-    <div class="citation-tag">Résilience</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">L'obstacle est le chemin.</p>
-    <div class="citation-auteur">Zen — proverbe</div>
-    <div class="citation-tag">Adversité · Voie</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Dans l'obscurité, cherche la lumière que tu portais déjà en toi.</p>
-    <div class="citation-auteur">Macdubh</div>
-    <div class="citation-tag">Doctrine personnelle</div>
-  </div>
-
-  <div class="section-separateur"><span>L'action et la hauteur</span></div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Les grands esprits ont toujours rencontré une opposition violente de la part des esprits médiocres.</p>
-    <div class="citation-auteur">Albert Einstein</div>
-    <div class="citation-tag">Hauteur · Solitude</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Agis de façon que la maxime de ta volonté puisse toujours valoir en même temps comme principe d'une législation universelle.</p>
-    <div class="citation-auteur">Emmanuel Kant</div>
-    <div class="citation-tag">Intégrité · Discipline</div>
-  </div>
-
-  <div class="citation-bloc">
-    <p class="citation-texte">Sois le changement que tu veux voir dans le monde.</p>
-    <div class="citation-auteur">Gandhi</div>
-    <div class="citation-tag">Intériorité · Action</div>
-  </div>
-
 </div>
 
-<footer>
-  <div class="footer-logo">OBSCURO</div>
-  <div class="footer-sub">Macdubh — Fils du Noir</div>
-</footer>
-</body>
-</html>
+<div class="search-wrap">
+  <input type="text" class="search-input" placeholder="Rechercher une citation, un auteur..." id="searchInput">
+</div>
+<div class="citations-grid" id="citationsGrid"><div class="citation-card" data-category="maitrise"><span class="card-category">MaÃ®trise de Soi</span><p class="quote-text">Celui qui se maÃ®trise lui-mÃªme est plus grand que celui qui prend une ville.</p><span class="quote-author">Proverbes</span></div></div><p class="no-results" id="noResults">Aucune citation ne correspond Ã  cette recherche.</p><footer>OBSCURO â Macdubh Â· Fils du Noir</footer><script>const filterBtns=document.querySelectorAll('.filter-btn');const cards=document.querySelectorAll('.citation-card');const searchInput=document.getElementById('searchInput');const noResults=document.getElementById('noResults');const totalCount=document.getElementById('total-count');let activeFilter='all';function updateCount(){const visible=document.querySelectorAll('.citation-card:not(.hidden)').length;totalCount.textContent=visible;}function applyFilters(){const searchTerm=searchInput.value.toLowerCase().trim();let count=0;cards.forEach(card=>{const cat=card.getAttribute('data-category');const text=card.textContent.toLowerCase();const matchFilter=activeFilter==='all'||cat===activeFilter;const matchSearch=!searchTerm||text.includes(searchTerm);if(matchFilter&&matchSearch){card.classList.remove('hidden');count++;}else{card.classList.add('hidden');}});noResults.style.display=count===0?'block':'none';totalCount.textContent=count;}filterBtns.forEach(btn=>{btn.addEventListener('click',()=>{filterBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=btn.getAttribute('data-filter');applyFilters();});});searchInput.addEventListener('input',applyFilters);updateCount();</script></body></html>
