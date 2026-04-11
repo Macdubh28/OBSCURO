@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0f1e">
+<title>Citations — OBSCURO</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--noir:#0a0f1e;
+--noir2:#0d1b3e;
+--acier:#1a3a6e;
+--bleu:#5b8fd4;
+--glace:#b8cee8;
+--blanc:#e8f0f8;
+--font-titre:'Cinzel',serif;
+--font-corps:'Montserrat',sans-serif;
+}
+html,body{height:100%;background:var(--noir);color:var(--blanc);font-family:var(--font-corps)}
+nav{position:fixed;top:0;width:100%;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(91,143,212,0.15)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.2em;color:var(--glace);text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--glace);opacity:0.6;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:opacity 0.3s}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+/* PAGE HEADER */
+.page-header{padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 30%, rgba(26,58,110,0.35) 0%, transparent 70%);pointer-events:none}
+.page-icon{font-size:2.8rem;margin-bottom:28px;opacity:0.75}
+.page-label{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--bleu);margin-bottom:16px;opacity:0.7}
+.page-titre{font-family:var(--font-titre);font-size:clamp(2rem,6vw,3.5rem);letter-spacing:0.2em;color:var(--blanc);margin-bottom:20px}
+.page-trait{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--bleu),transparent);margin:0 auto 28px}
+.page-intro{max-width:560px;margin:0 auto;font-size:0.9rem;line-height:1.9;color:var(--glace);opacity:0.6;font-weight:300;font-style:italic}
+/* CITATIONS */
+.contenu{max-width:760px;margin:0 auto;padding:60px 24px 120px}
+.citation-bloc{margin-bottom:56px;padding:40px 40px 40px 48px;border-left:2px solid rgba(91,143,212,0.2);position:relative;transition:border-color 0.3s}
+.citation-bloc:hover{border-color:rgba(91,143,212,0.5)}
+.citation-bloc::before{content:'"';font-family:var(--font-titre);font-size:4rem;color:rgba(91,143,212,0.08);position:absolute;top:16px;left:12px;line-height:1}
+.citation-texte{font-family:var(--font-titre);font-size:clamp(1rem,2.5vw,1.25rem);line-height:1.7;color:var(--glace);margin-bottom:20px;font-style:italic;letter-spacing:0.03em}
+.citation-auteur{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--bleu);opacity:0.7}
+.citation-tag{display:inline-block;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--glace);border:1px solid rgba(91,143,212,0.15);padding:3px 10px;margin-top:12px;opacity:0.4}
+.section-separateur{text-align:center;margin:72px 0 56px;position:relative}
+.section-separateur::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(91,143,212,0.08)}
+.section-separateur span{font-family:var(--font-titre);font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--bleu);opacity:0.4;background:var(--noir);padding:0 24px;position:relative}
+footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(91,143,212,0.08)}
+.footer-logo{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.3em;color:var(--glace);opacity:0.3;margin-bottom:12px}
+.footer-sub{font-size:0.7rem;letter-spacing:0.2em;color:var(--glace);opacity:0.2;text-transform:uppercase}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">OBSCURO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Doctrine</a></li>
+      <li><a href="protocoles.html">Protocoles</a></li>
+      <li><a href="citations.html" class="active">Citations</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-icon">📜</div>
+  <p class="page-label">Textes fondateurs</p>
+  <h1 class="page-titre">Citations</h1>
+  <div class="page-trait"></div>
+  <p class="page-intro">Les paroles de ceux qui ont marché dans l'ombre avant nous. Chaque ligne est une arme forgée par l'expérience.</p>
+</div>
+
+<div class="contenu">
+
+  <div class="section-separateur"><span>Maîtrise de soi</span></div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Celui qui se maîtrise lui-même est plus grand que celui qui prend une ville.</p>
+    <div class="citation-auteur">Proverbes</div>
+    <div class="citation-tag">Maîtrise</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Il n'y a pas de vent favorable pour celui qui ne sait pas où il va.</p>
+    <div class="citation-auteur">Sénèque</div>
+    <div class="citation-tag">Direction · Clarté</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">La première règle est de garder un esprit inébranlable. La deuxième est de regarder les choses en face et de les connaître telles qu'elles sont.</p>
+    <div class="citation-auteur">Marc Aurèle</div>
+    <div class="citation-tag">Stoïcisme · Lucidité</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Tu as du pouvoir sur ton esprit, pas sur les événements extérieurs. Réalise cela, et tu trouveras la force.</p>
+    <div class="citation-auteur">Marc Aurèle</div>
+    <div class="citation-tag">Intériorité · Puissance</div>
+  </div>
+
+  <div class="section-separateur"><span>L'ombre et le silence</span></div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Parle seulement si tu peux améliorer le silence.</p>
+    <div class="citation-auteur">Jorge Luis Borges</div>
+    <div class="citation-tag">Silence</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Mieux vaut être seul qu'en mauvaise compagnie.</p>
+    <div class="citation-auteur">George Washington</div>
+    <div class="citation-tag">Solitude · Discernement</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">L'homme supérieur est celui qui jamais ne se plaint de ce qui ne dépend pas de lui.</p>
+    <div class="citation-auteur">Épictète</div>
+    <div class="citation-tag">Acceptation · Force</div>
+  </div>
+
+  <div class="section-separateur"><span>L'adversité comme terrain</span></div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Le feu éprouve l'or, l'adversité éprouve les hommes forts.</p>
+    <div class="citation-auteur">Sénèque</div>
+    <div class="citation-tag">Adversité · Trempe</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Ce qui ne me tue pas me rend plus fort.</p>
+    <div class="citation-auteur">Friedrich Nietzsche</div>
+    <div class="citation-tag">Résilience</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">L'obstacle est le chemin.</p>
+    <div class="citation-auteur">Zen — proverbe</div>
+    <div class="citation-tag">Adversité · Voie</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Dans l'obscurité, cherche la lumière que tu portais déjà en toi.</p>
+    <div class="citation-auteur">Macdubh</div>
+    <div class="citation-tag">Doctrine personnelle</div>
+  </div>
+
+  <div class="section-separateur"><span>L'action et la hauteur</span></div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Les grands esprits ont toujours rencontré une opposition violente de la part des esprits médiocres.</p>
+    <div class="citation-auteur">Albert Einstein</div>
+    <div class="citation-tag">Hauteur · Solitude</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Agis de façon que la maxime de ta volonté puisse toujours valoir en même temps comme principe d'une législation universelle.</p>
+    <div class="citation-auteur">Emmanuel Kant</div>
+    <div class="citation-tag">Intégrité · Discipline</div>
+  </div>
+
+  <div class="citation-bloc">
+    <p class="citation-texte">Sois le changement que tu veux voir dans le monde.</p>
+    <div class="citation-auteur">Gandhi</div>
+    <div class="citation-tag">Intériorité · Action</div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">OBSCURO</div>
+  <div class="footer-sub">Macdubh — Fils du Noir</div>
+</footer>
+</body>
+</html>

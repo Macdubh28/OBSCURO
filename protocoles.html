@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0f1e">
+<title>Protocoles — OBSCURO</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--noir:#0a0f1e;
+--noir2:#0d1b3e;
+--acier:#1a3a6e;
+--bleu:#5b8fd4;
+--glace:#b8cee8;
+--blanc:#e8f0f8;
+--font-titre:'Cinzel',serif;
+--font-corps:'Montserrat',sans-serif;
+}
+html,body{height:100%;background:var(--noir);color:var(--blanc);font-family:var(--font-corps)}
+nav{position:fixed;top:0;width:100%;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(91,143,212,0.15)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.2em;color:var(--glace);text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--glace);opacity:0.6;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:opacity 0.3s}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+/* PAGE HEADER */
+.page-header{padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 30%, rgba(26,58,110,0.35) 0%, transparent 70%);pointer-events:none}
+.page-icon{font-size:2.8rem;margin-bottom:28px;opacity:0.75}
+.page-label{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--bleu);margin-bottom:16px;opacity:0.7}
+.page-titre{font-family:var(--font-titre);font-size:clamp(2rem,6vw,3.5rem);letter-spacing:0.2em;color:var(--blanc);margin-bottom:20px}
+.page-trait{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--bleu),transparent);margin:0 auto 28px}
+.page-intro{max-width:560px;margin:0 auto;font-size:0.9rem;line-height:1.9;color:var(--glace);opacity:0.6;font-weight:300;font-style:italic}
+/* CONTENU */
+.contenu{max-width:760px;margin:0 auto;padding:60px 24px 120px}
+.protocole-bloc{margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid rgba(91,143,212,0.08)}
+.protocole-bloc:last-child{border-bottom:none}
+.proto-header{display:flex;align-items:baseline;gap:20px;margin-bottom:24px}
+.proto-num{font-family:var(--font-titre);font-size:3rem;color:rgba(91,143,212,0.12);line-height:1;flex-shrink:0}
+.proto-titre{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.15em;color:var(--glace)}
+.proto-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bleu);border:1px solid rgba(91,143,212,0.3);padding:4px 12px;margin-bottom:20px;opacity:0.8}
+.proto-desc{font-size:0.9rem;line-height:1.9;color:var(--glace);opacity:0.6;font-weight:300;margin-bottom:24px}
+.proto-steps{list-style:none;display:flex;flex-direction:column;gap:12px}
+.proto-steps li{display:flex;gap:16px;align-items:flex-start;font-size:0.85rem;line-height:1.7;color:var(--glace);opacity:0.7;font-weight:300}
+.proto-steps li::before{content:'—';color:var(--bleu);opacity:0.5;flex-shrink:0;margin-top:2px}
+.proto-note{margin-top:20px;padding:16px 20px;border-left:2px solid rgba(91,143,212,0.25);font-size:0.8rem;line-height:1.7;color:var(--glace);opacity:0.45;font-style:italic}
+footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(91,143,212,0.08)}
+.footer-logo{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.3em;color:var(--glace);opacity:0.3;margin-bottom:12px}
+.footer-sub{font-size:0.7rem;letter-spacing:0.2em;color:var(--glace);opacity:0.2;text-transform:uppercase}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">OBSCURO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Doctrine</a></li>
+      <li><a href="protocoles.html" class="active">Protocoles</a></li>
+      <li><a href="citations.html">Citations</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-icon">🧊</div>
+  <p class="page-label">Discipline opérationnelle</p>
+  <h1 class="page-titre">Protocoles</h1>
+  <div class="page-trait"></div>
+  <p class="page-intro">Exercices concrets de maîtrise de soi. Chaque protocole est une arme forgée dans le silence et l'adversité.</p>
+</div>
+
+<div class="contenu">
+
+  <div class="protocole-bloc">
+    <div class="proto-header">
+      <div class="proto-num">I</div>
+      <div class="proto-titre">Le Gel Immédiat</div>
+    </div>
+    <span class="proto-tag">Sang-froid · Urgence</span>
+    <p class="proto-desc">Face à une provocation, une humiliation ou une surprise émotionnelle : ne pas réagir dans les trois premières secondes. Ce silence court est la différence entre la réaction et la réponse.</p>
+    <ul class="proto-steps">
+      <li>Inspirer lentement par le nez, 4 secondes.</li>
+      <li>Bloquer l'air 2 secondes — ancrer le corps dans l'instant.</li>
+      <li>Expirer par la bouche, 6 secondes — relâcher la tension sans la montrer.</li>
+      <li>Observer. Laisser l'autre combler le silence.</li>
+      <li>Répondre — ou ne pas répondre — depuis un état choisi.</li>
+    </ul>
+    <p class="proto-note">L'ennemi de la maîtrise, c'est la vitesse. Ralentir est un acte de puissance, pas de faiblesse.</p>
+  </div>
+
+  <div class="protocole-bloc">
+    <div class="proto-header">
+      <div class="proto-num">II</div>
+      <div class="proto-titre">L'Ancrage du Matin</div>
+    </div>
+    <span class="proto-tag">Rituel · Quotidien</span>
+    <p class="proto-desc">Les premières minutes de la journée programment le reste. Ce protocole installe l'état d'aigle avant tout contact avec le monde extérieur.</p>
+    <ul class="proto-steps">
+      <li>Se lever sans téléphone. Les 30 premières minutes appartiennent à soi seul.</li>
+      <li>Eau froide sur le visage — signal au corps : la vigilance commence.</li>
+      <li>3 minutes de silence complet. Observer ses pensées sans s'y attacher.</li>
+      <li>Poser une intention unique pour la journée : une seule, précise, actionnable.</li>
+      <li>Relire une phrase de la doctrine — l'ancrer dans la mémoire du corps.</li>
+    </ul>
+    <p class="proto-note">Ce n'est pas de la routine. C'est une déclaration silencieuse de qui tu choisis d'être ce jour-là.</p>
+  </div>
+
+  <div class="protocole-bloc">
+    <div class="proto-header">
+      <div class="proto-num">III</div>
+      <div class="proto-titre">Le Regard de l'Aigle</div>
+    </div>
+    <span class="proto-tag">Observation · Présence</span>
+    <p class="proto-desc">Entrer dans une pièce, une conversation, une situation en observateur — pas en participant immédiat. La hauteur avant l'engagement.</p>
+    <ul class="proto-steps">
+      <li>À ton arrivée dans un lieu : t'arrêter 5 secondes. Regarder avant d'agir.</li>
+      <li>Identifier les dynamiques en présence : qui parle, qui écoute, qui domine, qui souffre.</li>
+      <li>Ne pas se positionner immédiatement — laisser la scène se révéler.</li>
+      <li>Parler en dernier quand c'est possible. L'information vient à celui qui attend.</li>
+    </ul>
+    <p class="proto-note">L'aigle ne fond pas avant d'avoir choisi sa cible. La précipitation est la marque des proies.</p>
+  </div>
+
+  <div class="protocole-bloc">
+    <div class="proto-header">
+      <div class="proto-num">IV</div>
+      <div class="proto-titre">Le Dépouillement du Soir</div>
+    </div>
+    <span class="proto-tag">Rituel · Débriefing</span>
+    <p class="proto-desc">Chaque journée est une leçon. Ce protocole transforme l'expérience brute en connaissance utilisable.</p>
+    <ul class="proto-steps">
+      <li>S'isoler 10 minutes avant de dormir — sans écran.</li>
+      <li>Identifier un moment où tu as perdu le contrôle, même légèrement.</li>
+      <li>Analyser : quelle émotion a parlé avant toi ?</li>
+      <li>Formuler mentalement ce que tu aurais dit ou fait depuis l'état maîtrisé.</li>
+      <li>Clore — ne pas ruminer. Le débrief n'est pas une punition, c'est un affûtage.</li>
+    </ul>
+    <p class="proto-note">Celui qui se connaît dans ses failles ne peut plus être surpris par elles.</p>
+  </div>
+
+  <div class="protocole-bloc">
+    <div class="proto-header">
+      <div class="proto-num">V</div>
+      <div class="proto-titre">Le Mur de Silence</div>
+    </div>
+    <span class="proto-tag">Résistance · Pression sociale</span>
+    <p class="proto-desc">Face à la pression de répondre, de justifier, de se défendre : ne rien dire. Le silence comme bouclier et comme lame.</p>
+    <ul class="proto-steps">
+      <li>Quand on te demande de te justifier inutilement : regarder sans répondre.</li>
+      <li>Laisser le silence s'installer — l'autre le remplira, et se révélera.</li>
+      <li>Si la pression monte, répondre par une question : "Qu'est-ce qui te fait penser ça ?"</li>
+      <li>Ne jamais sur-expliquer. L'excès de mots est une forme de peur.</li>
+    </ul>
+    <p class="proto-note">Tu n'as pas à te défendre de ce que tu n'as pas fait. Et même de ce que tu as fait, rarement.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">OBSCURO</div>
+  <div class="footer-sub">Macdubh — Fils du Noir</div>
+</footer>
+</body>
+</html>
