@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0f1e">
+<title>OBSCURO — Macdubh</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--noir:#0a0f1e;
+--noir2:#0d1b3e;
+--acier:#1a3a6e;
+--bleu:#5b8fd4;
+--glace:#b8cee8;
+--blanc:#e8f0f8;
+--font-titre:'Cinzel',serif;
+--font-corps:'Montserrat',sans-serif;
+}
+html,body{height:100%;background:var(--noir);color:var(--blanc);font-family:var(--font-corps)}
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(91,143,212,0.15)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.2em;color:var(--glace)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--glace);opacity:0.6;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:opacity 0.3s}
+.nav-links a:hover{opacity:1}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(26,58,110,0.4) 0%, transparent 70%);pointer-events:none}
+.aigle{font-size:3.5rem;margin-bottom:32px;opacity:0.85;animation:planer 6s ease-in-out infinite}
+@keyframes planer{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-titre{font-family:var(--font-titre);font-size:clamp(2.8rem,8vw,5.5rem);letter-spacing:0.25em;color:var(--blanc);margin-bottom:16px;line-height:1.1}
+.hero-sous{font-family:var(--font-titre);font-size:clamp(0.75rem,2vw,1rem);letter-spacing:0.4em;color:var(--bleu);text-transform:uppercase;margin-bottom:48px;opacity:0.8}
+.hero-trait{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--bleu),transparent);margin:0 auto 48px}
+.hero-doctrine{max-width:580px;font-size:clamp(0.9rem,2vw,1.05rem);line-height:1.9;color:var(--glace);opacity:0.75;font-weight:300;font-style:italic}
+.hero-cta{margin-top:56px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.btn{padding:14px 36px;border:1px solid rgba(91,143,212,0.4);background:transparent;color:var(--glace);font-family:var(--font-corps);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;cursor:pointer}
+.btn:hover{background:rgba(91,143,212,0.12);border-color:var(--bleu)}
+.btn-primary{background:rgba(26,58,110,0.5);border-color:var(--bleu)}
+/* DOCTRINE */
+.section{padding:100px 24px;max-width:960px;margin:0 auto}
+.section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--bleu);margin-bottom:20px;opacity:0.7}
+.section-titre{font-family:var(--font-titre);font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:0.1em;color:var(--blanc);margin-bottom:48px}
+.doctrine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:rgba(91,143,212,0.08)}
+.doctrine-card{background:var(--noir);padding:40px 32px;border:1px solid rgba(91,143,212,0.1);transition:border-color 0.3s}
+.doctrine-card:hover{border-color:rgba(91,143,212,0.35)}
+.doctrine-num{font-family:var(--font-titre);font-size:2.5rem;color:rgba(91,143,212,0.15);margin-bottom:16px;line-height:1}
+.doctrine-nom{font-family:var(--font-titre);font-size:0.9rem;letter-spacing:0.2em;color:var(--glace);margin-bottom:12px}
+.doctrine-desc{font-size:0.85rem;line-height:1.8;color:var(--glace);opacity:0.55;font-weight:300}
+/* PILIERS NAV */
+.piliers{padding:80px 24px;background:rgba(13,27,62,0.4);border-top:1px solid rgba(91,143,212,0.08);border-bottom:1px solid rgba(91,143,212,0.08)}
+.piliers-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(91,143,212,0.1)}
+.pilier-link{background:var(--noir);padding:40px 28px;text-decoration:none;display:block;transition:background 0.3s;border:1px solid transparent}
+.pilier-link:hover{background:rgba(26,58,110,0.5);border-color:rgba(91,143,212,0.2)}
+.pilier-icon{font-size:1.6rem;margin-bottom:16px;opacity:0.7}
+.pilier-nom{font-family:var(--font-titre);font-size:0.85rem;letter-spacing:0.2em;color:var(--glace);margin-bottom:8px}
+.pilier-desc{font-size:0.75rem;color:var(--glace);opacity:0.45;font-weight:300;line-height:1.6}
+/* FOOTER */
+footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(91,143,212,0.08)}
+.footer-logo{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.3em;color:var(--glace);opacity:0.3;margin-bottom:12px}
+.footer-sub{font-size:0.7rem;letter-spacing:0.2em;color:var(--glace);opacity:0.2;text-transform:uppercase}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">OBSCURO</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Doctrine</a></li>
+      <li><a href="protocoles.html">Protocoles</a></li>
+      <li><a href="citations.html">Citations</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+  </div>
+</nav>
+<section class="hero">
+  <div class="aigle">🦅</div>
+  <h1 class="hero-titre">OBSCURO</h1>
+  <p class="hero-sous">Fils du Noir — Macdubh</p>
+  <div class="hero-trait"></div>
+  <p class="hero-doctrine">
+    Celui qui observe depuis l'ombre sans jamais être vu.<br>
+    Le sang-froid n'est pas l'absence d'émotion —<br>
+    c'est la maîtrise absolue de ce qu'on en fait.
+  </p>
+  <div class="hero-cta">
+    <a href="protocoles.html" class="btn btn-primary">Protocoles</a>
+    <a href="journal.html" class="btn">Journal</a>
+  </div>
+</section>
+<section class="piliers">
+  <div class="piliers-inner">
+    <a href="protocoles.html" class="pilier-link">
+      <div class="pilier-icon">🧊</div>
+      <div class="pilier-nom">Protocoles</div>
+      <div class="pilier-desc">Exercices de sang-froid et maîtrise de soi</div>
+    </a>
+    <a href="citations.html" class="pilier-link">
+      <div class="pilier-icon">📜</div>
+      <div class="pilier-nom">Citations</div>
+      <div class="pilier-desc">Textes fondateurs des guerriers impassibles</div>
+    </a>
+    <a href="journal.html" class="pilier-link">
+      <div class="pilier-icon">🗡️</div>
+      <div class="pilier-nom">Journal</div>
+      <div class="pilier-desc">Maîtrise intime — situations et réponses</div>
+    </a>
+  </div>
+</section>
+<section class="section">
+  <p class="section-label">La doctrine</p>
+  <h2 class="section-titre">Les lois de l'ombre</h2>
+  <div class="doctrine-grid">
+    <div class="doctrine-card">
+      <div class="doctrine-num">I</div>
+      <div class="doctrine-nom">L'Observation</div>
+      <div class="doctrine-desc">L'aigle ne réagit pas — il observe. Toute réaction sans observation est une faiblesse déguisée en force.</div>
+    </div>
+    <div class="doctrine-card">
+      <div class="doctrine-num">II</div>
+      <div class="doctrine-nom">Le Silence</div>
+      <div class="doctrine-desc">Le silence n'est pas l'absence de réponse. C'est la réponse la plus puissante qu'un homme maître de lui-même puisse donner.</div>
+    </div>
+    <div class="doctrine-card">
+      <div class="doctrine-num">III</div>
+      <div class="doctrine-nom">La Froideur</div>
+      <div class="doctrine-desc">La froideur n'est pas cruauté — c'est clarté. Voir sans brouillard émotionnel, décider sans tremblement.</div>
+    </div>
+    <div class="doctrine-card">
+      <div class="doctrine-num">IV</div>
+      <div class="doctrine-nom">L'Adversité</div>
+      <div class="doctrine-desc">Macdubh — fils du noir. La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris à voir dans l'obscurité.</div>
+    </div>
+    <div class="doctrine-card">
+      <div class="doctrine-num">V</div>
+      <div class="doctrine-nom">La Maîtrise</div>
+      <div class="doctrine-desc">Gouverner ses passions avant de prétendre gouverner quoi que ce soit d'autre. Le premier empire est intérieur.</div>
+    </div>
+    <div class="doctrine-card">
+      <div class="doctrine-num">VI</div>
+      <div class="doctrine-nom">L'Envol</div>
+      <div class="doctrine-desc">L'aigle s'élève non par légèreté mais par puissance. La hauteur est conquise, jamais donnée.</div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">OBSCURO</div>
+  <div class="footer-sub">Macdubh — Fils du Noir</div>
+</footer>
+</body>
+</html>
