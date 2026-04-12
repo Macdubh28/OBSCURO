@@ -6,365 +6,52 @@
   <title>Techniques â OBSCURO</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:wght@400;600&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --noir: #0a0e1a;
-      --bleu-nuit: #0d1526;
-      --acier: #8a9bb5;
-      --acier-clair: #b8c8dc;
-      --blanc: #e8edf5;
-      --argent: #c0ccd8;
-      --or: #8b7355;
-      --or-clair: #c4a96e;
-      --frontiere: rgba(138,155,181,0.15);
-      --rouge-sang: rgba(150,50,50,0.15);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--noir);
-      color: var(--blanc);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(13,21,38,0.8) 0%, transparent 70%),
-                  radial-gradient(ellipse at 80% 20%, rgba(139,115,85,0.04) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.2rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(10,14,26,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--frontiere);
-    }
-
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.4em;
-      color: var(--acier-clair);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      color: var(--acier);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--blanc); }
-
-    /* HERO */
-    .hero {
-      padding: 9rem 3rem 5rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-icon { font-size: 2.2rem; display: block; margin-bottom: 1.5rem; }
-
-    .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-sub {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: var(--acier);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-desc {
-      font-size: 0.85rem;
-      color: var(--acier);
-      font-style: italic;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.9;
-    }
-
-    /* INTRO BANNER */
-    .intro-banner {
-      max-width: 800px;
-      margin: 0 auto 4rem;
-      padding: 2rem 3rem;
-      border: 1px solid var(--frontiere);
-      border-left: 3px solid var(--or-clair);
-      background: rgba(139,115,85,0.04);
-      font-size: 0.85rem;
-      line-height: 1.9;
-      color: var(--acier-clair);
-      font-style: italic;
-    }
-
-    /* SECTIONS */
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 3rem 5rem;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--frontiere);
-    }
-
-    .section-num {
-      font-family: 'Cinzel', serif;
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--or);
-      opacity: 0.3;
-      line-height: 1;
-    }
-
-    .section-title-wrap {}
-
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      color: var(--blanc);
-      margin-bottom: 0.3rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: var(--acier);
-      text-transform: uppercase;
-    }
-
-    /* TECHNIQUE CARDS */
-    .techniques-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .technique-card {
-      border: 1px solid var(--frontiere);
-      background: rgba(13,21,38,0.5);
-      padding: 2rem;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .technique-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 2px;
-      height: 0;
-      background: var(--or-clair);
-      transition: height 0.4s ease;
-    }
-
-    .technique-card:hover {
-      border-color: rgba(138,155,181,0.35);
-      background: rgba(13,21,38,0.8);
-      transform: translateY(-3px);
-    }
-
-    .technique-card:hover::before { height: 100%; }
-
-    .tech-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .tech-icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .tech-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--blanc);
-      margin-bottom: 0.3rem;
-    }
-
-    .tech-origin {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--or);
-      text-transform: uppercase;
-    }
-
-    .tech-desc {
-      font-size: 0.82rem;
-      line-height: 1.8;
-      color: var(--acier-clair);
-      margin-bottom: 1.2rem;
-    }
-
-    .tech-steps {
-      list-style: none;
-      counter-reset: steps;
-    }
-
-    .tech-steps li {
-      counter-increment: steps;
-      padding: 0.5rem 0 0.5rem 2rem;
-      font-size: 0.78rem;
-      line-height: 1.7;
-      color: var(--acier);
-      border-bottom: 1px solid var(--frontiere);
-      position: relative;
-    }
-
-    .tech-steps li:last-child { border-bottom: none; }
-
-    .tech-steps li::before {
-      content: counter(steps);
-      position: absolute;
-      left: 0;
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      color: var(--or);
-      width: 1.2rem;
-    }
-
-    .tech-duration {
-      margin-top: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--acier);
-      border: 1px solid var(--frontiere);
-      padding: 0.3rem 0.7rem;
-      text-transform: uppercase;
-    }
-
-    /* WIDE CARD */
-    .technique-card.wide {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-
-    @media (max-width: 700px) {
-      .technique-card.wide {
-        grid-column: auto;
-        grid-template-columns: 1fr;
-      }
-      .techniques-grid { grid-template-columns: 1fr; }
-      .section { padding: 0 1.5rem 4rem; }
-      nav { padding: 1.2rem 1.5rem; }
-      .section-header { gap: 0.8rem; }
-    }
-
-    /* QUOTE IN TECHNIQUE */
-    .tech-quote {
-      font-style: italic;
-      font-size: 0.78rem;
-      color: var(--or-clair);
-      border-left: 2px solid var(--or);
-      padding-left: 1rem;
-      margin: 1rem 0;
-      line-height: 1.7;
-    }
-
-    /* DIVIDER */
-    .section-divider {
-      max-width: 1100px;
-      margin: 0 auto 4rem;
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .section-divider::before,
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--frontiere);
-    }
-
-    .divider-symbol {
-      font-size: 0.7rem;
-      color: var(--acier);
-      letter-spacing: 0.3em;
-    }
-
-    /* WARNING BOX */
-    .warning-box {
-      max-width: 1100px;
-      margin: 0 auto 3rem;
-      padding: 1.5rem 2rem;
-      border: 1px solid rgba(150,50,50,0.3);
-      background: rgba(150,50,50,0.06);
-      font-size: 0.78rem;
-      line-height: 1.8;
-      color: var(--acier);
-    }
-
-    .warning-box strong {
-      color: rgba(220,120,120,0.9);
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-    }
-
-    footer {
-      border-top: 1px solid var(--frontiere);
-      padding: 2rem 3rem;
-      text-align: center;
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--acier);
-      opacity: 0.6;
-    }
+    :root{--noir:#0a0e1a;--acier:#8a9bb5;--acier-clair:#b8c8dc;--blanc:#e8edf5;--or:#8b7355;--or-clair:#c4a96e;--frontiere:rgba(138,155,181,0.15);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--noir);color:var(--blanc);font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--frontiere);}
+    .nav-logo{font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.4em;color:var(--acier-clair);text-decoration:none;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--acier);text-decoration:none;transition:color 0.3s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--blanc);}
+    @media(max-width:700px){nav{padding:1rem 1.5rem;}.nav-links{gap:1.5rem;}}
+    .hero{padding:9rem 3rem 5rem;text-align:center;}
+    .hero-icon{font-size:2.2rem;display:block;margin-bottom:1.5rem;}
+    .hero h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;letter-spacing:0.2em;margin-bottom:0.5rem;}
+    .hero-sub{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.7rem;letter-spacing:0.3em;color:var(--acier);margin-bottom:1.5rem;}
+    .hero-desc{font-size:0.85rem;color:var(--acier);font-style:italic;max-width:600px;margin:0 auto;line-height:1.9;}
+    .intro-banner{max-width:800px;margin:0 auto 4rem;padding:2rem 3rem;border:1px solid var(--frontiere);border-left:3px solid var(--or-clair);background:rgba(139,115,85,0.04);font-size:0.85rem;line-height:1.9;color:var(--acier-clair);font-style:italic;}
+    .section{max-width:1100px;margin:0 auto;padding:0 3rem 5rem;}
+    .section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:2.5rem;padding-bottom:1rem;border-bottom:1px solid var(--frontiere);}
+    .section-num{font-family:'Cinzel',serif;font-size:3rem;font-weight:900;color:var(--or);opacity:0.3;line-height:1;}
+    .section-title{font-family:'Cinzel','Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;letter-spacing:0.15em;color:var(--blanc);margin-bottom:0.3rem;}
+    .section-subtitle{font-size:0.7rem;letter-spacing:0.2em;color:var(--acier);text-transform:uppercase;}
+    .techniques-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;}
+    .technique-card{border:1px solid var(--frontiere);background:rgba(13,21,38,0.5);padding:2rem;transition:all 0.3s;position:relative;overflow:hidden;}
+    .technique-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--or-clair);transition:height 0.4s ease;}
+    .technique-card:hover{border-color:rgba(138,155,181,0.35);background:rgba(13,21,38,0.8);transform:translateY(-3px);}
+    .technique-card:hover::before{height:100%;}
+    .tech-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.2rem;}
+    .tech-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+    .tech-title{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.1em;color:var(--blanc);margin-bottom:0.3rem;}
+    .tech-origin{font-size:0.6rem;letter-spacing:0.2em;color:var(--or);text-transform:uppercase;}
+    .tech-desc{font-size:0.82rem;line-height:1.8;color:var(--acier-clair);margin-bottom:1.2rem;}
+    .tech-steps{list-style:none;counter-reset:steps;}
+    .tech-steps li{counter-increment:steps;padding:0.5rem 0 0.5rem 2rem;font-size:0.78rem;line-height:1.7;color:var(--acier);border-bottom:1px solid var(--frontiere);position:relative;}
+    .tech-steps li:last-child{border-bottom:none;}
+    .tech-steps li::before{content:counter(steps);position:absolute;left:0;font-family:'Cinzel',serif;font-size:0.65rem;color:var(--or);width:1.2rem;}
+    .tech-duration{margin-top:1rem;display:inline-flex;align-items:center;gap:0.4rem;font-size:0.6rem;letter-spacing:0.15em;color:var(--acier);border:1px solid var(--frontiere);padding:0.3rem 0.7rem;text-transform:uppercase;}
+    .technique-card.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+    @media(max-width:700px){.technique-card.wide{grid-column:auto;grid-template-columns:1fr;}.techniques-grid{grid-template-columns:1fr;}.section{padding:0 1.5rem 4rem;}}
+    .tech-quote{font-style:italic;font-size:0.78rem;color:var(--or-clair);border-left:2px solid var(--or);padding-left:1rem;margin:1rem 0;line-height:1.7;}
+    .section-divider{max-width:1100px;margin:0 auto 4rem;padding:0 3rem;display:flex;align-items:center;gap:1.5rem;}
+    .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--frontiere);}
+    .divider-symbol{font-size:0.7rem;color:var(--acier);letter-spacing:0.3em;}
+    .warning-box{max-width:1100px;margin:0 auto 3rem;padding:1.5rem 2rem;border:1px solid rgba(150,50,50,0.3);background:rgba(150,50,50,0.06);font-size:0.78rem;line-height:1.8;color:var(--acier);}
+    .warning-box strong{color:rgba(220,120,120,0.9);font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;}
+    footer{border-top:1px solid var(--frontiere);padding:2rem 3rem;text-align:center;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;color:var(--acier);opacity:0.6;}
   </style>
 </head>
 <body>
@@ -386,7 +73,6 @@
   <p class="hero-sub">Arsenal de la MaÃ®trise IntÃ©rieure</p>
   <p class="hero-desc">Ces mÃ©thodes viennent de la philosophie stoÃ¯cienne, des arts martiaux, de la psychologie cognitive et des traditions guerriÃ¨res. Elles ont Ã©tÃ© sÃ©lectionnÃ©es pour un seul critÃ¨re : elles fonctionnent.</p>
 </section>
-
 <div style="max-width:800px;margin:0 auto 4rem;padding:0 3rem;">
   <div class="intro-banner">
     "Un guerrier sans technique est un homme en colÃ¨re avec une Ã©pÃ©e. La technique transforme la force brute en prÃ©cision. MaÃ®trise d'abord les outils â le reste suivra."
@@ -395,56 +81,56 @@
 </div>
 
 <div class="section">
-  <div class="section-header">
-    <span class="section-num">I</span>
-    <div class="section-title-wrap">
-      <h2 class="section-title">StoÃ¯cisme OpÃ©rationnel</h2>
-      <p class="section-subtitle">Philosophie appliquÃ©e au quotidien</p>
-    </div>
-  </div>
+  <div class="section-header"><span class="section-num">I</span><div><h2 class="section-title">StoÃ¯cisme OpÃ©rationnel</h2><p class="section-subtitle">Philosophie appliquÃ©e au quotidien</p></div></div>
   <div class="techniques-grid">
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð­</span><div><h3 class="tech-title">La Praemeditatio Malorum</h3><span class="tech-origin">StoÃ¯cisme Â· Marc AurÃ¨le Â· SÃ©nÃ¨que</span></div></div><p class="tech-desc">Visualiser dÃ©libÃ©rÃ©ment les pires scÃ©narios possibles. Non pour crÃ©er l'anxiÃ©tÃ©, mais pour s'y prÃ©parer â et rÃ©aliser que tu y survivrais.</p><ul class="tech-steps"><li>Choisir une situation Ã  risque dans ta journÉ¹e</li><li>Visualiser le pire rÃ©sultat rÃ©aliste</li><li>Demander : "Puis-je survivre Ã  cela ?"</li><li>Identifier une action concrÃ¨te si cela se produisait</li><li>RelÃ¢cher â tu es prÃ©parÃ© maintenant</li></ul><p class="tech-quote">"Contemple l'adversitÃ© avant qu'elle arrive. Elle perdra tout pouvoir de surprise sur toi." â SÃ©nÃ¨que</p><span class="tech-duration">â± 5 minutes Â· Matin</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð/span><div><h3 class="tech-title">La Dichotomie du ContrÃ´le</h3><span class="tech-origin">StoÃ¯cisme Â· ÃpictÃ¨te</span></div></div><p class="tech-desc">Toute situation peut Ãªtre divisÃ©e en deux colonnes. N'investis ton Ã©nergie que dans la premiÃ¨re colonne.</p><ul class="tech-steps"><li>Face Ã  une source de stress, pause complÃ¨te</li><li>Plan d'action immÃ©diat sur ce qui dÃ©pend de toi</li><li>Acceptation delibÃ©rÃ©e pour ce qui n'en dÃ©pend pas</li><li>Agir seulement sur la colonne 1</li></ul><p class="tech-quote">"Il y a une chose qui est vraiment le nÃ´tre â nos jugements." â!ÃpictÃ¨te</p><span class="tech-duration">â± 2 minutes Â· A tout moment</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">La Vue du Dessus (Ãpopteia)</h3><span class="tech-origin">StoÃ¯cisme Â· Marc AurÃ¨le</span></div></div><p class="tech-desc">Prendre mentalement de la hauteur pour voir ta situation dans son contexte rÃ©el.</p><ul class="tech-steps"><li>Imaginer te voir de l'extÃ©rieur</li><li>Puis depuis les nuages, la ville entiÃ¨re</li><li>Puis depuis l'espace</li><li>Redescendre avec : "Dans 5 ans, est-ce que cela comptera ?"</li></ul><p class="tech-quote">"ÃlÃ¨ve-toi et contemple les choses humaines dans leur ensemble." â Marc AurÃ¨le</p><span class="tech-duration">â± 3 minutes Â· Stress</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ðª</span><div><h3 class="tech-title">L'Examen du Soir</h3><span class="tech-origin">StoÃ¯cisme Â· SÃ©nÃ¨que</span></div></div><p class="tech-desc">Chaque soir, SÃ©nÃ¨que s'interrogeait sur ses actes de la journÃ©e. Pas pour se condamnerâ pour s'affÃ»ter.</p><ul class="tech-steps"><li>10 minutes sans Ã©cran avant de dormir</li><li>"Quelle mauvaise habitude ai-je vaincue aujourd'hui ?"</li><li>"En quoi suis-je meilleur que ce matin ?"</li><li>Formuler un seul point d'amÃ©lioration pour demain</li></ul><p class="tech-quote">"Quand l'espace pour le sommeil s'est offert, j'ai parcouru toute ma journÃ©e." â SÃ©nÃ¨que</p><span class="tech-duration">â± 10 minutes Â· Soir</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">La Praemeditatio Malorum</h3><span class="tech-origin">StoÃ¯cisme Â· Marc AurÃ¨le Â· SÃ©nÃ¨que</span></div></div><p class="tech-desc">Visualiser dÃ©libÃ©rÃ©ment les pires scÃ©narios possibles. Non pour crÃ©er l'anxiÃ©tÃ©, mais pour s&x2f§wy prÃ©parer â et rÃ©aliser que tu y survivrais.</p><ul class="tech-steps"><li>Choisir une situation Ã  risque dans ta journÃ©e</li><li>Visualiser le pire rÃ©sultat rÃ©aliste</li><li>Demander : "Puis-je survivre Ã  cela ?"</li><li>Identifier une action concrÃ¨te si cela se produisait</li><li>RelÃ¢cher â tu es prÃ©parÃ© maintenant</li></ul><p class="tech-quote">"Contemple l'adversitÃ© avant qu'elle arrive. Elle perdra tout pouvoir de surprise sur toi." â SÃ©nÃ¨que</p><span class="tech-duration">â± 5 minutes Â· Matin</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">â»î¸</span><div><h3 class="tech-title">La Dichotomie du ContrÃ´le</h3><span class="tech-origin">StoÃ¯cisme Â· ÃpictÃ¨te</span></div></div><p class="tech-desc">Toute situation peut Ãªtre divisÃ©e en deux colonnes. N'investis ton Ã©nergie que dans la premiÃ¨re colonne.</p><ul class="tech-steps"><li>Face Ã  une source de stress, pause complÃ¨te</li><li>Plan d'action immÃ©diat sur ce qui dÃ©pend de toi</li><li>Acceptation dÃ©libÃ©rc©e pour ce qui n'en dÃ©pend pas</li><li>Agir seulement sur la colonne 1</li></ul><p class="tech-quote">"Il y a une chose qui est vraiment le nÃ´tre â ce nos jugements." â ÃpictÃ¨te</p><span class="tech-duration">â± 2 minutes Â· Ã tout moment</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¦</span><div><h3 class="tech-title">La Vue du Dessus (Ãpopteia)</h3><span class="tech-origin">StoÃ¯cisme Â· Marc AurÃ¨le</span></div></div><p class="tech-desc">Prendre mentalement de la hauteur pour voir ta situation dans son contexte rÃ©el.</p><ul class="tech-steps"><li>Imaginer te voir de l'extÃ©rieur</li><li>Puis depuis les nuages, la ville entiÃ¨re</li><li>Puis depuis l'espace</li><li>Redescendre avec : "Dans 5 ans, est-ce que cela comptera ?"</li></ul><p class="tech-quote">"ÃlÃ¨ve-toi et contemple les choses humaines dans leur ensemble." â Marc AurÃ¨le</p><span class="tech-duration">â± 3 minutes Â· Stress</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">L'Examen du Soir</h3><span class="tech-origin">StoÃ¯cisme Â· SÃ©nÃ¨que</span></div></div><p class="tech-desc">Chaque soir, SÃ©nÃ¨que s'interrogeait sur ses actes de la journÃ©e. Pas pour se condamner â pour s'affÃ»ter.</p><ul class="tech-steps"><li>10 minutes sans Ã©cran avant de dormir</li><li>"Quelle mauvaise habitude ai-je vaincue aujourd'hui ?"</li><li>"En quoi suis-je meilleur que ce matin ?"</li><li>Formuler un seul point d'amÃ©lioration pour demain</li></ul><p class="tech-quote">"Quand l'espace pour le sommeil s&apos;est offert, j&apos;ai parcouru toute ma journÉ´e." â SÃ©nÃ¨que</p><span class="tech-duration">â± 10 minutes Â· Soir</span></div>
   </div>
 </div>
+
 <div class="section-divider"><span class="divider-symbol">â¦ â¦ â¦</span></div>
+
 <div class="section">
-  <div class="section-header"><span class="section-num">II</span><div class="section-title-wrap"><h2 class="section-title">MaÃ®trise Ãmotionnelle</h2><p class="section-subtitle">Psychologie cognitive & neurosciences</p></div></div>
+  <div class="section-header"><span class="section-num">II</span><div><h2 class="section-title">MaÃ®trise Ãmotionnelle</h2><p class="section-subtitle">Psychologie cognitive &amp; neurosciences</p></div></div>
   <div class="techniques-grid">
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð§</span><div><h3 class="tech-title">Le Gel Physiologique (4-2-6)</h3><span class="tech-origin">Neurosciences Â· CohÃ©rence cardiaque</span></div></div><p class="tech-desc">Inspire 4 secondes, bloque 2, expire 6. Cette asymÃ©trie active le systÃ¨me parasympathique.</p><ul class="tech-steps"><li>Inspiration nasale : 4 secondes</li><li>RÃ©tention : 2 secondes</li><li>Expiration buccale : 6 secondes</li><li>PÃ©rÃ©ter 5 cycles minimum</li></ul><p class="tech-quote">"Le corps ne ment pas. Reprends le contrÃ´le par lui avant de le reprendre par l'esprit."</p><span class="tech-duration">â± 60 secondes Â· Urgence </span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð·</span><div><h3 class="tech-title">L'Ãtiquetage (Affect Labeling)</h3><span class="tech-origin">Neurosciences Â· Dr. Matthew Lieberman</span></div></div><p class="tech-desc">Nommer une Ã©motion rÃ©duit son activitÃ© dans l'amygdale de 30-50%. La mettre en mots dÃ©sactive son pouvoir.</p><ul class="tech-steps"><li>Ressentir une Ã©motion intense</li><li>L'identifier prÃ©cisÃ©ment : "humiliÃ©", "menacÃ©", "dÃ§Ã¹"</li><li>La formuler mentalement</li><li>Observer l'intensitÃ© diminuer</li></ul><p class="tech-quote">"Nommer l'ombre, c'est dÃ©jÃ  ne plus en Ãªtre la proie."</p><span class="tech-duration">â± 30 secondes Â· En temps rÃ©el</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">â¸</span><div><h3 class="tech-title">Le DÃ©lai Intentionnel</h3><span class="tech-origin">Psychologie comportementale Â· LogothÃ©rapie</span></div></div><p class="tech-desc">Entre le stimulus et la rÃ©ponse, il y a un espace. Cet espace est ta libertÃ©.</p><ul class="tech-steps"><li>Face Ã  une provocation : ne pas rÃ©pondre dans les 3 premiÃ¨res secondes</li><li>Poser les mains Ã  plat sur une surface</li><li>Se demander : "Est-ce que je rÃ©ponds ou rÃ©agis ?"</li><li>Choisir la rÃ©ponse depuis cet Ã©tat choisi</li></ul><p class="tech-quote">"Entre le stimulus et la rÃ©ponse, il y a un espace. Dans cet espace rÃ©side notre libertÃ©." â Viktor Frankl</p><span class="tech-duration">â± 3-10 secondes Â· Provocation</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ðð</span><div><h3 class="tech-title">La RÃ©pÃ©valuation Cognitive</h3><span class="tech-origin">ThÃ©rapie Cognitive Â· Aaron Beck</span></div></div><p class="tech-desc">Changer l'interprÃ©tation sans changer l'Ã©vÃ©nement. Tu choisis le cadre.</p><ul class="tech-steps"><li>Identifier la pensÃ©e automatique nÃ©gative</li><li>Demander : "Est-ce un fait ou une interprÃ©tation ?"</li><li>Trká½¹dË
-/er une interprÃ©tation alternative</li><li>Adopter le cadre le plus utile</li></ul><p class="tech-quote">"Ce ne sont pas les Ã©vÃ©nements qui troublent les hommes, mais leurs jugements." â ÃpictÃ¨te</p><span class="tech-duration">â± 5 minutes Â· RÃ©flexion</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð§</span><div><h3 class="tech-title">Le Gel Physiologique (4-2-6)</h3><span class="tech-origin">Neurosciences Â· CohÃ©rence cardiaque</span></div></div><p class="tech-desc">Inspire 4 secondes, bloque 2, expire 6. Cette asymÃ©trie active le systÃ¨me parasympathique.</p><ul class="tech-steps"><li>Inspiration nasale : 4 secondes</li><li>RÃ©tention : 2 secondes</li><li>Expiration buccale : 6 secondes</li><li>RÃ©pÃ©ter 5 cycles minimum</li></ul><p class="tech-quote">"Le corps ne ment pas. Reprends le contrÃ´le par lui avant de le reprendre par l'esprit."</p><span class="tech-duration">â± 60 secondes Â· Urgence</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ðï¸</span><div><h3 class="tech-title">L'Ãtiquetage (Affect Labeling)</h3><span class="tech-origin">Neurosciences Â· Dr. Matthew Lieberman</span></div></div><p class="tech-desc">Nommer une Ã©motion rÈduit son activitÃ© dans l'amygdale de 30-50%. La mettre en mots dÃ©sactive son pouvoir.</p><ul class="tech-steps"><li>Ressentir une Ã©motion intense</li><li>L'identifier prÃ©cisÃ©ment : "humiliÃ©", "menacÃ©", "dÃ©Ã§u"</li><li>La formuler mentalement</li><li>Observer l'intensitÃ© diminuer</li></ul><p class="tech-quote">"Nommer l'ombre, c'est dÃ©jÃ  ne plus en Ãªtre la proie."</p><span class="tech-duration">â± 30 secondes Â· En temps rÃ©el</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">â¸ï¸</span><div><h3 class="tech-title">Le DÃ©lai Intentionnel</h3><span class="tech-origin">Psychologie comportementale Â· LogothÃ©rapie</span></div></div><p class="tech-desc">Entre le stimulus et la rÃ©ponse, il y a un espace. Cet espace est ta libertÃ©.</p><ul class="tech-steps"><li>Face Ã  une provocation : ne pas rÃ©pondre dans les 3 premiÃ¨res secondes</li><li>Poser les mains Ã  plat sur une surface</li><li>Se demander : "Est-ce que je rÃ©ponds ou rÃ©agis ?"</li><li>Choisir la rÃ©ponse depuis cet Ã©tat choisi</li></ul><p class="tech-quote">"Entre le stimulus et la rÃ©ponse, il y a un espace. Dans cet espace rÃ©side notre libertÃ©." â Viktor Frankl</p><span class="tech-duration">â± 3-10 secondes Â· Provocation</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">La RÃ©Ã©valuation Cognitive</h3><span class="tech-origin">ThÃ©rapie Cognitive Â· Aaron Beck</span></div></div><p class="tech-desc">Changer l'interprÃ©tation sans changer l'Ã©vÃ©nement. Tu choisis le cadre.</p><ul class="tech-steps"><li>Identifier la pensÃ©e automatique nÃ©gative</li><li>Demander : "Est-ce un fait ou une interprÃ©tation ?"</li><li>Trouver une interprÃ©tation alternative</li><li>Adopter le cadre le plus utile</li></ul><p class="tech-quote">"Ce ne sont pas les Ã©vÃ©nements qui troublent les hommes, mais leurs jugements." â ÃpictÃ¨te</p><span class="tech-duration">â± 5 minutes Â· RÃ©flexion</span></div>
   </div>
 </div>
+
 <div class="section-divider"><span class="divider-symbol">â¦ â¦ â¦</span></div>
+
 <div class="section">
-  <div class="section-header"><span class="section-num">III</span><div class="section-title-wrap"><h2 class="section-title">Arts Martiaux Mentaux</h2><p class="section-subtitle">Traditions guerriÃ¨res & sagesse de combat</p></div></div>
+  <div class="section-header"><span class="section-num">III</span><div><h2 class="section-title">Arts Martiaux Mentaux</h2><p class="section-subtitle">Traditions guerriÃ¨res &amp; sagesse de combat</p></div></div>
   <div class="techniques-grid">
     <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">Mushin â L'Esprit sans Mental</h3><span class="tech-origin">Arts martiaux japonais Â· Bouddhisme Zen</span></div></div><p class="tech-desc">Mushin : "esprit sans esprit." L'Ã©tat oÃ¹ l'action coule sans interfÃ©rence du mental analytique.</p><ul class="tech-steps"><li>Identifier une tÃ¢che maÃ®trisÃ©e</li><li>Commencer sans objectif de rÃ©sultat</li><li>Quand le mental commente : observer sans suivre</li><li>L'Ã©valuation vient aprÃ¨s, jamais pendant</li></ul><p class="tech-quote">"Le sabre qui frappe sans penser frappe vrai."</p><span class="tech-duration">â± Pendant l'action</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¿</span><div><h3 class="tech-title">Fudoshin â L'Esprit Immuable</h3><span class="tech-origin">Bujinkan Â· Arts martiaux japonais</span></div></div><p class="tech-desc">Fudoshin : un esprit qui ne peut Ãªtre dÃ©placÃ©. La posture physique encode cet Ã©tat mental.</p><ul class="tech-steps"><li>Posture dÃ©libÃ©rÃ©e â pieds ancrÃ©s dans le sol</li><li>Ãpaules en arriÃ¨re, menton parallÃ¨le au sol</li><li>Regard stable â ne pas dÃ©tourner les yeux</li><li>Maintenir 30 secondes - l'Ã©tat mental suit le corps</li></ul><p class="tech-quote">"Tiens-toi comme la montagne â par enracinement."</p><span class="tech-duration">â± 30 secondes Â· Avant confrontation</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¬ðÂ·ð</span><div><h3 class="tech-title">Zanshin â La Vigilance Persistante</h3><span class="tech-origin">Arts martiaux japonais Â· Kendo</span></div></div><p class="tech-desc">Zanshin : rester conscient aprÃ¨s l'action. L'erreur arrive souvent aprÃ¨s.</p><ul class="tech-steps"><li>AprÃ¨s chaque tÃ¢che ou dÃ©cision importante</li><li>Attendre 30 secondes avant de passer Ã  autre chose</li><li>Observer l'environnement</li><li>Fermer consciemment l'action - puis passer Ã  la suite</li></ul><p class="tech-quote">"La garde ne tombe pas aprÃ¨s la victoire."</p><span class="tech-duration">â± 30 secondes Â· AprÃ¨s chaque action</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¹</span><div><h3 class="tech-title">Shu Ha Ri â Les 3 Stades</h3><span class="tech-origin">Arts martiaux Â· Yoshida KenkÅ</span></div></div><p class="tech-desc">Shu (suivre les rÃ¨gles), Ha (briser les rÃ¨gles), Ri (dÃ©passer les rÃ¨gles).</p><ul class="tech-steps"><li>SHU : Apprendre la forme exacte. Ne pas improviser.</li><li>HA : Tester les limites une fois maÃ®trisÃ©</li><li>RI : Agir naturellement â la rÃ¨gle est intÃ©grÃ©e</li></ul><p class="tech-quote">"Tu ne possÃ¨des pas une technique tant que tu dois y penser."</p><span class="tech-duration">â± Long terme</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¿</span><div><h3 class="tech-title">Fudoshin â L'Esprit Immuable</h3><span class="tech-origin">Bujinkan Â· Arts martiaux japonais</span></div></div><p class="tech-desc">Fudoshin : un esprit qui ne peut Ãªtre dÃ©placÃ©. La posture physique encode cet Ã©tat mental.</p><ul class="tech-steps"><li>Posture dÃ©libÃ©rÃ©e â pieds ancrÃ©s dans le sol</li><li>Ãpaules en arriÃ¨re, menton parallÃ¨le au sol</li><li>Regard stable â"ne pas dÃ©tourner les yeux</li><li>Maintenir 30 secondes â l'Ã©tat mental suit le corps</li></ul><p class="tech-quote">"Tiens-toi comme la montagne â par enracinement."</p><span class="tech-duration">â± 30 secondes Â· Avant confrontation</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ðï¸</span><div><h3 class="tech-title">Zanshin â La Vigilance Persistante</h3><span class="tech-origin">Arts martiaux japonais Â· Kendo</span></div></div><p class="tech-desc">Zanshin : rester conscient aprÃ¨s l'action. L'erreur arrive souvent aprÃ¨s.</p><ul class="tech-steps"><li>AprÃ¨s chaque tÃ¢che ou dÃ©cision importante</li><li>Attendre 30 secondes avant de passer Ã  autre chose</li><li>Observer l'environnement</li><li>Fermer consciemment l'action â puis passer Ã  la suite</li></ul><p class="tech-quote">"La garde ne tombe pas aprÃ¨s la victoire."</p><span class="tech-duration">â± 30 secondes Â· AprÃ¨s chaque action</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¯</span><div><h3 class="tech-title">Shu Ha Ri â Les 3 Stades</h3><span class="tech-origin">Arts martiaux Â· Yoshida KenkÅ</span></div></div><p class="tech-desc">Shu (suivre les rÃ¨gles), Ha (briser les rÃ¨gles), Ri (dÃ©passer les rÃ¨gles).</p><ul class="tech-steps"><li>SHU : Apprendre la forme exacte. Ne pas improviser.</li><li>HA : Tester les limites une fois maÃ®trisÃ©</li><li>RI : Agir naturellement â la rÃ¨gle est intÃ©grÃ©e</li></ul><p class="tech-quote">"Tu ne possÃ¨des pas une technique tant que tu dois y penser."</p><span class="tech-duration">â± Long terme</span></div>
   </div>
 </div>
+
 <div class="section-divider"><span class="divider-symbol">â¦ â¦ â¦</span></div>
+
 <div class="section">
-  <div class="section-header"><span class="section-num">IV</span><div class="section-title-wrap"><h2 class="section-title">Discipline & Rituel</h2><p class="section-subtitle">Forger l'identitÃ© par la rÃ©pÃ©tition</p></div></div>
+  <div class="section-header"><span class="section-num">IV</span><div><h2 class="section-title">Discipline &amp; Rituel</h2><p class="section-subtitle">Forger l'identitÃ© par la rÃ©pÃ©tition</p></div></div>
   <div class="techniques-grid">
-    <div class="technique-card wide"><div><div class="tech-header"><span class="tech-icon">ð¥</span><div><h3 class="tech-title">La Loi du Navire â Ancre d'IdentitÃ©</h3><span class="tech-origin">Psychologie comportementale Â· James Clear</span></div></div><p class="tech-desc">Les habitudes durables sont ancrÃ©es dans l'identitÃ©, pas dans les objectifs.</p><p class="tech-quote">"Chaque action que tu poses est un vote pour le type d'homme que tu veux devenir." â James Clear</p></div><div><ul class="tech-steps"><li>Identifier l'homme que tu veux Ãªtre dans 5 ans</li><li>Formuler : "Je suis quelqu'un qui..."</li><li>Pour chaque action : "Est-ce que cet homme ferait cela ?"</li><li>Ne jamais rater deux fois de suite</li><li>CÃ©lÃ©brer chaque vote pour ta nouvelle identitÃ©</li></ul></div></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð¡</span><div><h3 class="tech-title">L'Exposition Froide</h3><span class="tech-origin">StoÃ¯cisme Â· Wim Hof - MÃ©decine du sport</span></div></div><p class="tech-desc">L'inconfort physique volontaire entraÃ®ne la rÃ©sistance mentale.</p><ul class="tech-steps"><li>Douche normale 3 minutes</li><li>Passer Ã  l'eau froide 30s minimum</li><li>Ne pas contracter le corps â l'accepter</li><li>Respirer lentement</li><li>Augmenter progressivement</li></ul><p class="tech-quote">"Ce que tu traverses volontairement, tu le domestiques."</p><span class="tech-duration">â± 30s Ã  2 min Â· Matin</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ðµ</span><div><h3 class="tech-title">Le JeÃ»ne NumÃ©rique</h3><span class="tech-origin">Paychologie comportementale Â· Cal Newport</span></div></div><p class="tech-desc">Le cerveau dopaminÃ© par le scroll perd sa capacitÃ© Ã  la pensÃ©e profonde.</p><ul class="tech-steps"><li>Plage de 2h sans Ã©cran</Ïli><li>TÃ©lÃ©phone en mode avion</li><li>Pas de remplacement (TV, podcast)</li><li>Lire, Ã©crire, penser</li><li>Observer ce qui remonte quand le bruit s'arrÃªte</li></ul><p class="tech-quote">"La concentration est une compÃ©tence rare. Le monde appartient Ã  ceux qui savent encore penser seuls."</p><span class="tech-duration">â± 2 heures Â· Quotidien</span></div>
-    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">L'Ãcriture de Forge</h3><span class="tech-origin">StoÃ¯cisme Â· SÃ©nÃ¨que Â· Journaling</span></div></div><p class="tech-desc">ÃÃcrire pour penser â pas pour se souvenir. Le journal est un miroir sans complaisance.</p><ul class="tech-steps"><li>5 minutes minimum, mÃªme une seule phrase</li><li>Un Ã©vÃ©nement difficile de la journÃ©e</li><li>Ce que tu ressentis â prÃ©cisÃ©ment</li><li>Ce que tu aurais fait si tu Ã©tais ton meilleur toi</li><li>Un principe Ã  retenir et appliquer demain</li></ul><p class="tech-quote">"Les lettres que je t'Ã©cris me font du bien. En t'Ã©crivant, je m'adresse Ã  moi." â SÃ©nÃ¨que</p><span class="tech-duration">â± 5-15 minutes Â· Soir</span></div>
+    <div class="technique-card wide"><div><div class="tech-header"><span class="tech-icon">â</span><div><h3 class="tech-title">La Loi du Navire â Ancre d'IdentitÃ©</h3><span class="tech-origin">Psychologie comportementale Â· James Clear</span></div></div><p class="tech-desc">Les habitudes durables sont ancrÃ©es dans l'identitÃ©, pas dans les objectifs.</p><p class="tech-quote">"Chaque action que tu poses est un vote pour le type d'homme que tu veux devenir." â James Clear</p></div><div><ul class="tech-steps"><li>Identifier l'homme que tu veux Ãªtre dans 5 ans</li><li>Formuler : "Je suis quelqu'un qui..."</li><li>Pour chaque action : "Est-ce que cet homme ferait cela ?"</li><li>Ne jamais rater deux fois de suite</li><li>CÃ©lÃ©brer chaque vote pour ta nouvelle identitÃ©</li></ul></div></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð§</span><div><h3 class="tech-title">L'Exposition Froide</h3><span class="tech-origin">StoÃ¯cisme Â· Wim Hof Â· MÃ©decine du sport</span></div></div><p class="tech-desc">L'inconfort physique volontaire entraÃ®ne la rÃ©sistance mentale.</p><ul class="tech-steps"><li>Douche normale 3 minutes</li><li>Passer Ã  l'eau froide 30s minimum</li><li>Ne pas contracter le corps â l'accepter</li><li>Respirer lentement</li><li>Augmenter progressivement</li></ul><p class="tech-quote">"Ce que tu traverses volontairement, tu le domestiques."</p><span class="tech-duration">â± 30s Ã  2 min BÉÀw Matin</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ðµ</span><div><h3 class="tech-title">Le JeÃ»ne NumÃ©rique</h3><span class="tech-origin">Psychologie comportementale Â· Cal Newport</span></div></div><p class="tech-desc">Le cerveau dopaminÃ© par le scroll perd sa capacitÃ© Ã  la pensÃ©e profonde.</p><ul class="tech-steps"><li>Plage de 2h sans Ã©cran</li><li>TÃ©lÃ©phone en mode avion</li><li>Pas de remplacement (TV, podcast)</li><li>Lire, Ã©crire, penser</li><li>Observer ce qui remonte quand le bruit s'arrête</li></ul><p class="tech-quote">"La concentration est une compÃ©tence rare. Le monde appartient Ã  ceux qui savent encore penser seuls."</p><span class="tech-duration">â± 2 heures Â· Quotidien</span></div>
+    <div class="technique-card"><div class="tech-header"><span class="tech-icon">ð</span><div><h3 class="tech-title">L'Ãcriture de Forge</h3><span class="tech-origin">StoÃ¯cisme Â· SÃ©nÃ¨que Â· Journaling</span></div></div><p class="tech-desc">Ãcrire pour penser â pas pour se souvenir. Le journal est un miroir sans complaisance.</p><ul class="tech-steps"><li>5 minutes minimum, mÃªme une seule phrase</li><li>Un Ã©vÃ©nement difficile de la journÃ©e</li><li>Ce que tu ressentis â prÃ©cisÃ©ment</li><li>Ce que tu aurais fait si tu Ã©tais ton meilleur toi</li><li>Un principe Ã  retenir et appliquer demain</li></ul><p class="tech-quote">"Les lettres que je t'Ã©cris me font du bien. En t'Ã©crivant, je m'adresse Ã  moi." â SÃ©nÃ¨que</p><span class="tech-duration">â± 5-15 minutes Â· Soir</span></div>
   </div>
 </div>
+
 <div style="max-width:1100px;margin:0 auto;padding:0 3rem 5rem;">
-  <div class="warning-box">
-    <strong>â  Avertissement du Guerrier</strong><br><br>
-    Ces techniques sont des outils â pas des armures. Aucune mÃ©thode ne remplace un travail honnÃªte sur soi-mÃªme. Si une technique devient une performance pour les autres plutÃ´t qu'une pratique pour toi, elle a perdu son sens. L'objectif n'est pas d'Ãªtre impermÃ©able â c'est d'Ãªtre souverain.
-  </div>
+  <div class="warning-box"><strong>â  Avertissement du Guerrier</strong><br><br>Ces techniques sont des outils â pas des armures. Aucune mÃ©thode ne remplace un travail honnÃªte sur soi-mÃªme. Si une technique devient une performance pour les autres plutÃ´t qu'une pratique pour toi, elle a perdu son sens. L'objectif n'est pas d'Ãªtre impermÃ©able â c'est d'Ãªtre souverain.</div>
 </div>
-<footer>OBSCUROâMacdubhÂ·Fils du Noir</footer>
-</body></html>
+
+<footer>OBSCURO â Macdubh Â· Fils du Noir</footer>
+
+</body>
+</html>
