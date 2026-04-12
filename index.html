@@ -3,350 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OBSCURO â Macdubh</title>
+  <title>OBSCURO — Macdubh</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:wght@400;600&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --noir: #0a0e1a;
-      --bleu-nuit: #0d1526;
-      --acier: #8a9bb5;
-      --acier-clair: #b8c8dc;
-      --blanc: #e8edf5;
-      --or: #8b7355;
-      --or-clair: #c4a96e;
-      --frontiere: rgba(138,155,181,0.15);
-      --vert: #4a9b6f;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-
-    body {
-      background: var(--noir);
-      color: var(--blanc);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 1.2rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(10,14,26,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--frontiere);
-    }
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.4em;
-      color: var(--acier-clair);
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: 'Cinzel', 'Cormorant Garamond', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      color: var(--acier);
-      text-decoration: none;
-      transition: color 0.3s;
-      cursor: pointer;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--blanc); }
-
-    @media (max-width: 700px) {
-      nav { padding: 1rem 1.2rem; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links a { font-size: 0.55rem; letter-spacing: 0.15em; }
-    }
-
-    /* MAIN CONTENT AREA */
-    #app {
-      min-height: 100vh;
-      transition: opacity 0.2s ease;
-    }
-    #app.loading { opacity: 0.4; pointer-events: none; }
-
-    /* LOADING SPINNER */
-    #loader {
-      display: none;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-    }
-    #loader.visible { display: block; }
-    .spinner {
-      width: 30px; height: 30px;
-      border: 2px solid var(--frontiere);
-      border-top-color: var(--or-clair);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ========== PAGE DOCTRINE (HOME) ========== */
-    .home-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .home-hero {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 3rem 4rem;
-      text-align: center;
-      background: radial-gradient(ellipse at 50% 40%, rgba(13,21,38,0.9) 0%, transparent 70%);
-    }
-    .home-eagle { font-size: 3rem; display: block; margin-bottom: 2rem; }
-    .home-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 900;
-      letter-spacing: 0.3em;
-      color: var(--blanc);
-      margin-bottom: 0.8rem;
-    }
-    .home-sub {
-      font-family: 'Cinzel', 'Cormorant Garamond', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.5em;
-      color: var(--acier);
-      margin-bottom: 3rem;
-    }
-    .home-divider {
-      width: 40px; height: 1px;
-      background: var(--or);
-      margin: 0 auto 3rem;
-    }
-    .home-desc {
-      font-size: 0.9rem;
-      color: var(--acier-clair);
-      font-style: italic;
-      max-width: 540px;
-      line-height: 2;
-      margin-bottom: 4rem;
-    }
-    .home-cta {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .cta-btn {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      padding: 0.9rem 2.2rem;
-      border: 1px solid var(--acier);
-      background: transparent;
-      color: var(--acier-clair);
-      cursor: pointer;
-      transition: all 0.3s;
-      text-transform: uppercase;
-    }
-    .cta-btn:hover, .cta-btn.primary {
-      border-color: var(--or-clair);
-      color: var(--or-clair);
-      background: rgba(196,169,110,0.06);
-    }
-
-    /* 6 LOIS */
-    .lois-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 4rem 3rem 8rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .loi-card {
-      border: 1px solid var(--frontiere);
-      background: rgba(13,21,38,0.5);
-      padding: 2rem;
-      transition: all 0.3s;
-      position: relative;
-    }
-    .loi-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: var(--or);
-      transform: scaleY(0);
-      transition: transform 0.3s;
-    }
-    .loi-card:hover::before { transform: scaleY(1); }
-    .loi-card:hover { border-color: rgba(138,155,181,0.3); background: rgba(13,21,38,0.8); }
-    .loi-num {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--or);
-      opacity: 0.7;
-      margin-bottom: 0.8rem;
-    }
-    .loi-titre {
-      font-family: 'Cinzel', 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      color: var(--blanc);
-      margin-bottom: 0.8rem;
-    }
-    .loi-texte {
-      font-size: 0.8rem;
-      line-height: 1.8;
-      color: var(--acier-clair);
-      font-style: italic;
-    }
+    :root{--noir:#0a0e1a;--acier:#8a9bb5;--acier-clair:#b8c8dc;--blanc:#e8edf5;--or:#8b7355;--or-clair:#c4a96e;--frontiere:rgba(138,155,181,0.15);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--noir);color:var(--blanc);font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--frontiere);}
+    .nav-logo{font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.4em;color:var(--acier-clair);cursor:pointer;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--acier);cursor:pointer;transition:color 0.3s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--blanc);}
+    @media(max-width:700px){nav{padding:1rem 1.2rem;}.nav-links{gap:1rem;}.nav-links a{font-size:0.55rem;}}
+    #app{min-height:100vh;transition:opacity 0.2s;}
+    #app.fading{opacity:0.3;}
+    #loader{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;}
+    #loader.on{display:block;}
+    .spin{width:28px;height:28px;border:2px solid var(--frontiere);border-top-color:var(--or-clair);border-radius:50%;animation:rot 0.7s linear infinite;}
+    @keyframes rot{to{transform:rotate(360deg);}}
+    .home-wrap{min-height:100vh;display:flex;flex-direction:column;}
+    .home-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 2rem 4rem;text-align:center;}
+    .home-eagle{font-size:3rem;margin-bottom:2rem;display:block;}
+    .home-h1{font-family:'Cinzel',serif;font-size:clamp(2.5rem,10vw,6rem);font-weight:900;letter-spacing:0.3em;margin-bottom:0.8rem;}
+    .home-sub{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.75rem;letter-spacing:0.5em;color:var(--acier);margin-bottom:2.5rem;}
+    .home-line{width:40px;height:1px;background:var(--or);margin:0 auto 2.5rem;}
+    .home-desc{font-size:0.9rem;color:var(--acier-clair);font-style:italic;max-width:500px;line-height:2;margin-bottom:3rem;}
+    .home-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+    .h-btn{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;padding:0.85rem 2rem;border:1px solid var(--acier);background:transparent;color:var(--acier-clair);cursor:pointer;transition:all 0.3s;text-transform:uppercase;}
+    .h-btn:hover,.h-btn.primary{border-color:var(--or-clair);color:var(--or-clair);background:rgba(196,169,110,0.06);}
+    .lois{max-width:1000px;margin:0 auto;padding:3rem 2rem 8rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+    .loi{border:1px solid var(--frontiere);background:rgba(13,21,38,0.5);padding:1.8rem;position:relative;transition:all 0.3s;}
+    .loi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--or);transform:scaleY(0);transition:transform 0.3s;}
+    .loi:hover::before{transform:scaleY(1);}
+    .loi:hover{border-color:rgba(138,155,181,0.3);background:rgba(13,21,38,0.8);}
+    .loi-n{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;color:var(--or);opacity:0.7;margin-bottom:0.6rem;}
+    .loi-t{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.82rem;letter-spacing:0.1em;color:var(--blanc);margin-bottom:0.7rem;}
+    .loi-d{font-size:0.78rem;line-height:1.8;color:var(--acier-clair);font-style:italic;}
   </style>
 </head>
 <body>
-
 <nav>
-  <span class="nav-logo" onclick="navigate('doctrine')">OBSCURO</span>
+  <span class="nav-logo" onclick="go('doctrine')">OBSCURO</span>
   <ul class="nav-links">
-    <li><a onclick="navigate('doctrine')" id="nav-doctrine">Doctrine</a></li>
-    <li><a onclick="navigate('protocoles')" id="nav-protocoles">Protocoles</a></li>
-    <li><a onclick="navigate('citations')" id="nav-citations">Citations</a></li>
-    <li><a onclick="navigate('techniques')" id="nav-techniques">Techniques</a></li>
-    <li><a onclick="navigate('journal')" id="nav-journal">Journal</a></li>
+    <li><a onclick="go('doctrine')" id="n-doctrine">Doctrine</a></li>
+    <li><a onclick="go('protocoles')" id="n-protocoles">Protocoles</a></li>
+    <li><a onclick="go('citations')" id="n-citations">Citations</a></li>
+    <li><a onclick="go('techniques')" id="n-techniques">Techniques</a></li>
+    <li><a onclick="go('journal')" id="n-journal">Journal</a></li>
   </ul>
 </nav>
-
-<div id="loader"><div class="spinner"></div></div>
+<div id="loader"><div class="spin"></div></div>
 <div id="app"></div>
-
 <script>
-// ========================
-// ROUTER / SPA ENGINE
-// ========================
+var cache = {};
 
-const PAGES = {
-  doctrine: renderDoctrine,
-  protocoles: () => loadPage('protocoles.html', 'protocoles'),
-  citations: () => loadPage('citations.html', 'citations'),
-  techniques: () => loadPage('techniques.html', 'techniques'),
-  journal: () => loadPage('journal.html', 'journal'),
-};
-
-const cache = {};
-
-function setActiveNav(page) {
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  const el = document.getElementById('nav-' + page);
+function setNav(p) {
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
+  var el = document.getElementById('n-' + p);
   if (el) el.classList.add('active');
 }
 
-async function navigate(page) {
-  if (!PAGES[page]) page = 'doctrine';
-  history.pushState({ page }, '', '#' + page);
-  setActiveNav(page);
-  const app = document.getElementById('app');
-  app.classList.add('loading');
-  document.getElementById('loader').classList.add('visible');
-  try {
-    await PAGES[page]();
-  } catch(e) {
-    app.innerHTML = `<div style="padding:10rem 3rem;text-align:center;color:var(--acier);font-style:italic;">Erreur â ${e.message}</div>`;
-  }
-  app.classList.remove('loading');
-  document.getElementById('loader').classList.remove('visible');
-  window.scrollTo(0, 0);
-}
-
-as(2ync function loadPage(filename, key) {
-  const app = document.getElementById('app');
-  if (cache[key]) {
-    app.innerHTML = cache[key];
-    reinitPage(key);
-    return;
-  }
-  const res = await fetch(filename + '?t=' + Date.now());
-  if (!res.ok) throw new Error(filename + ' not found');
-  const html = await res.text();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-  const styles = [...doc.querySelectorAll('style')].map(s => s.outerHTML).join('');
-  const body = doc.body;
-  const navEl = body.querySelector('nav');
-  if (navEl) navEl.remove();
-  const scripts = [...body.querySelectorAll('script')].map(s => s.textContent);
-  body.querySelectorAll('script').forEach(s => s.remove());
-  const content = styles + body.innerHTML;
-  cache[key] = content;
-  app.innerHTML = content;
-  scripts.forEach(code => {
-    try { new Function(code)(); }
-    catch(e) { console.warn('Script error', filename, e); }
+function go(page) {
+  if (!pages[page]) page = 'doctrine';
+  history.pushState({page: page}, '', '#' + page);
+  setNav(page);
+  var app = document.getElementById('app');
+  app.classList.add('fading');
+  document.getElementById('loader').classList.add('on');
+  Promise.resolve().then(function(){ return pages[page](); }).then(function() {
+    app.classList.remove('fading');
+    document.getElementById('loader').classList.remove('on');
+    window.scrollTo(0, 0);
+  }).catch(function(e) {
+    app.innerHTML = '<div style="padding:10rem 2rem;text-align:center;color:var(--acier);font-style:italic;">Erreur: ' + e.message + '</div>';
+    app.classList.remove('fading');
+    document.getElementById('loader').classList.remove('on');
   });
 }
 
-function reinitPage(key) {
-  if (key === 'journal' && typeof render === 'function') render();
+function loadPage(file, key) {
+  var app = document.getElementById('app');
+  if (cache[key]) {
+    app.innerHTML = cache[key].html;
+    runScripts(cache[key].scripts, file);
+    return Promise.resolve();
+  }
+  return fetch(file + '?v=' + Date.now()).then(function(r) {
+    if (!r.ok) throw new Error(file + ' introuvable');
+    return r.text();
+  }).then(function(html) {
+    var p = new DOMParser();
+    var d = p.parseFromString(html, 'text/html');
+    var nav = d.body.querySelector('nav');
+    if (nav) nav.remove();
+    var styles = Array.from(d.querySelectorAll('style')).map(function(s){ return s.outerHTML; }).join('');
+    var scripts = Array.from(d.body.querySelectorAll('script')).map(function(s){ return s.textContent; });
+    d.body.querySelectorAll('script').forEach(function(s){ s.remove(); });
+    var content = styles + d.body.innerHTML;
+    cache[key] = {html: content, scripts: scripts};
+    app.innerHTML = content;
+    runScripts(scripts, file);
+  });
 }
 
-function renderDoctrine() {
-  const app = document.getElementById('app');
-  app.innerHTML = `
-    <div class="home-page">
-      <div class="home-hero">
-        <span class="home-eagle">ð¦</span>
-        <h1 class="home-title">OBSCURO</h1>
-        <p class="home-sub">Fils du Noir â Macdubh</p>
-        <div class="home-divider"></div>
-        <p class="home-desc">
-          Celui qui observe depuis l'ombre sans jamais Ãªtre vu.<br>
-          Le sang-froid n'est pas l'absence d'Ã©motion â<br>
-          c'est la maÃ®trise absolue de ce qu'on en fait.
-        </p>
-        <div class="home-cta">
-          <button class="cta-btn primary" onclick="navigate('protocoles')">Protocoles</button>
-          <button class="cta-btn" onclick="navigate('citations')">Citations</button>
-          <button class="cta-btn" onclick="navigate('techniques')">Techniques</button>
-          <button class="cta-btn" onclick="navigate('journal')">Journal</button>
-        </div>
-      </div>
-      <div class="lois-section">
-        <div class="loi-card"><div class="loi-num">Loi I</div><div class="loi-titre">L'Åil de l'Aigle</div><p class="loi-texte">L'aigle ne rÃ©agit pas â il observe. Toute rÃ©action sans observation est une faiblesse dÃ©guisÃ©e en force.</p></div>
-        <div class="loi-card"><div class="loi-num">Loi II</div><div class="loi-titre">Le Silence ArmÃ©</div><p class="loi-texte">Le silence n'est pas l'absence de rÃ©ponse. C'est la rÃ©ponse la plus puissante qu'un homme maÃ®tre de lui-mÃªme puisse donner.</p></div>
-        <div class="loi-card"><div class="loi-num">Loi III</div><div class="loi-titre">La Froideur Lucide</div><p class="loi-texte">La froideur n'est pas cruautÃ© â c'est clartÃ©. Voir sans brouillard Ã©motionnel, dÃ©cider sans tremblement.</p></div>
-        <div class="loi-card"><div class="loi-num">Loi IV</div><div class="loi-titre">Fils du Noir</div><p class="loi-texte">La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris Ã  voir dans l'obscuritÃ©.</p></div>
-        <div class="loi-card"><div class="loi-num">Loi V</div><div class="loi-titre">L'Empire IntÃ©rieur</div><p class="loi-texte">Le premier empire est intÃ©rieur. Gouverner ses passions avant de prÃ©tendre gouverner quoi que ce soit d'autre.</p></div>
-        <div class="loi-card"><div class="loi-num">Loi VI</div><div class="loi-titre">La Hauteur Conquise</div><p class="loi-texte">L'aigle s'Ã©lÃ¨ve non par lÃ©gÃ¨retÃ© mais par puissance. La hauteur est conquise, jamais donnÃ©e.</p></div>
-      </div>
-    </div>
-  `;
+function runScripts(scripts, file) {
+  scripts.forEach(function(code) {
+    try { new Function(code)(); }
+    catch(e) { console.warn('Script error in ' + file, e); }
+  });
+}
+
+function showDoctrine() {
+  document.getElementById('app').innerHTML = [
+    '<div class="home-wrap">',
+    '<div class="home-hero">',
+    '<span class="home-eagle">&#129413;</span>',
+    '<h1 class="home-h1">OBSCURO</h1>',
+    '<p class="home-sub">Fils du Noir &mdash; Macdubh</p>',
+    '<div class="home-line"></div>',
+    '<p class="home-desc">Celui qui observe depuis l'ombre sans jamais &ecirc;tre vu.<br>Le sang-froid n'est pas l'absence d'&eacute;motion &mdash;<br>c'est la ma&icirc;trise absolue de ce qu'on en fait.</p>',
+    '<div class="home-btns">',
+    '<button class="h-btn primary" onclick="go('protocoles')">Protocoles</button>',
+    '<button class="h-btn" onclick="go('citations')">Citations</button>',
+    '<button class="h-btn" onclick="go('techniques')">Techniques</button>',
+    '<button class="h-btn" onclick="go('journal')">Journal</button>',
+    '</div></div>',
+    '<div class="lois">',
+    loi('I','L'&OElig;il de l'Aigle','L'aigle ne r&eacute;agit pas &mdash; il observe. Toute r&eacute;action sans observation est une faiblesse d&eacute;guis&eacute;e en force.'),
+    loi('II','Le Silence Arm&eacute;','Le silence n'est pas l'absence de r&eacute;ponse. C'est la r&eacute;ponse la plus puissante qu'un homme ma&icirc;tre de lui-m&ecirc;me puisse donner.'),
+    loi('III','La Froideur Lucide','La froideur n'est pas cruaut&eacute; &mdash; c'est clart&eacute;. Voir sans brouillard &eacute;motionnel, d&eacute;cider sans tremblement.'),
+    loi('IV','Fils du Noir','La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris &agrave; voir dans l'obscurit&eacute;.'),
+    loi('V','L'Empire Int&eacute;rieur','Le premier empire est int&eacute;rieur. Gouverner ses passions avant de pr&eacute;tendre gouverner quoi que ce soit d'autre.'),
+    loi('VI','La Hauteur Conquise','L'aigle s'&eacute;l&egrave;ve non par l&eacute;g&egrave;ret&eacute; mais par puissance. La hauteur est conquise, jamais donn&eacute;e.'),
+    '</div></div>'
+  ].join('');
   return Promise.resolve();
 }
 
-window.addEventListener('popstate', (e) => {
-  const page = e.state?.page || getHashPage();
-  navigate(page);
-});
-
-function getHashPage() {
-  const hash = location.hash.replace('#', '');
-  return PAGES[hash] ? hash : 'doctrine';
+function loi(n, t, d) {
+  return '<div class="loi"><div class="loi-n">Loi ' + n + '</div><div class="loi-t">' + t + '</div><p class="loi-d">' + d + '</p></div>';
 }
 
-navigate(getHashPage());
+var pages = {
+  doctrine: showDoctrine,
+  protocoles: function(){ return loadPage('protocoles.html', 'protocoles'); },
+  citations: function(){ return loadPage('citations.html', 'citations'); },
+  techniques: function(){ return loadPage('techniques.html', 'techniques'); },
+  journal: function(){ return loadPage('journal.html', 'journal'); }
+};
+
+window.addEventListener('popstate', function(e) {
+  var p = (e.state && e.state.page) || getHash();
+  go(p);
+});
+
+function getHash() {
+  var h = location.hash.replace('#', '');
+  return pages[h] ? h : 'doctrine';
+}
+
+go(getHash());
 </script>
 </body>
 </html>
