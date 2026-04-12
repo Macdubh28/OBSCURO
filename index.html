@@ -13,159 +13,163 @@
     *{margin:0;padding:0;box-sizing:border-box;}
     body{background:var(--noir);color:var(--blanc);font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;}
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--frontiere);}
-    .nav-logo{font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.4em;color:var(--acier-clair);cursor:pointer;}
+    .nav-logo{font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.4em;color:var(--acier-clair);cursor:pointer;background:none;border:none;}
     .nav-links{display:flex;gap:2.5rem;list-style:none;}
-    .nav-links a{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--acier);cursor:pointer;transition:color 0.3s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--blanc);}
-    @media(max-width:700px){nav{padding:1rem 1.2rem;}.nav-links{gap:1rem;}.nav-links a{font-size:0.55rem;}}
-    #app{min-height:100vh;transition:opacity 0.2s;}
-    #app.fading{opacity:0.3;}
+    .nav-links button{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--acier);cursor:pointer;background:none;border:none;transition:color 0.3s;padding:0;}
+    .nav-links button:hover,.nav-links button.active{color:var(--blanc);}
+    @media(max-width:700px){nav{padding:1rem 1.2rem;}.nav-links{gap:1rem;}.nav-links button{font-size:0.55rem;}}
+    #app{min-height:100vh;}
     #loader{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;}
     #loader.on{display:block;}
     .spin{width:28px;height:28px;border:2px solid var(--frontiere);border-top-color:var(--or-clair);border-radius:50%;animation:rot 0.7s linear infinite;}
     @keyframes rot{to{transform:rotate(360deg);}}
-    .home-wrap{min-height:100vh;display:flex;flex-direction:column;}
-    .home-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 2rem 4rem;text-align:center;}
-    .home-eagle{font-size:3rem;margin-bottom:2rem;display:block;}
-    .home-h1{font-family:'Cinzel',serif;font-size:clamp(2.5rem,10vw,6rem);font-weight:900;letter-spacing:0.3em;margin-bottom:0.8rem;}
-    .home-sub{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.75rem;letter-spacing:0.5em;color:var(--acier);margin-bottom:2.5rem;}
-    .home-line{width:40px;height:1px;background:var(--or);margin:0 auto 2.5rem;}
-    .home-desc{font-size:0.9rem;color:var(--acier-clair);font-style:italic;max-width:500px;line-height:2;margin-bottom:3rem;}
-    .home-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
-    .h-btn{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;padding:0.85rem 2rem;border:1px solid var(--acier);background:transparent;color:var(--acier-clair);cursor:pointer;transition:all 0.3s;text-transform:uppercase;}
-    .h-btn:hover,.h-btn.primary{border-color:var(--or-clair);color:var(--or-clair);background:rgba(196,169,110,0.06);}
-    .lois{max-width:1000px;margin:0 auto;padding:3rem 2rem 8rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
-    .loi{border:1px solid var(--frontiere);background:rgba(13,21,38,0.5);padding:1.8rem;position:relative;transition:all 0.3s;}
-    .loi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--or);transform:scaleY(0);transition:transform 0.3s;}
-    .loi:hover::before{transform:scaleY(1);}
-    .loi:hover{border-color:rgba(138,155,181,0.3);background:rgba(13,21,38,0.8);}
-    .loi-n{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;color:var(--or);opacity:0.7;margin-bottom:0.6rem;}
-    .loi-t{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.82rem;letter-spacing:0.1em;color:var(--blanc);margin-bottom:0.7rem;}
-    .loi-d{font-size:0.78rem;line-height:1.8;color:var(--acier-clair);font-style:italic;}
+    .hw{min-height:100vh;display:flex;flex-direction:column;}
+    .hh{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 2rem 4rem;text-align:center;}
+    .he{font-size:3rem;margin-bottom:2rem;display:block;}
+    .ht{font-family:'Cinzel',serif;font-size:clamp(2.5rem,10vw,6rem);font-weight:900;letter-spacing:0.3em;margin-bottom:0.8rem;}
+    .hs{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.75rem;letter-spacing:0.5em;color:var(--acier);margin-bottom:2.5rem;}
+    .hl{width:40px;height:1px;background:var(--or);margin:0 auto 2.5rem;}
+    .hd{font-size:0.88rem;color:var(--acier-clair);font-style:italic;max-width:500px;line-height:2;margin-bottom:3rem;}
+    .hb{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+    .nb{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;padding:0.85rem 2rem;border:1px solid var(--acier);background:transparent;color:var(--acier-clair);cursor:pointer;transition:all 0.3s;text-transform:uppercase;}
+    .nb:hover,.nb.p{border-color:var(--or-clair);color:var(--or-clair);background:rgba(196,169,110,0.06);}
+    .ls{max-width:1000px;margin:0 auto;padding:3rem 2rem 8rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+    .lc{border:1px solid var(--frontiere);background:rgba(13,21,38,0.5);padding:1.8rem;position:relative;transition:all 0.3s;}
+    .lc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--or);transform:scaleY(0);transition:transform 0.3s;}
+    .lc:hover::before{transform:scaleY(1);}
+    .lc:hover{border-color:rgba(138,155,181,0.3);background:rgba(13,21,38,0.8);}
+    .ln{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;color:var(--or);opacity:0.7;margin-bottom:0.6rem;}
+    .lt{font-family:'Cinzel','Cormorant Garamond',serif;font-size:0.82rem;letter-spacing:0.1em;color:var(--blanc);margin-bottom:0.7rem;}
+    .ld{font-size:0.78rem;line-height:1.8;color:var(--acier-clair);font-style:italic;}
   </style>
 </head>
 <body>
 <nav>
-  <span class="nav-logo" onclick="go('doctrine')">OBSCURO</span>
+  <button class="nav-logo" data-page="doctrine">OBSCURO</button>
   <ul class="nav-links">
-    <li><a onclick="go('doctrine')" id="n-doctrine">Doctrine</a></li>
-    <li><a onclick="go('protocoles')" id="n-protocoles">Protocoles</a></li>
-    <li><a onclick="go('citations')" id="n-citations">Citations</a></li>
-    <li><a onclick="go('techniques')" id="n-techniques">Techniques</a></li>
-    <li><a onclick="go('journal')" id="n-journal">Journal</a></li>
+    <li><button data-page="doctrine" id="n-doctrine">Doctrine</button></li>
+    <li><button data-page="protocoles" id="n-protocoles">Protocoles</button></li>
+    <li><button data-page="citations" id="n-citations">Citations</button></li>
+    <li><button data-page="techniques" id="n-techniques">Techniques</button></li>
+    <li><button data-page="journal" id="n-journal">Journal</button></li>
   </ul>
 </nav>
 <div id="loader"><div class="spin"></div></div>
 <div id="app"></div>
 <script>
-var cache = {};
+(function() {
+  'use strict';
 
-function setNav(p) {
-  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
-  var el = document.getElementById('n-' + p);
-  if (el) el.classList.add('active');
-}
+  var cache = {};
 
-function go(page) {
-  if (!pages[page]) page = 'doctrine';
-  history.pushState({page: page}, '', '#' + page);
-  setNav(page);
-  var app = document.getElementById('app');
-  app.classList.add('fading');
-  document.getElementById('loader').classList.add('on');
-  Promise.resolve().then(function(){ return pages[page](); }).then(function() {
-    app.classList.remove('fading');
-    document.getElementById('loader').classList.remove('on');
-    window.scrollTo(0, 0);
-  }).catch(function(e) {
-    app.innerHTML = '<div style="padding:10rem 2rem;text-align:center;color:var(--acier);font-style:italic;">Erreur: ' + e.message + '</div>';
-    app.classList.remove('fading');
-    document.getElementById('loader').classList.remove('on');
-  });
-}
+  var LOIS = [
+    ['I', "L'&#338;il de l'Aigle", "L'aigle ne r&eacute;agit pas &mdash; il observe. Toute r&eacute;action sans observation est une faiblesse d&eacute;guis&eacute;e en force."],
+    ['II', 'Le Silence Arm&eacute;', "Le silence n'est pas l'absence de r&eacute;ponse. C'est la r&eacute;ponse la plus puissante qu'un homme ma&icirc;tre de lui-m&ecirc;me puisse donner."],
+    ['III', 'La Froideur Lucide', "La froideur n'est pas cruaut&eacute; &mdash; c'est clart&eacute;. Voir sans brouillard &eacute;motionnel, d&eacute;cider sans tremblement."],
+    ['IV', 'Fils du Noir', "La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris &agrave; voir dans l'obscurit&eacute;."],
+    ['V', "L'Empire Int&eacute;rieur", "Le premier empire est int&eacute;rieur. Gouverner ses passions avant de pr&eacute;tendre gouverner quoi que ce soit d'autre."],
+    ['VI', 'La Hauteur Conquise', "L'aigle s'&eacute;l&egrave;ve non par l&eacute;g&egrave;ret&eacute; mais par puissance. La hauteur est conquise, jamais donn&eacute;e."]
+  ];
 
-function loadPage(file, key) {
-  var app = document.getElementById('app');
-  if (cache[key]) {
-    app.innerHTML = cache[key].html;
-    runScripts(cache[key].scripts, file);
+  function setNav(page) {
+    document.querySelectorAll('.nav-links button').forEach(function(b) { b.classList.remove('active'); });
+    var el = document.getElementById('n-' + page);
+    if (el) el.classList.add('active');
+  }
+
+  function showLoader(on) {
+    document.getElementById('loader').className = on ? 'on' : '';
+  }
+
+  function go(page) {
+    if (!handlers[page]) page = 'doctrine';
+    history.pushState({ page: page }, '', '#' + page);
+    setNav(page);
+    showLoader(true);
+    handlers[page]().then(function() {
+      showLoader(false);
+      window.scrollTo(0, 0);
+    }).catch(function(err) {
+      document.getElementById('app').innerHTML = '<div style="padding:10rem 2rem;text-align:center;color:var(--acier);font-style:italic;">Erreur de chargement</div>';
+      showLoader(false);
+    });
+  }
+
+  function loadPage(file, key) {
+    var app = document.getElementById('app');
+    if (cache[key]) {
+      app.innerHTML = cache[key];
+      return Promise.resolve();
+    }
+    return fetch(file).then(function(r) {
+      if (!r.ok) throw new Error('404');
+      return r.text();
+    }).then(function(html) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var nav = doc.body.querySelector('nav');
+      if (nav) nav.remove();
+      var styles = '';
+      doc.querySelectorAll('style').forEach(function(s) { styles += s.outerHTML; });
+      doc.body.querySelectorAll('script').forEach(function(s) { s.remove(); });
+      var content = styles + doc.body.innerHTML;
+      cache[key] = content;
+      app.innerHTML = content;
+    });
+  }
+
+  function showDoctrine() {
+    var loiHTML = LOIS.map(function(l) {
+      return '<div class="lc"><div class="ln">Loi ' + l[0] + '</div><div class="lt">' + l[1] + '</div><p class="ld">' + l[2] + '</p></div>';
+    }).join('');
+    document.getElementById('app').innerHTML =
+      '<div class="hw"><div class="hh">' +
+      '<span class="he">&#129413;</span>' +
+      '<h1 class="ht">OBSCURO</h1>' +
+      '<p class="hs">Fils du Noir &mdash; Macdubh</p>' +
+      '<div class="hl"></div>' +
+      '<p class="hd">Celui qui observe depuis l'ombre sans jamais &ecirc;tre vu.<br>Le sang-froid n'est pas l'absence d'&eacute;motion &mdash;<br>c'est la ma&icirc;trise absolue de ce qu'on en fait.</p>' +
+      '<div class="hb">' +
+      '<button class="nb p" data-page="protocoles">Protocoles</button>' +
+      '<button class="nb" data-page="citations">Citations</button>' +
+      '<button class="nb" data-page="techniques">Techniques</button>' +
+      '<button class="nb" data-page="journal">Journal</button>' +
+      '</div></div>' +
+      '<div class="ls">' + loiHTML + '</div></div>';
+    attachButtons();
     return Promise.resolve();
   }
-  return fetch(file + '?v=' + Date.now()).then(function(r) {
-    if (!r.ok) throw new Error(file + ' introuvable');
-    return r.text();
-  }).then(function(html) {
-    var p = new DOMParser();
-    var d = p.parseFromString(html, 'text/html');
-    var nav = d.body.querySelector('nav');
-    if (nav) nav.remove();
-    var styles = Array.from(d.querySelectorAll('style')).map(function(s){ return s.outerHTML; }).join('');
-    var scripts = Array.from(d.body.querySelectorAll('script')).map(function(s){ return s.textContent; });
-    d.body.querySelectorAll('script').forEach(function(s){ s.remove(); });
-    var content = styles + d.body.innerHTML;
-    cache[key] = {html: content, scripts: scripts};
-    app.innerHTML = content;
-    runScripts(scripts, file);
+
+  var handlers = {
+    doctrine: showDoctrine,
+    protocoles: function() { return loadPage('protocoles.html', 'protocoles'); },
+    citations: function() { return loadPage('citations.html', 'citations'); },
+    techniques: function() { return loadPage('techniques.html', 'techniques'); },
+    journal: function() { return loadPage('journal.html', 'journal'); }
+  };
+
+  function attachButtons() {
+    document.querySelectorAll('[data-page]').forEach(function(btn) {
+      btn.addEventListener('click', function() { go(btn.getAttribute('data-page')); });
+    });
+  }
+
+  window.addEventListener('popstate', function(e) {
+    var page = (e.state && e.state.page) || getHash();
+    go(page);
   });
-}
 
-function runScripts(scripts, file) {
-  scripts.forEach(function(code) {
-    try { new Function(code)(); }
-    catch(e) { console.warn('Script error in ' + file, e); }
-  });
-}
+  function getHash() {
+    var h = location.hash.replace('#', '');
+    return handlers[h] ? h : 'doctrine';
+  }
 
-function showDoctrine() {
-  document.getElementById('app').innerHTML = [
-    '<div class="home-wrap">',
-    '<div class="home-hero">',
-    '<span class="home-eagle">&#129413;</span>',
-    '<h1 class="home-h1">OBSCURO</h1>',
-    '<p class="home-sub">Fils du Noir &mdash; Macdubh</p>',
-    '<div class="home-line"></div>',
-    '<p class="home-desc">Celui qui observe depuis l'ombre sans jamais &ecirc;tre vu.<br>Le sang-froid n'est pas l'absence d'&eacute;motion &mdash;<br>c'est la ma&icirc;trise absolue de ce qu'on en fait.</p>',
-    '<div class="home-btns">',
-    '<button class="h-btn primary" onclick="go('protocoles')">Protocoles</button>',
-    '<button class="h-btn" onclick="go('citations')">Citations</button>',
-    '<button class="h-btn" onclick="go('techniques')">Techniques</button>',
-    '<button class="h-btn" onclick="go('journal')">Journal</button>',
-    '</div></div>',
-    '<div class="lois">',
-    loi('I','L'&OElig;il de l'Aigle','L'aigle ne r&eacute;agit pas &mdash; il observe. Toute r&eacute;action sans observation est une faiblesse d&eacute;guis&eacute;e en force.'),
-    loi('II','Le Silence Arm&eacute;','Le silence n'est pas l'absence de r&eacute;ponse. C'est la r&eacute;ponse la plus puissante qu'un homme ma&icirc;tre de lui-m&ecirc;me puisse donner.'),
-    loi('III','La Froideur Lucide','La froideur n'est pas cruaut&eacute; &mdash; c'est clart&eacute;. Voir sans brouillard &eacute;motionnel, d&eacute;cider sans tremblement.'),
-    loi('IV','Fils du Noir','La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris &agrave; voir dans l'obscurit&eacute;.'),
-    loi('V','L'Empire Int&eacute;rieur','Le premier empire est int&eacute;rieur. Gouverner ses passions avant de pr&eacute;tendre gouverner quoi que ce soit d'autre.'),
-    loi('VI','La Hauteur Conquise','L'aigle s'&eacute;l&egrave;ve non par l&eacute;g&egrave;ret&eacute; mais par puissance. La hauteur est conquise, jamais donn&eacute;e.'),
-    '</div></div>'
-  ].join('');
-  return Promise.resolve();
-}
+  // Attach nav buttons
+  attachButtons();
 
-function loi(n, t, d) {
-  return '<div class="loi"><div class="loi-n">Loi ' + n + '</div><div class="loi-t">' + t + '</div><p class="loi-d">' + d + '</p></div>';
-}
-
-var pages = {
-  doctrine: showDoctrine,
-  protocoles: function(){ return loadPage('protocoles.html', 'protocoles'); },
-  citations: function(){ return loadPage('citations.html', 'citations'); },
-  techniques: function(){ return loadPage('techniques.html', 'techniques'); },
-  journal: function(){ return loadPage('journal.html', 'journal'); }
-};
-
-window.addEventListener('popstate', function(e) {
-  var p = (e.state && e.state.page) || getHash();
-  go(p);
-});
-
-function getHash() {
-  var h = location.hash.replace('#', '');
-  return pages[h] ? h : 'doctrine';
-}
-
-go(getHash());
+  // Init
+  go(getHash());
+})();
 </script>
 </body>
 </html>
