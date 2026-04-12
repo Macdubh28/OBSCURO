@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citations â OBSCURO</title>
+  <title>Citations — OBSCURO</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -377,10 +377,10 @@
 </nav>
 
 <section class="hero">
-  <span class="hero-icon">ð</span>
+  <span class="hero-icon">📜</span>
   <h1>Textes Fondateurs</h1>
   <p class="hero-sub">Les paroles des guerriers impassibles</p>
-  <p class="hero-desc">Chaque ligne est une arme forgÃ©e par l'expÃ©rience. Les anciens ont marchÃ© dans l'ombre avant nous â leurs mots sont des cartes.</p>
+  <p class="hero-desc">Chaque ligne est une arme forgée par l'expérience. Les anciens ont marché dans l'ombre avant nous — leurs mots sont des cartes.</p>
 </section>
 
 <div class="counter-bar">
@@ -390,23 +390,23 @@
   </div>
   <div class="counter-item">
     <span class="counter-num">6</span>
-    <span class="counter-label">CatÃ©gories</span>
+    <span class="counter-label">Catégories</span>
   </div>
   <div class="counter-item">
     <span class="counter-num">20+</span>
-    <span class="counter-label">MaÃ®tres</span>
+    <span class="counter-label">Maîtres</span>
   </div>
 </div>
 
 <div class="filters-section">
-  <p class="filter-title">Filtrer par thÃ¨me</p>
+  <p class="filter-title">Filtrer par thème</p>
   <div class="filters">
     <button class="filter-btn active" data-filter="all">Toutes</button>
-    <button class="filter-btn" data-filter="maitrise">MaÃ®trise de Soi</button>
+    <button class="filter-btn" data-filter="maitrise">Maîtrise de Soi</button>
     <button class="filter-btn" data-filter="silence">Silence & Ombre</button>
-    <button class="filter-btn" data-filter="adversite">AdversitÃ© & Trempe</button>
+    <button class="filter-btn" data-filter="adversite">Adversité & Trempe</button>
     <button class="filter-btn" data-filter="hauteur">Hauteur & Vision</button>
-    <button class="filter-btn" data-filter="action">Action & VolontÃ©</button>
+    <button class="filter-btn" data-filter="action">Action & Volonté</button>
     <button class="filter-btn" data-filter="doctrine">Doctrine Macdubh</button>
   </div>
 </div>
@@ -414,4 +414,473 @@
 <div class="search-wrap">
   <input type="text" class="search-input" placeholder="Rechercher une citation, un auteur..." id="searchInput">
 </div>
-<div class="citations-grid" id="citationsGrid"><div class="citation-card" data-category="maitrise"><span class="card-category">MaÃ®trise de Soi</span><p class="quote-text">Celui qui se maÃ®trise lui-mÃªme est plus grand que celui qui prend une ville.</p><span class="quote-author">Proverbes</span></div></div><p class="no-results" id="noResults">Aucune citation ne correspond Ã  cette recherche.</p><footer>OBSCURO â Macdubh Â· Fils du Noir</footer><script>const filterBtns=document.querySelectorAll('.filter-btn');const cards=document.querySelectorAll('.citation-card');const searchInput=document.getElementById('searchInput');const noResults=document.getElementById('noResults');const totalCount=document.getElementById('total-count');let activeFilter='all';function updateCount(){const visible=document.querySelectorAll('.citation-card:not(.hidden)').length;totalCount.textContent=visible;}function applyFilters(){const searchTerm=searchInput.value.toLowerCase().trim();let count=0;cards.forEach(card=>{const cat=card.getAttribute('data-category');const text=card.textContent.toLowerCase();const matchFilter=activeFilter==='all'||cat===activeFilter;const matchSearch=!searchTerm||text.includes(searchTerm);if(matchFilter&&matchSearch){card.classList.remove('hidden');count++;}else{card.classList.add('hidden');}});noResults.style.display=count===0?'block':'none';totalCount.textContent=count;}filterBtns.forEach(btn=>{btn.addEventListener('click',()=>{filterBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=btn.getAttribute('data-filter');applyFilters();});});searchInput.addEventListener('input',applyFilters);updateCount();</script></body></html>
+
+<div class="citations-grid" id="citationsGrid">
+
+  <!-- ===== MAÎTRISE DE SOI ===== -->
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Celui qui se maîtrise lui-même est plus grand que celui qui prend une ville.</p>
+    <span class="quote-author">Proverbes</span>
+    <div class="quote-tags"><span class="quote-tag">Maîtrise</span><span class="quote-tag">Force intérieure</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Tu as du pouvoir sur ton esprit, pas sur les événements extérieurs. Réalise cela, et tu trouveras la force.</p>
+    <span class="quote-author">Marc Aurèle</span>
+    <div class="quote-tags"><span class="quote-tag">Intériorité</span><span class="quote-tag">Puissance</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">La première règle est de garder un esprit inébranlable. La deuxième est de regarder les choses en face et de les connaître telles qu'elles sont.</p>
+    <span class="quote-author">Marc Aurèle</span>
+    <div class="quote-tags"><span class="quote-tag">Stoïcisme</span><span class="quote-tag">Lucidité</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Gouverner ses passions avant de prétendre gouverner quoi que ce soit d'autre.</p>
+    <span class="quote-author">Marc Aurèle</span>
+    <div class="quote-tags"><span class="quote-tag">Empire intérieur</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Ce n'est pas celui qui a peu qui est pauvre, mais celui qui en désire plus.</p>
+    <span class="quote-author">Sénèque</span>
+    <div class="quote-tags"><span class="quote-tag">Désir</span><span class="quote-tag">Sobriété</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">La colère est une folie momentanée — maîtrise-toi ou elle te détruira.</p>
+    <span class="quote-author">Horace</span>
+    <div class="quote-tags"><span class="quote-tag">Colère</span><span class="quote-tag">Contrôle</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Nul ne peut mener une vie paisible qui pense trop à la prolonger.</p>
+    <span class="quote-author">Sénèque</span>
+    <div class="quote-tags"><span class="quote-tag">Présence</span><span class="quote-tag">Paix</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">L'homme supérieur est celui qui jamais ne se plaint de ce qui ne dépend pas de lui.</p>
+    <span class="quote-author">Épictète</span>
+    <div class="quote-tags"><span class="quote-tag">Acceptation</span><span class="quote-tag">Force</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Ne demande pas que ce qui arrive soit comme tu le veux. Mais veuille ce qui arrive comme il arrive, et tu seras heureux.</p>
+    <span class="quote-author">Épictète</span>
+    <div class="quote-tags"><span class="quote-tag">Acceptation</span><span class="quote-tag">Sérénité</span></div>
+  </div>
+
+  <div class="citation-card" data-category="maitrise">
+    <span class="card-category">Maîtrise de Soi</span>
+    <p class="quote-text">Sois maître de toi avant de prétendre l'être de quoi que ce soit. Le chaos extérieur est toujours le reflet d'un chaos intérieur non réglé.</p>
+    <span class="quote-author">Épictète</span>
+    <div class="quote-tags"><span class="quote-tag">Empire intérieur</span></div>
+  </div>
+
+  <!-- ===== SILENCE & OMBRE ===== -->
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">Parle seulement si tu peux améliorer le silence.</p>
+    <span class="quote-author">Jorge Luis Borges</span>
+    <div class="quote-tags"><span class="quote-tag">Silence</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">Mieux vaut être seul qu'en mauvaise compagnie.</p>
+    <span class="quote-author">George Washington</span>
+    <div class="quote-tags"><span class="quote-tag">Solitude</span><span class="quote-tag">Discernement</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">La parole est d'argent, le silence est d'or.</p>
+    <span class="quote-author">Proverbe</span>
+    <div class="quote-tags"><span class="quote-tag">Silence</span><span class="quote-tag">Sagesse</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">Si tu n'as rien à dire, n'ouvre pas la bouche. Si tu dois parler, que chaque mot ait du poids.</p>
+    <span class="quote-author">Zénon de Citium</span>
+    <div class="quote-tags"><span class="quote-tag">Économie des mots</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">Il vaut mieux ne rien dire et paraître stupide que d'ouvrir la bouche et d'en lever tout le doute.</p>
+    <span class="quote-author">Abraham Lincoln</span>
+    <div class="quote-tags"><span class="quote-tag">Silence</span><span class="quote-tag">Intelligence</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">L'obscurité n'est pas le vide. C'est l'espace où naît la force que la lumière ne peut pas voir.</p>
+    <span class="quote-author">Proverbe zen</span>
+    <div class="quote-tags"><span class="quote-tag">Ombre</span><span class="quote-tag">Profondeur</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">Le vrai pouvoir ne se montre pas. Il se ressent.</p>
+    <span class="quote-author">Sun Tzu</span>
+    <div class="quote-tags"><span class="quote-tag">Pouvoir</span><span class="quote-tag">Présence</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">La solitude est le champ de bataille du philosophe. C'est là qu'il forge ce qu'il sera dans la foule.</p>
+    <span class="quote-author">Sénèque</span>
+    <div class="quote-tags"><span class="quote-tag">Solitude</span><span class="quote-tag">Préparation</span></div>
+  </div>
+
+  <div class="citation-card" data-category="silence">
+    <span class="card-category">Silence & Ombre</span>
+    <p class="quote-text">Dans le silence, l'aigle entend ce que le bruit empêche les autres de percevoir.</p>
+    <span class="quote-author">Tradition Cherokee</span>
+    <div class="quote-tags"><span class="quote-tag">Écoute</span><span class="quote-tag">Perception</span></div>
+  </div>
+
+  <!-- ===== ADVERSITÉ & TREMPE ===== -->
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Le feu éprouve l'or, l'adversité éprouve les hommes forts.</p>
+    <span class="quote-author">Sénèque</span>
+    <div class="quote-tags"><span class="quote-tag">Adversité</span><span class="quote-tag">Trempe</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Ce qui ne me tue pas me rend plus fort.</p>
+    <span class="quote-author">Friedrich Nietzsche</span>
+    <div class="quote-tags"><span class="quote-tag">Résilience</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">L'obstacle est le chemin.</p>
+    <span class="quote-author">Proverbe Zen</span>
+    <div class="quote-tags"><span class="quote-tag">Adversité</span><span class="quote-tag">Voie</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Le chêne résiste au vent et se brise. Le roseau plie mais ne rompt pas. La souplesse est une autre forme de force.</p>
+    <span class="quote-author">Jean de La Fontaine</span>
+    <div class="quote-tags"><span class="quote-tag">Adaptation</span><span class="quote-tag">Résilience</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Les hommes forts créent des temps faciles. Les temps faciles créent des hommes faibles.</p>
+    <span class="quote-author">G. Michael Hopf</span>
+    <div class="quote-tags"><span class="quote-tag">Cycles</span><span class="quote-tag">Force</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Il n'y a pas de vent favorable pour celui qui ne sait pas où il va.</p>
+    <span class="quote-author">Sénèque</span>
+    <div class="quote-tags"><span class="quote-tag">Direction</span><span class="quote-tag">Clarté</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">La difficulté n'est pas une anomalie. C'est le creuset où se forge le caractère.</p>
+    <span class="quote-author">William James</span>
+    <div class="quote-tags"><span class="quote-tag">Caractère</span><span class="quote-tag">Trempe</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Si tu regardes l'abîme assez longtemps, l'abîme te regarde aussi.</p>
+    <span class="quote-author">Friedrich Nietzsche</span>
+    <div class="quote-tags"><span class="quote-tag">Profondeur</span><span class="quote-tag">Danger</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">Chaque épreuve que tu surmontes te donne une carte que ceux qui ont abandonné n'auront jamais.</p>
+    <span class="quote-author">Épictète</span>
+    <div class="quote-tags"><span class="quote-tag">Expérience</span><span class="quote-tag">Avantage</span></div>
+  </div>
+
+  <div class="citation-card" data-category="adversite">
+    <span class="card-category">Adversité & Trempe</span>
+    <p class="quote-text">L'homme qui se lève est encore plus grand que celui qui n'est jamais tombé.</p>
+    <span class="quote-author">Nelson Mandela</span>
+    <div class="quote-tags"><span class="quote-tag">Résilience</span><span class="quote-tag">Courage</span></div>
+  </div>
+
+  <!-- ===== HAUTEUR & VISION ===== -->
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">Les grands esprits ont toujours rencontré une opposition violente de la part des esprits médiocres.</p>
+    <span class="quote-author">Albert Einstein</span>
+    <div class="quote-tags"><span class="quote-tag">Hauteur</span><span class="quote-tag">Solitude</span></div>
+  </div>
+
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">Ne regarde pas ce qui est inutile. Regarde plus loin. L'horizon appartient à ceux qui cherchent au-delà du visible.</p>
+    <span class="quote-author">Marc Aurèle</span>
+    <div class="quote-tags"><span class="quote-tag">Vision</span><span class="quote-tag">Focus</span></div>
+  </div>
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">L'aigle s'élève seul. Les corbeaux volent en groupe.</p>
+    <span class="quote-author">Proverbe</span>
+    <div class="quote-tags"><span class="quote-tag">Élévation</span><span class="quote-tag">Solitude</span></div>
+  </div>
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">La médiocrité connaît rien au-dessus d'elle-même, mais le talent reconnaît instantanément le génie.</p>
+    <span class="quote-author">Arthur Conan Doyle</span>
+    <div class="quote-tags"><span class="quote-tag">Excellence</span><span class="quote-tag">Discernement</span></div>
+  </div>
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">Regarde les étoiles. Puis regarde tes mains. L'un sans l'autre n'a pas de sens.</p>
+    <span class="quote-author">Marcus Aurelius Antoninus</span>
+    <div class="quote-tags"><span class="quote-tag">Équilibre</span><span class="quote-tag">Action</span></div>
+  </div>
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">Pense en termes d'années, agis en termes de jours. La stratégie est une vue du haut, la tactique une affaire de sol.</p>
+    <span class="quote-author">Sun Tzu</span>
+    <div class="quote-tags"><span class="quote-tag">Stratégie</span><span class="quote-tag">Temporalité</span></div>
+  </div>
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">Celui qui ne voit que ce qui est visible est aveugle.</p>
+    <span class="quote-author">Proverbe zen</span>
+    <div class="quote-tags"><span class="quote-tag">Perception</span><span class="quote-tag">Profondeur</span></div>
+  </div>
+
+  <div class="citation-card" data-category="hauteur">
+    <span class="card-category">Hauteur & Vision</span>
+    <p class="quote-text">Connais-toi toi-même et tu connaîtras l'univers et les dieux.</p>
+    <span class="quote-author">Socrate</span>
+    <div class="quote-tags"><span class="quote-tag">Connaissance de soi</span></div>
+  </div>
+
+  <!-- ===== ACTION & VOLONTÉ ===== -->
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Agir de façon que la maxime de ta volonté puisse toujours valoir en même temps comme principe d'une législation universelle.</p>
+    <span class="quote-author">Emmanuel Kant</span>
+    <div class="quote-tags"><span class="quote-tag">Intégrité</span><span class="quote-tag">Discipline</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Sois le changement que tu veux voir dans le monde.</p>
+    <span class="quote-author">Gandhi</span>
+    <div class="quote-tags"><span class="quote-tag">Intériorité</span><span class="quote-tag">Action</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Il ne faut pas que je vive en espoir de vivre. Je dois vivre maintenant.</p>
+    <span class="quote-author">Sénèque</span>
+    <div class="quote-tags"><span class="quote-tag">Présent</span><span class="quote-tag">Urgence</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Demain appartient à ceux qui se préparent aujourd'hui.</p>
+    <span class="quote-author">Malcolm X</span>
+    <div class="quote-tags"><span class="quote-tag">Préparation</span><span class="quote-tag">Discipline</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">La discipline est le pont entre les objectifs et leur accomplissement.</p>
+    <span class="quote-author">Jim Rohn</span>
+    <div class="quote-tags"><span class="quote-tag">Discipline</span><span class="quote-tag">Succès</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Fais d'abord ce qui est nécessaire, puis ce qui est possible. Tu seras surpris de voir que l'impossible devient faisable.</p>
+    <span class="quote-author">François d'Assise</span>
+    <div class="quote-tags"><span class="quote-tag">Méthode</span><span class="quote-tag">Progression</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Le monde appartient à ceux qui se lèvent tôt. Il appartient surtout à ceux qui savent pourquoi ils se lèvent.</p>
+    <span class="quote-author">Macdubh</span>
+    <div class="quote-tags"><span class="quote-tag">Intention</span><span class="quote-tag">Discipline</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Le courage n'est pas l'absence de peur. C'est agir malgré elle.</p>
+    <span class="quote-author">Nelson Mandela</span>
+    <div class="quote-tags"><span class="quote-tag">Courage</span><span class="quote-tag">Action</span></div>
+  </div>
+
+  <div class="citation-card" data-category="action">
+    <span class="card-category">Action & Volonté</span>
+    <p class="quote-text">Vis chaque acte pleinement, comme si c'était le dernier.</p>
+    <span class="quote-author">Marc Aurèle</span>
+    <div class="quote-tags"><span class="quote-tag">Présence</span><span class="quote-tag">Intensité</span></div>
+  </div>
+
+  <!-- ===== DOCTRINE MACDUBH ===== -->
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">Dans l'obscurité, cherche la lumière que tu portais déjà en toi.</p>
+    <span class="quote-author">Macdubh</span>
+    <div class="quote-tags"><span class="quote-tag">Doctrine personnelle</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">L'aigle ne réagit pas — il observe. Toute réaction sans observation est une faiblesse déguisée en force.</p>
+    <span class="quote-author">Macdubh — Loi I</span>
+    <div class="quote-tags"><span class="quote-tag">Observation</span><span class="quote-tag">Sang-froid</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">Le silence n'est pas l'absence de réponse. C'est la réponse la plus puissante qu'un homme maître de lui-même puisse donner.</p>
+    <span class="quote-author">Macdubh — Loi II</span>
+    <div class="quote-tags"><span class="quote-tag">Silence</span><span class="quote-tag">Pouvoir</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">La froideur n'est pas cruauté — c'est clarté. Voir sans brouillard émotionnel, décider sans tremblement.</p>
+    <span class="quote-author">Macdubh — Loi III</span>
+    <div class="quote-tags"><span class="quote-tag">Clarté</span><span class="quote-tag">Décision</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">Macdubh — fils du noir. La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris à voir dans l'obscurité.</p>
+    <span class="quote-author">Macdubh — Loi IV</span>
+    <div class="quote-tags"><span class="quote-tag">Adversité</span><span class="quote-tag">Identité</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">Le premier empire est intérieur. Gouverner ses passions avant de prétendre gouverner quoi que ce soit d'autre.</p>
+    <span class="quote-author">Macdubh — Loi V</span>
+    <div class="quote-tags"><span class="quote-tag">Empire intérieur</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">L'aigle s'élève non par légèreté mais par puissance. La hauteur est conquise, jamais donnée.</p>
+    <span class="quote-author">Macdubh — Loi VI</span>
+    <div class="quote-tags"><span class="quote-tag">Envol</span><span class="quote-tag">Mérite</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">Ce que tu portes dans l'ombre, tu devras un jour le porter à la lumière. Autant le choisir maintenant.</p>
+    <span class="quote-author">Macdubh</span>
+    <div class="quote-tags"><span class="quote-tag">Intégration</span><span class="quote-tag">Vérité</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">Ne justifie pas ta paix intérieure à ceux qui n'ont jamais perdu la leur. Ils ne comprennent pas ce qu'il a fallu traverser pour la reconstruire.</p>
+    <span class="quote-author">Macdubh</span>
+    <div class="quote-tags"><span class="quote-tag">Paix</span><span class="quote-tag">Souveraineté</span></div>
+  </div>
+
+  <div class="citation-card doctrine" data-category="doctrine">
+    <span class="doctrine-badge">🦅</span>
+    <span class="card-category">Doctrine Macdubh</span>
+    <p class="quote-text">L'ennemi le plus dangereux est celui qui sait exactement où tu es fragile. Parfois, c'est toi-même.</p>
+    <span class="quote-author">Macdubh</span>
+    <div class="quote-tags"><span class="quote-tag">Connaissance de soi</span><span class="quote-tag">Vigilance</span></div>
+  </div>
+
+</div>
+
+<p class="no-results" id="noResults">Aucune citation ne correspond à cette recherche.</p>
+
+<footer>OBSCURO — Macdubh · Fils du Noir</footer>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.citation-card');
+  const searchInput = document.getElementById('searchInput');
+  const noResults = document.getElementById('noResults');
+  const totalCount = document.getElementById('total-count');
+
+  let activeFilter = 'all';
+
+  function updateCount() {
+    const visible = document.querySelectorAll('.citation-card:not(.hidden)').length;
+    totalCount.textContent = visible;
+  }
+
+  function applyFilters() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    let count = 0;
+
+    cards.forEach(card => {
+      const cat = card.getAttribute('data-category');
+      const text = card.textContent.toLowerCase();
+      const matchFilter = activeFilter === 'all' || cat === activeFilter;
+      const matchSearch = !searchTerm || text.includes(searchTerm);
+
+      if (matchFilter && matchSearch) {
+        card.classList.remove('hidden');
+        count++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    noResults.style.display = count === 0 ? 'block' : 'none';
+    totalCount.textContent = count;
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.getAttribute('data-filter');
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+
+  updateCount();
+</script>
+
+</body>
+</html>
