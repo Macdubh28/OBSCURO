@@ -1,155 +1,352 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0f1e">
-<title>OBSCURO — Macdubh</title>
-<link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---noir:#0a0f1e;
---noir2:#0d1b3e;
---acier:#1a3a6e;
---bleu:#5b8fd4;
---glace:#b8cee8;
---blanc:#e8f0f8;
---font-titre:'Cinzel',serif;
---font-corps:'Montserrat',sans-serif;
-}
-html,body{height:100%;background:var(--noir);color:var(--blanc);font-family:var(--font-corps)}
-/* NAV */
-nav{position:fixed;top:0;width:100%;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(91,143,212,0.15)}
-.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.2em;color:var(--glace)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--glace);opacity:0.6;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:opacity 0.3s}
-.nav-links a:hover{opacity:1}
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(26,58,110,0.4) 0%, transparent 70%);pointer-events:none}
-.aigle{font-size:3.5rem;margin-bottom:32px;opacity:0.85;animation:planer 6s ease-in-out infinite}
-@keyframes planer{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.hero-titre{font-family:var(--font-titre);font-size:clamp(2.8rem,8vw,5.5rem);letter-spacing:0.25em;color:var(--blanc);margin-bottom:16px;line-height:1.1}
-.hero-sous{font-family:var(--font-titre);font-size:clamp(0.75rem,2vw,1rem);letter-spacing:0.4em;color:var(--bleu);text-transform:uppercase;margin-bottom:48px;opacity:0.8}
-.hero-trait{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--bleu),transparent);margin:0 auto 48px}
-.hero-doctrine{max-width:580px;font-size:clamp(0.9rem,2vw,1.05rem);line-height:1.9;color:var(--glace);opacity:0.75;font-weight:300;font-style:italic}
-.hero-cta{margin-top:56px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-.btn{padding:14px 36px;border:1px solid rgba(91,143,212,0.4);background:transparent;color:var(--glace);font-family:var(--font-corps);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;cursor:pointer}
-.btn:hover{background:rgba(91,143,212,0.12);border-color:var(--bleu)}
-.btn-primary{background:rgba(26,58,110,0.5);border-color:var(--bleu)}
-/* DOCTRINE */
-.section{padding:100px 24px;max-width:960px;margin:0 auto}
-.section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--bleu);margin-bottom:20px;opacity:0.7}
-.section-titre{font-family:var(--font-titre);font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:0.1em;color:var(--blanc);margin-bottom:48px}
-.doctrine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:rgba(91,143,212,0.08)}
-.doctrine-card{background:var(--noir);padding:40px 32px;border:1px solid rgba(91,143,212,0.1);transition:border-color 0.3s}
-.doctrine-card:hover{border-color:rgba(91,143,212,0.35)}
-.doctrine-num{font-family:var(--font-titre);font-size:2.5rem;color:rgba(91,143,212,0.15);margin-bottom:16px;line-height:1}
-.doctrine-nom{font-family:var(--font-titre);font-size:0.9rem;letter-spacing:0.2em;color:var(--glace);margin-bottom:12px}
-.doctrine-desc{font-size:0.85rem;line-height:1.8;color:var(--glace);opacity:0.55;font-weight:300}
-/* PILIERS NAV */
-.piliers{padding:80px 24px;background:rgba(13,27,62,0.4);border-top:1px solid rgba(91,143,212,0.08);border-bottom:1px solid rgba(91,143,212,0.08)}
-.piliers-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(91,143,212,0.1)}
-.pilier-link{background:var(--noir);padding:40px 28px;text-decoration:none;display:block;transition:background 0.3s;border:1px solid transparent}
-.pilier-link:hover{background:rgba(26,58,110,0.5);border-color:rgba(91,143,212,0.2)}
-.pilier-icon{font-size:1.6rem;margin-bottom:16px;opacity:0.7}
-.pilier-nom{font-family:var(--font-titre);font-size:0.85rem;letter-spacing:0.2em;color:var(--glace);margin-bottom:8px}
-.pilier-desc{font-size:0.75rem;color:var(--glace);opacity:0.45;font-weight:300;line-height:1.6}
-/* FOOTER */
-footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(91,143,212,0.08)}
-.footer-logo{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.3em;color:var(--glace);opacity:0.3;margin-bottom:12px}
-.footer-sub{font-size:0.7rem;letter-spacing:0.2em;color:var(--glace);opacity:0.2;text-transform:uppercase}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OBSCURO â Macdubh</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:wght@400;600&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --noir: #0a0e1a;
+      --bleu-nuit: #0d1526;
+      --acier: #8a9bb5;
+      --acier-clair: #b8c8dc;
+      --blanc: #e8edf5;
+      --or: #8b7355;
+      --or-clair: #c4a96e;
+      --frontiere: rgba(138,155,181,0.15);
+      --vert: #4a9b6f;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,14,26,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--frontiere);
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--acier-clair);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--acier);
+      text-decoration: none;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blanc); }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.55rem; letter-spacing: 0.15em; }
+    }
+
+    /* MAIN CONTENT AREA */
+    #app {
+      min-height: 100vh;
+      transition: opacity 0.2s ease;
+    }
+    #app.loading { opacity: 0.4; pointer-events: none; }
+
+    /* LOADING SPINNER */
+    #loader {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+    #loader.visible { display: block; }
+    .spinner {
+      width: 30px; height: 30px;
+      border: 2px solid var(--frontiere);
+      border-top-color: var(--or-clair);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ========== PAGE DOCTRINE (HOME) ========== */
+    .home-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .home-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 40%, rgba(13,21,38,0.9) 0%, transparent 70%);
+    }
+    .home-eagle { font-size: 3rem; display: block; margin-bottom: 2rem; }
+    .home-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: var(--blanc);
+      margin-bottom: 0.8rem;
+    }
+    .home-sub {
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: var(--acier);
+      margin-bottom: 3rem;
+    }
+    .home-divider {
+      width: 40px; height: 1px;
+      background: var(--or);
+      margin: 0 auto 3rem;
+    }
+    .home-desc {
+      font-size: 0.9rem;
+      color: var(--acier-clair);
+      font-style: italic;
+      max-width: 540px;
+      line-height: 2;
+      margin-bottom: 4rem;
+    }
+    .home-cta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid var(--acier);
+      background: transparent;
+      color: var(--acier-clair);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+    }
+    .cta-btn:hover, .cta-btn.primary {
+      border-color: var(--or-clair);
+      color: var(--or-clair);
+      background: rgba(196,169,110,0.06);
+    }
+
+    /* 6 LOIS */
+    .lois-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 3rem 8rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .loi-card {
+      border: 1px solid var(--frontiere);
+      background: rgba(13,21,38,0.5);
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .loi-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--or);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+    }
+    .loi-card:hover::before { transform: scaleY(1); }
+    .loi-card:hover { border-color: rgba(138,155,181,0.3); background: rgba(13,21,38,0.8); }
+    .loi-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--or);
+      opacity: 0.7;
+      margin-bottom: 0.8rem;
+    }
+    .loi-titre {
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--blanc);
+      margin-bottom: 0.8rem;
+    }
+    .loi-texte {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--acier-clair);
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
+
 <nav>
-  <div class="nav-inner">
-    <span class="nav-logo">OBSCURO</span>
-    <ul class="nav-links">
-      <li><a href="index.html">Doctrine</a></li>
-      <li><a href="protocoles.html">Protocoles</a></li>
-      <li><a href="citations.html">Citations</a></li>
-      <li><a href="journal.html">Journal</a></li>
-    </ul>
-  </div>
+  <span class="nav-logo" onclick="navigate('doctrine')">OBSCURO</span>
+  <ul class="nav-links">
+    <li><a onclick="navigate('doctrine')" id="nav-doctrine">Doctrine</a></li>
+    <li><a onclick="navigate('protocoles')" id="nav-protocoles">Protocoles</a></li>
+    <li><a onclick="navigate('citations')" id="nav-citations">Citations</a></li>
+    <li><a onclick="navigate('techniques')" id="nav-techniques">Techniques</a></li>
+    <li><a onclick="navigate('journal')" id="nav-journal">Journal</a></li>
+  </ul>
 </nav>
-<section class="hero">
-  <div class="aigle">🦅</div>
-  <h1 class="hero-titre">OBSCURO</h1>
-  <p class="hero-sous">Fils du Noir — Macdubh</p>
-  <div class="hero-trait"></div>
-  <p class="hero-doctrine">
-    Celui qui observe depuis l'ombre sans jamais être vu.<br>
-    Le sang-froid n'est pas l'absence d'émotion —<br>
-    c'est la maîtrise absolue de ce qu'on en fait.
-  </p>
-  <div class="hero-cta">
-    <a href="protocoles.html" class="btn btn-primary">Protocoles</a>
-    <a href="journal.html" class="btn">Journal</a>
-  </div>
-</section>
-<section class="piliers">
-  <div class="piliers-inner">
-    <a href="protocoles.html" class="pilier-link">
-      <div class="pilier-icon">🧊</div>
-      <div class="pilier-nom">Protocoles</div>
-      <div class="pilier-desc">Exercices de sang-froid et maîtrise de soi</div>
-    </a>
-    <a href="citations.html" class="pilier-link">
-      <div class="pilier-icon">📜</div>
-      <div class="pilier-nom">Citations</div>
-      <div class="pilier-desc">Textes fondateurs des guerriers impassibles</div>
-    </a>
-    <a href="journal.html" class="pilier-link">
-      <div class="pilier-icon">🗡️</div>
-      <div class="pilier-nom">Journal</div>
-      <div class="pilier-desc">Maîtrise intime — situations et réponses</div>
-    </a>
-  </div>
-</section>
-<section class="section">
-  <p class="section-label">La doctrine</p>
-  <h2 class="section-titre">Les lois de l'ombre</h2>
-  <div class="doctrine-grid">
-    <div class="doctrine-card">
-      <div class="doctrine-num">I</div>
-      <div class="doctrine-nom">L'Observation</div>
-      <div class="doctrine-desc">L'aigle ne réagit pas — il observe. Toute réaction sans observation est une faiblesse déguisée en force.</div>
+
+<div id="loader"><div class="spinner"></div></div>
+<div id="app"></div>
+
+<script>
+// ========================
+// ROUTER / SPA ENGINE
+// ========================
+
+const PAGES = {
+  doctrine: renderDoctrine,
+  protocoles: () => loadPage('protocoles.html', 'protocoles'),
+  citations: () => loadPage('citations.html', 'citations'),
+  techniques: () => loadPage('techniques.html', 'techniques'),
+  journal: () => loadPage('journal.html', 'journal'),
+};
+
+const cache = {};
+
+function setActiveNav(page) {
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-' + page);
+  if (el) el.classList.add('active');
+}
+
+async function navigate(page) {
+  if (!PAGES[page]) page = 'doctrine';
+  history.pushState({ page }, '', '#' + page);
+  setActiveNav(page);
+  const app = document.getElementById('app');
+  app.classList.add('loading');
+  document.getElementById('loader').classList.add('visible');
+  try {
+    await PAGES[page]();
+  } catch(e) {
+    app.innerHTML = `<div style="padding:10rem 3rem;text-align:center;color:var(--acier);font-style:italic;">Erreur â ${e.message}</div>`;
+  }
+  app.classList.remove('loading');
+  document.getElementById('loader').classList.remove('visible');
+  window.scrollTo(0, 0);
+}
+
+as(2ync function loadPage(filename, key) {
+  const app = document.getElementById('app');
+  if (cache[key]) {
+    app.innerHTML = cache[key];
+    reinitPage(key);
+    return;
+  }
+  const res = await fetch(filename + '?t=' + Date.now());
+  if (!res.ok) throw new Error(filename + ' not found');
+  const html = await res.text();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const styles = [...doc.querySelectorAll('style')].map(s => s.outerHTML).join('');
+  const body = doc.body;
+  const navEl = body.querySelector('nav');
+  if (navEl) navEl.remove();
+  const scripts = [...body.querySelectorAll('script')].map(s => s.textContent);
+  body.querySelectorAll('script').forEach(s => s.remove());
+  const content = styles + body.innerHTML;
+  cache[key] = content;
+  app.innerHTML = content;
+  scripts.forEach(code => {
+    try { new Function(code)(); }
+    catch(e) { console.warn('Script error', filename, e); }
+  });
+}
+
+function reinitPage(key) {
+  if (key === 'journal' && typeof render === 'function') render();
+}
+
+function renderDoctrine() {
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <div class="home-page">
+      <div class="home-hero">
+        <span class="home-eagle">ð¦</span>
+        <h1 class="home-title">OBSCURO</h1>
+        <p class="home-sub">Fils du Noir â Macdubh</p>
+        <div class="home-divider"></div>
+        <p class="home-desc">
+          Celui qui observe depuis l'ombre sans jamais Ãªtre vu.<br>
+          Le sang-froid n'est pas l'absence d'Ã©motion â<br>
+          c'est la maÃ®trise absolue de ce qu'on en fait.
+        </p>
+        <div class="home-cta">
+          <button class="cta-btn primary" onclick="navigate('protocoles')">Protocoles</button>
+          <button class="cta-btn" onclick="navigate('citations')">Citations</button>
+          <button class="cta-btn" onclick="navigate('techniques')">Techniques</button>
+          <button class="cta-btn" onclick="navigate('journal')">Journal</button>
+        </div>
+      </div>
+      <div class="lois-section">
+        <div class="loi-card"><div class="loi-num">Loi I</div><div class="loi-titre">L'Åil de l'Aigle</div><p class="loi-texte">L'aigle ne rÃ©agit pas â il observe. Toute rÃ©action sans observation est une faiblesse dÃ©guisÃ©e en force.</p></div>
+        <div class="loi-card"><div class="loi-num">Loi II</div><div class="loi-titre">Le Silence ArmÃ©</div><p class="loi-texte">Le silence n'est pas l'absence de rÃ©ponse. C'est la rÃ©ponse la plus puissante qu'un homme maÃ®tre de lui-mÃªme puisse donner.</p></div>
+        <div class="loi-card"><div class="loi-num">Loi III</div><div class="loi-titre">La Froideur Lucide</div><p class="loi-texte">La froideur n'est pas cruautÃ© â c'est clartÃ©. Voir sans brouillard Ã©motionnel, dÃ©cider sans tremblement.</p></div>
+        <div class="loi-card"><div class="loi-num">Loi IV</div><div class="loi-titre">Fils du Noir</div><p class="loi-texte">La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris Ã  voir dans l'obscuritÃ©.</p></div>
+        <div class="loi-card"><div class="loi-num">Loi V</div><div class="loi-titre">L'Empire IntÃ©rieur</div><p class="loi-texte">Le premier empire est intÃ©rieur. Gouverner ses passions avant de prÃ©tendre gouverner quoi que ce soit d'autre.</p></div>
+        <div class="loi-card"><div class="loi-num">Loi VI</div><div class="loi-titre">La Hauteur Conquise</div><p class="loi-texte">L'aigle s'Ã©lÃ¨ve non par lÃ©gÃ¨retÃ© mais par puissance. La hauteur est conquise, jamais donnÃ©e.</p></div>
+      </div>
     </div>
-    <div class="doctrine-card">
-      <div class="doctrine-num">II</div>
-      <div class="doctrine-nom">Le Silence</div>
-      <div class="doctrine-desc">Le silence n'est pas l'absence de réponse. C'est la réponse la plus puissante qu'un homme maître de lui-même puisse donner.</div>
-    </div>
-    <div class="doctrine-card">
-      <div class="doctrine-num">III</div>
-      <div class="doctrine-nom">La Froideur</div>
-      <div class="doctrine-desc">La froideur n'est pas cruauté — c'est clarté. Voir sans brouillard émotionnel, décider sans tremblement.</div>
-    </div>
-    <div class="doctrine-card">
-      <div class="doctrine-num">IV</div>
-      <div class="doctrine-nom">L'Adversité</div>
-      <div class="doctrine-desc">Macdubh — fils du noir. La nuit n'est pas une punition. C'est le terrain de ceux qui ont appris à voir dans l'obscurité.</div>
-    </div>
-    <div class="doctrine-card">
-      <div class="doctrine-num">V</div>
-      <div class="doctrine-nom">La Maîtrise</div>
-      <div class="doctrine-desc">Gouverner ses passions avant de prétendre gouverner quoi que ce soit d'autre. Le premier empire est intérieur.</div>
-    </div>
-    <div class="doctrine-card">
-      <div class="doctrine-num">VI</div>
-      <div class="doctrine-nom">L'Envol</div>
-      <div class="doctrine-desc">L'aigle s'élève non par légèreté mais par puissance. La hauteur est conquise, jamais donnée.</div>
-    </div>
-  </div>
-</section>
-<footer>
-  <div class="footer-logo">OBSCURO</div>
-  <div class="footer-sub">Macdubh — Fils du Noir</div>
-</footer>
+  `;
+  return Promise.resolve();
+}
+
+window.addEventListener('popstate', (e) => {
+  const page = e.state?.page || getHashPage();
+  navigate(page);
+});
+
+function getHashPage() {
+  const hash = location.hash.replace('#', '');
+  return PAGES[hash] ? hash : 'doctrine';
+}
+
+navigate(getHashPage());
+</script>
 </body>
 </html>
