@@ -1,245 +1,262 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0f1e">
-<title>Journal — OBSCURO</title>
-<link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---noir:#0a0f1e;--noir2:#0d1b3e;--acier:#1a3a6e;
---bleu:#5b8fd4;--glace:#b8cee8;--blanc:#e8f0f8;
---font-titre:'Cinzel',serif;--font-corps:'Montserrat',sans-serif;
-}
-html,body{min-height:100%;background:var(--noir);color:var(--blanc);font-family:var(--font-corps)}
-nav{position:fixed;top:0;width:100%;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(91,143,212,0.15)}
-.nav-inner{max-width:960px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-titre);font-size:1.1rem;letter-spacing:0.2em;color:var(--glace);text-decoration:none}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--glace);opacity:0.6;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:opacity 0.3s}
-.nav-links a:hover,.nav-links a.active{opacity:1}
-.page{max-width:960px;margin:0 auto;padding:100px 24px 80px}
-.page-header{margin-bottom:64px}
-.page-icon{font-size:2rem;margin-bottom:20px;opacity:0.7}
-.page-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--bleu);margin-bottom:12px;opacity:0.7}
-.page-titre{font-family:var(--font-titre);font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:0.1em;color:var(--blanc);margin-bottom:16px}
-.page-desc{font-size:0.9rem;line-height:1.8;color:var(--glace);opacity:0.55;font-weight:300;max-width:560px}
-/* FORMULAIRE */
-.form-section{background:rgba(13,27,62,0.5);border:1px solid rgba(91,143,212,0.15);padding:40px;margin-bottom:64px}
-.form-titre{font-family:var(--font-titre);font-size:0.9rem;letter-spacing:0.2em;color:var(--glace);margin-bottom:32px;opacity:0.7;text-transform:uppercase}
-.form-grid{display:grid;gap:20px}
-.form-group{display:flex;flex-direction:column;gap:8px}
-.form-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bleu);opacity:0.8}
-.form-input,.form-textarea{background:rgba(10,15,30,0.8);border:1px solid rgba(91,143,212,0.2);color:var(--blanc);font-family:var(--font-corps);font-size:0.85rem;padding:14px 16px;outline:none;transition:border-color 0.3s;resize:vertical}
-.form-input:focus,.form-textarea:focus{border-color:rgba(91,143,212,0.6)}
-.form-textarea{min-height:90px;line-height:1.7}
-.form-actions{display:flex;gap:16px;margin-top:8px}
-.btn{padding:13px 32px;border:1px solid rgba(91,143,212,0.4);background:transparent;color:var(--glace);font-family:var(--font-corps);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
-.btn:hover{background:rgba(91,143,212,0.12);border-color:var(--bleu)}
-.btn-primary{background:rgba(26,58,110,0.6);border-color:var(--bleu)}
-.btn-danger{border-color:rgba(212,91,91,0.4);color:rgba(212,150,150,0.8);font-size:0.65rem;padding:8px 16px}
-.btn-danger:hover{background:rgba(212,91,91,0.1);border-color:rgba(212,91,91,0.7)}
-/* STATS */
-.stats-bar{display:flex;gap:32px;margin-bottom:48px;padding:24px;border:1px solid rgba(91,143,212,0.1);background:rgba(13,27,62,0.3)}
-.stat{text-align:center}
-.stat-num{font-family:var(--font-titre);font-size:1.8rem;color:var(--bleu);line-height:1}
-.stat-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--glace);opacity:0.4;margin-top:6px}
-/* ENTREES */
-.entries-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.entries-titre{font-family:var(--font-titre);font-size:0.85rem;letter-spacing:0.2em;color:var(--glace);opacity:0.6;text-transform:uppercase}
-.entries-count{font-size:0.75rem;color:var(--bleu);opacity:0.7}
-.entry{border:1px solid rgba(91,143,212,0.1);margin-bottom:2px;transition:border-color 0.3s}
-.entry:hover{border-color:rgba(91,143,212,0.3)}
-.entry-header{padding:24px 28px;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.entry-meta{display:flex;align-items:center;gap:16px;margin-bottom:8px}
-.entry-num{font-family:var(--font-titre);font-size:0.75rem;color:var(--bleu);opacity:0.6;letter-spacing:0.1em}
-.entry-tag{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--glace);opacity:0.35;border:1px solid rgba(184,206,232,0.15);padding:3px 8px}
-.entry-date{font-size:0.65rem;color:var(--glace);opacity:0.25;margin-left:auto}
-.entry-titre{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.05em;color:var(--blanc)}
-.entry-chevron{color:var(--bleu);opacity:0.4;font-size:0.8rem;flex-shrink:0;transition:transform 0.3s}
-.entry.open .entry-chevron{transform:rotate(180deg)}
-.entry-body{display:none;padding:0 28px 28px;border-top:1px solid rgba(91,143,212,0.08)}
-.entry.open .entry-body{display:block}
-.entry-section{margin-top:24px}
-.entry-section-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--bleu);opacity:0.6;margin-bottom:10px}
-.entry-section-text{font-size:0.88rem;line-height:1.85;color:var(--glace);opacity:0.7;font-weight:300}
-.entry-lecon{font-size:0.85rem;line-height:1.85;color:var(--glace);opacity:0.55;font-style:italic;border-left:2px solid rgba(91,143,212,0.3);padding-left:16px}
-.entry-actions{margin-top:20px;display:flex;justify-content:flex-end}
-.empty-state{text-align:center;padding:80px 24px;opacity:0.3}
-.empty-icon{font-size:2rem;margin-bottom:16px}
-.empty-text{font-size:0.85rem;letter-spacing:0.1em;color:var(--glace)}
-footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(91,143,212,0.08);margin-top:80px}
-.footer-logo{font-family:var(--font-titre);font-size:1rem;letter-spacing:0.3em;color:var(--glace);opacity:0.3;margin-bottom:12px}
-.footer-sub{font-size:0.7rem;letter-spacing:0.2em;color:var(--glace);opacity:0.2;text-transform:uppercase}
-@media(max-width:600px){
-.stats-bar{gap:16px}.form-section{padding:24px}
-.entry-header{padding:20px}.entry-body{padding:0 20px 20px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal â OBSCURO</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --noir: #0a0e1a;
+      --bleu-nuit: #0d1526;
+      --acier: #8a9bb5;
+      --acier-clair: #b8c8dc;
+      --blanc: #e8edf5;
+      --or: #8b7355;
+      --or-clair: #c4a96e;
+      --frontiere: rgba(138,155,181,0.15);
+      --vert: #4a9b6f;
+      --vert-clair: #6dbf8e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,14,26,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--frontiere);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--acier-clair);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--acier);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--blanc); }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 3rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-title-block h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--acier);
+    }
+
+    /* STREAK WIDGET */
+    .streak-widget {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(13,21,38,0.7);
+      border: 1px solid var(--frontiere);
+      padding: 1.2rem 1.8rem;
+      min-width: 280px;
+    }
+    .streak-fire{font-size:2.5rem;line-height:1;}
+    .streak-num{font-family:'Cinzel',serif;font-size:2rem;font-weight:900;color:var(--or-clair);line-height:1;}
+    .streak-label{font-size:.6rem;letter-spacing:.25em;color:var(--acier);text-transform:uppercase;margin-top:.2rem;}
+    .streak-best{font-size:.65rem;color:var(--acier);margin-top:.5rem;}
+    .streak-best span{color:var(--or);}
+    .level-bar-section{mx-width:1100px;margin:0 auto;padding:1.5rem 3rem 0;}
+    .level-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+    .level-badge{display:flex;align-items:center;gap:.7rem;}
+    .level-icon{font-size:1.3rem;}
+    .level-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;color:var(--or-clair);}
+    .level-xp{font-size:.65rem;color:var(--acier);letter-spacing:.1em;}
+    .progress-track{height:4px;background:rgba(138,155,181,0.1);border-radius:2px;overflow:hidden;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--or),var(--or-clair));border-radius:2px;transition:width .8s ease;}
+    .level-milestones{display:flex;justify-content:space-between;margin-top:.5rem;}
+    .milestone{font-size:.55rem;letter-spacing:.1em;color:var(--acier);opacity:.5;text-align:center;}
+    .milestone.reached{color:var(--or);opacity:1;}
+    .stats-row{display:flex;gap:1rem;max-width:1100px;margin:1.5rem auto 0;padding:0 3rem;}
+    .stat-box{flex:1;padding:1rem 1.2rem;border:1px solid var(--frontiere);background:rgba(13,21,38,0.4);text-align:center;}
+    .stat-num{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:600;color:var(--blanc);display:block;}
+    .stat-label{font-size:.55rem;letter-spacing:.2em;color:var(--acier);text-transform:uppercase;margin-top:.2rem;}
+    .quote-du-jour{max-width:1100px;margin:2rem auto 0;padding:0 3rem;}
+    .quote-card{border-left:3px solid var(--or);padding:1.2rem 1.5rem;background:rgba(139,115,85,0.05);font-style:italic;font-size:.85rem;line-height:1.8;color:var(--acier-clair);}
+    .quote-card .q-author{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:var(--or);font-style:normal;margin-top:.6rem;display:block;}
+    .main-grid{max-width:1100px;margin:2rem auto 0;padding:0 3rem;display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start;}
+    .journal-form{border:1px solid var(--frontiere);background:rgba(13,21,38,0.4);}
+    .form-header{padding:1.2rem 1.8rem;border-bottom:1px solid var(--frontiere);display:flex;align-items:center;justify-content:space-between;}
+    .form-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;color:var(--blanc);}
+    .date-badge{font-size:.6rem;letter-spacing:.15em;color:var(--acier);}
+    .form-body{padding:1.8rem;}
+    .question-block{margin-bottom:1.6rem;}
+    .question-label{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.6rem;}
+    .q-num{font-family:'Cinzel',serif;font-size:.6rem;color:var(--or);letter-spacing:.15em;opacity:.7;}
+    .q-text{font-size:.78rem;color:var(--acier-clair);line-height:1.6;}
+    .journal-textarea{width:100%;background:rgba(138,155,181,0.04);border:1px solid var(--frontiere);color:var(--blanc);font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:300;padding:.8rem 1rem;resize:vertical;min-height:70px;outline:none;transition:border-color .3s;line-height:1.7;}
+    .journal-textarea:focus{border-color:var(--acier);}
+    .journal-textarea::placeholder{color:var(--acier);opacity:.4;}
+    .maitrise-section{margin-bottom:1.6rem;}
+    .maitrise-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;}
+    .maitrise-label{font-size:.78rem;color:var(--acier-clair);}
+    .maitrise-val{font-family:'Cinzel',serif;font-size:.8rem;color:var(--or-clair);font-weight:600;}
+    .slider{width:100%;height:4px;appearance:none;background:rgba(138,155,181,0.15);border-radius:2px;outline:none;cursor:pointer;}
+    .slider::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--or-clair);cursor:pointer;border:2px solid var(--noir);}
+    .chips-section{margin-bottom:1.6rem;}
+    .chips-label{font-size:.75rem;color:var(--acier-clair);margin-bottom:.7rem;display:block;}
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .chip{font-size:.65rem;letter-spacing:.12em;padding:.35rem .8rem;border:1px solid var(--frontiere);background:transparent;color:var(--acier);cursor:pointer;transition:all .2s;user-select:none;}
+    .chip:hover{border-color:var(--acier-clair);color:var(--blanc);}
+    .chip.selected{border-color:var(--or-clair);color:var(--or-clair);background:rgba(196,169,110,0.08);}
+    .form-footer{padding:1rem 1.8rem 1.8rem;display:flex;gap:1rem;align-items:center;}
+    .btn-submit{flex:1;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;padding:.9rem 2rem;background:var(--or);color:var(--blanc);border:none;cursor:pointer;transition:all .3s;text-transform:uppercase;}
+    .btn-submit:hover{background:var(--or-clair);}
+    .entry-count-msg{font-size:.6rem;color:var(--acier);opacity:.7;}
+    .streak-calendar{border:1px solid var(--frontiere);background:rgba(13,21,38,0.4);padding:1.5rem;margin-bottom:1.5rem;}
+    .cal-header{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;color:var(--acier);margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+    .cal-day{aspect-ratio:1;border-radius:2px;background:rgba(138,155,181,0.06);position:relative;cursor:default;}
+    .cal-day.has-entry{background:var(--or);opacity:.85;}
+    .cal-day.today{border:1px solid var(--acier-clair);}
+    .cal-day.has-entry.today{background:var(--vert);border-color:var(--vert-clair);opacity:1;}
+    .cal-dow{font-size:.5rem;letter-spacing:.1em;color:var(--acier);text-align:center;margin-bottom:.3rem;opacity:.6;}
+    .achievements{border:1px solid var(--frontiere);background:rgba(13,21,38,0.4);padding:1.5rem;margin-bottom:1.5rem;}
+    .ach-header{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;color:var(--acier);margin-bottom:1.2rem;}
+    .ach-list{display:flex;flex-direction:column;gap:.7rem;}
+    .ach-item{display:flex;align-items:center;gap:.8rem;opacity:.35;transition:opacity .3s;}
+    .ach-item.unlocked{opacity:1;}
+    .ach-icon{font-size:1.1rem;width:1.5rem;text-align:center;}
+    .ach-name{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;color:var(--or-clair);display:block;}
+    .ach-desc{font-size:.58rem;color:var(--acier);display:block;margin-top:.1rem;}
+    .entries-section{max-width:1100px;margin:2rem auto 6rem;padding:0 3rem;}
+    .entries-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--frontiere);}
+    .entries-title{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;color:var(--blanc);}
+    .btn-export{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;padding:.4rem 1rem;border:1px solid var(--frontiere);background:transparent;color:var(--acier);cursor:pointer;transition:all .2s;}
+    .btn-export:hover{border-color:var(--acier-clair);color:var(--blanc);}
+    .entries-list{display:flex;flex-direction:column;gap:1rem;}
+    .entry-card{border:1px solid var(--frontiere);background:rgba(13,21,38,0.4);padding:1.5rem;position:relative;transition:border-color .3s;}
+    .entry-card:hover{border-color:rgba(138,155,181,0.3);}
+    .entry-meta{display:flex;align-items:center;justify-content:space-between;.argin-bottom:1rem;}
+    .entry-date{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;color:var(--or);}
+    .entry-chips{display:flex;gap:.4rem;flex-wrap:wrap;}
+    .entry-chip{font-size:.5rem;letter-spacing:.1em;padding:.2rem .5rem;border:1px solid rgba(196,169,110,0.2);color:var(--or);}
+    .entry-score{font-family:'Cinzel',serif;font-size:.75rem;color:var(--acier-clair);}
+    .entry-text{font-size:.8rem;line-height:1.7;color:var(--acier-clair);font-style:italic;}
+    .entry-delete{position:absolute;top:.8rem;right:.8rem;background:none;border:none;color:var(--acier);cursor:pointer;font-size:.7rem;opacity:.3;transition:opacity .2s;}
+    .entry-delete:hover{opacity:.8;}
+    .no-entries{text-align:center;padding:3rem;color:var(--acier);font-style:italic;font-size:.85rem;border:1px solid var(--frontiere);}
+    .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(13,21,38,0.97);border:1px solid var(--or);padding:1rem 2rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--or-clair);transition:transform .4s ease;z-index:999;white-space:nowrap;}
+    .toast.show{transform:translateX(-50%) translateY(0);}
+    .levelup-overlay{position:fixed;inset:0;background:rgba(10,14,26,0.92);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .5s;}
+    .levelup-overlay.show{opacity:1;pointer-events:all;}
+    .levelup-box{text-align:center;padding:4rem;border:1px solid var(--or-clair);background:rgba(13,21,38,0.98);max-width:400px;}
+    .levelup-icon{font-size:4rem;display:block;margin-bottom:1.5rem;}
+    .levelup-title{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5em;color:var(--or);margin-bottom:1rem;}
+    .levelup-name{font-family:'Cinzel',serif;font-size:2rem;font-weight:600;letter-spacing:.15em;color:var(--blanc);margin-bottom:1rem;}
+    .levelup-desc{font-size:.82rem;color:var(--acier-clair);font-style:italic;line-height:1.7;margin-bottom:2rem;}
+    .levelup-close{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;padding:.7rem 2rem;border:1px solid var(--or);background:transparent;color:var(--or-clair);cursor:pointer;transition:all .3s;}
+    .levelup-close:hover{buckground:rgba(196,169,110,0.1);}
+    @media(max-width:800px){.main-grid{grid-template-columns:1fr;padding:0 1.5rem;}.stats-row{padding:0 1.5rem;flex-wrap:wrap;}.quote-du-jour,.level-bar-section,.entries-section{padding-left:1.5rem;padding-right:1.5rem;}.hero{padding:7rem 1.5rem 1.5rem;}nav{padding:1rem 1.5rem;}.nav-links{gap:1.5rem;}.streak-widget{min-width:unset;}.hero-top{flex-direction:column;}}
+  </style>
 </head>
 <body>
+
 <nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">OBSCURO</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Doctrine</a></li>
-      <li><a href="protocoles.html">Protocoles</a></li>
-      <li><a href="citations.html">Citations</a></li>
-      <li><a href="journal.html" class="active">Journal</a></li>
-    </ul>
-  </div>
+  <a href="index.html" class="nav-logo">OBSCURO</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Doctrine</a></li>
+    <li><a href="protocoles.html">Protocoles</a></li>
+    <li><a href="citations.html">Citations</a></li>
+    <li><a href="techniques.html">Techniques</a></li>
+    <li><a href="journal.html" class="active">Journal</a></li>
+  </ul>
 </nav>
-<div class="page">
-  <div class="page-header">
-    <div class="page-icon">🗡️</div>
-    <p class="page-label">Maîtrise intime</p>
-    <h1 class="page-titre">Journal</h1>
-    <p class="page-desc">Les situations réelles, les réponses choisies, les leçons tirées. Ce journal est un miroir, pas une confession.</p>
-  </div>
-  <div class="stats-bar">
-    <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Entrées</div></div>
-    <div class="stat"><div class="stat-num" id="stat-mois">0</div><div class="stat-label">Ce mois</div></div>
-    <div class="stat"><div class="stat-num" id="stat-streak">0</div><div class="stat-label">Jours actifs</div></div>
-  </div>
-  <div class="form-section">
-    <div class="form-titre">Nouvelle entrée</div>
-    <div class="form-grid">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div class="form-group">
-          <label class="form-label">Titre de la situation</label>
-          <input class="form-input" id="f-titre" placeholder="Ex: La remarque en public" type="text">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Catégorie</label>
-          <input class="form-input" id="f-tag" placeholder="Ex: Provocation · Silence" type="text">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">La situation</label>
-        <textarea class="form-textarea" id="f-situation" placeholder="Décris la situation avec précision — le contexte, la pression, ce qui s'est passé."></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">La réponse choisie</label>
-        <textarea class="form-textarea" id="f-reponse" placeholder="Qu'as-tu fait ? Qu'as-tu dit — ou tu n'as pas dit ?"></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">La leçon</label>
-        <textarea class="form-textarea" id="f-lecon" placeholder="Ce que tu retiens. Ce que tu ferais différemment. Ce que tu as compris."></textarea>
-      </div>
-    </div>
-    <div class="form-actions">
-      <button class="btn btn-primary" onclick="saveEntry()">Inscrire dans l'ombre</button>
-      <button class="btn" onclick="clearForm()">Effacer</button>
-    </div>
-  </div>
-  <div class="entries-header">
-    <span class="entries-titre">Chroniques</span>
-    <span class="entries-count" id="entries-count"></span>
-  </div>
-  <div id="entries-list"></div>
-</div>
-<footer>
-  <div class="footer-logo">OBSCURO</div>
-  <div class="footer-sub">Macdubh — Fils du Noir</div>
-</footer>
+
+<div class="hero"><div class="hero-top"><div class="hero-title-block"><h1>Journal de MaÃ®trise</h1><p class="hero-sub">Forger l'identitÃ© par la rÃ©pÃ©tition</p></div><div class="streak-widget" id="streakWidget"><span class="streak-fire" id="streakFire">ð¥</span><div class="streak-info"><div class="streak-num" id="streakNum">0</div><div class="streak-label">Jours consÃ©cutifs</div><div class="streak-best">Record :"<span id="streakBest">0</span> jours</div></div></div></div></div>
+<div class="level-bar-section"><div class="level-header"><div class="level-badge"><span class="level-icon" id="levelIcon">ð</span><span class="level-name" id="levelName">Novice</span></div><span class="level-xp" id="levelXP">0 / 7 entrÃ©es</span></div><div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div><div class="level-milestones"><div class="milestone" id="m0">ð<br>Novice<br>0</div><div class="milestone" id="m1">ð<br>Apprenti<br>7</div><div class="milestone" id="m2">ð<br>Guerrier<br>20</div><div class="milestone" id="m3">ð<br>MaÃ®tre<br>50</div><div class="milestone" id="m4">ð¦<br>Sage<br>100</div></div></div>
+<div class="stats-row"><div class="stat-box"><span class="stat-num" id="totalEntries">0</span><span class="stat-label">EntrÃ©es totales</span></div><div class="stat-box"><span class="stat-num" id="avgScore">â</span><span class="stat-label">MaÃ®trise moyenne</span></div><div class="stat-box"><span class="stat-num" id="thisWeek">0</span><span class="stat-label">Cette semaine</span></div><div class="stat-box"><span class="stat-num" id="totalDays">0</span><span class="stat-label">Jours actifs</span></div></div>
+<div class="quote-du-jour"><div class="quote-card"><span id="dailyQuote">Chargement...</span><span class="q-author" id="dailyAuthor"></span></div></div>
+<div class="main-grid">
+<div class="journal-form"><div class="form-header"><span class="form-title">EntrÃ©e du jour</span><span class="date-badge" id="todayDate"></span></div><div class="form-body"><div class="question-block"><div class="question-label"><span class="q-num">I</span><span class="q-text">Quel moment aujourd'hui a testÃ© ta maÃ®trise de toi-mÃªme ?</span></div><textarea class="journal-textarea" id="q1" placeholder="DÃ©cris la situation, le dÃ©clencheur..." rows="3"></textarea></div><div class="question-block"><div class="question-label"><span class="q-num">II</span><span class="q-text">Comment as-tu rÃ©pondu ? Depuis l'Ã©tat choisi ou depuis la rÃ©action ?</span></div><textarea class="journal-textarea" id="q2" placeholder="Ta rÃ©ponse, tes Ã©motions, ton Ã©tat rÃ©el..." rows="3"></textarea></div><div class="question-block"><div class="question-label"><span class="q-num">III</span><span class="q-text">Ce que l'aigle en toi aurait fait diffÃ©remment.</span></div><textarea class="journal-textarea" id="q3" placeholder="La version maÃ®trisÃ©e de toi-mÃªme..." rows="3"></textarea></div><div class="question-block"><div class="question-label"><span class="q-num">IV</span><span class="q-text">Un principe Ã  ancrer pour demain.</span></div><textarea class="journal-textarea" id="q4" placeholder="Une intention, une rÃ¨gle, une dÃ©claration..." rows="2"></textarea></div><div class="chips-section"><span class="chips-label">Ãtat dominant de la journÃ©e</span><div class="chips" id="chipsContainer"><div class="chip" data-val="MaÃ®trisÃ©">MaÃ®trisÃ©</div><div class="chip" data-val="Lucide">Lucide</div><div class="chip" data-val="Combatif">Combatif</div><div class="chip" data-val="Calme">Calme</div><div class="chip" data-val="Instable">Instable</div><div class="chip" data-val="DispersÃ©">DispersÃ©</div><div class="chip" data-val="Silencieux">Silencieux</div><div class="chip" data-val="En feu">En feu ð¥</div><div class="chip" data-val="Observateur">Observateur</div><div class="chip" data-val="VulnÃ©rable">VulnÃ©rable</div></div></div><div class="maitrise-section"><div class="maitrise-header"><span class="maitrise-label">Ni]ÇRe de maÃ®trise aujourd'hui</span><span class="maitrise-val" id="maÃ®triseVal">5 / 10</span></div><input type="range" class="slider" id="maÃ®triseSlider" min="1" max="10" value="5"></div></div><div class="form-footer"><button class="btn-submit" id="submitBtn" onclick="saveEntry()">Forger cette entrÃ©e</button><span class="entry-count-msg" id="todayStatus"></span></div></div>
+  <div class="sidebar"><div class="streak-calendar"><div class="cal-header"><span>ActivitÃ© â 28 jours</span><span id="calMonth"></span></div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;"><div class="cal-dow">L</div><div class="cal-dow">M</div><div class="cal-dow">M</div><div class="cal-dow">J</div><div class="cal-dow">V</div><div class="cal-dow">S</div><div class="cal-dow">D</div></div><div class="cal-grid" id="calGrid"></div></div><div class="achievements"><div class="ach-header">ð Badges dÃ©bloquÃ©s</div><div class="ach-list" id="achievementsList"><div class="ach-item" id="ach-first"><span class="ach-icon">âï¸</span><div class="ach-text"><span class="ach-name">PremiÃ¨re Forge</span><span class="ach-desc">Ãcrire sa premiÃ¨re entrÃ©e</span></div></div><div class="ach-item" id="ach-3days"><span class="ach-icon">ð¥</span><div class="ach-text"><span class="ach-name">Feu Naissant</span><span class="ach-desc">3 jours consÃ©cutifs</span></div></div><div class="ach-item" id="ach-7days"><span class="ach-icon">ð¦</span><div class="ach-text"><span class="ach-name">Semaine de l'Aigle</span><span class="ach-desc">7 jours consÃ©cutifs</span></div></div><div class="ach-item" id="ach-10entries"><span class="ach-icon">ð</span><div class="ach-text"><span class="ach-name">Guerrier StoÃ¯cien</span><span class="ach-desc">10 entrÃ©es au total</span></div></div><div class="ach-item" id="ach-21days"><span class="ach-icon">ð</span><div class="ach-text"><span class="ach-name">21 Nuits d'Ombre</span><span class="ach-desc">21 jours consÃ©cutifs</span></div></div><div class="ach-item" id="ach-perfect"><span class="ach-icon">ð</pan><div class="ach-text"><span class="ach-name">MaÃ®trise Absolue</span><span class="ach-desc">Score 10/10 une journÃ©e</span></div></div><div class="ach-item" id="ach-30days"><span class="ach-icon">ðï¸</span><div class="ach-text"><span class="ach-name">L'Observateur</span><span class="ach-desc">30 jours consÃ©cutifs</span></div></div><div class="ach-item" id="ach-100entries"><span class="ach-icon">ðï¸</span><div class="ach-text"><span class="ach-name">Fils du Noir</span><span class="ach-desc">100 entrÃ©es au total</span></div></div></div></div></div></div>
+<div class="entries-section"><div class="entries-header"><span class="entries-title">Historique des EntrÃ©es</span><button class="btn-export" onclick="exportJSON()">â Exporter JSON</button></div><div class="entries-list" id="entriesList"></div></div>
+<div class="toast" id="toast"></div>
+<div class="levelup-overlay" id="levelupOverlay"><div class="levelup-box"><span class="levelup-icon" id="levelupIcon"></span><p class="levelup-title">Nouveau Niveau</p><p class="levelup-name" id="levelupName"></p><p class="levelup-desc" id="levelupDesc"></p><button class="levelup-close" onclick="closeLevelUp()">Continuer</button></div></div>
 <script>
-const STORAGE_KEY = 'obscuro_journal';
-const STATIC = [
-  {id:'s1',titre:'La remarque en public',tag:'Provocation',date:'2024-01-01',situation:'Quelqu\'un tente de me diminuer devant d\'autres. La pique est précise, calculée pour provoquer une réaction visible. Les regards se tournent vers moi. L\'attente est palpable.',reponse:'Le silence. Trois secondes de regard direct, calme, sans hostilité. Puis la conversation reprend sur autre chose — comme si les mots n\'avaient pas atteint leur cible. Ce qu\'ils n\'ont pas fait.',lecon:'La provocation ne vit que si tu lui donnes de l\'air. Le silence l\'étouffe. Réagir, c\'est confirmer que la flèche a touché. Ne pas réagir, c\'est être blindé.'},
-  {id:'s2',titre:'L\'injustice silencieuse',tag:'Colère retenue',date:'2024-01-02',situation:'Une décision injuste est prise. Je sais qu\'elle est injuste. Je sens la colère monter — cette chaleur dans la poitrine qui veut parler avant que le cerveau soit prêt.',reponse:'Inspection intérieure. J\'identifie l\'émotion, je la nomme : "c\'est de la colère". La nommer suffit à créer une distance. J\'attends. Je réserve ma réponse pour un moment choisi — pas subi.',lecon:'Nommer une émotion lui retire une partie de son pouvoir. L\'aigle ne fond pas quand il fait chaud — il choisit le moment de sa descente.'},
-  {id:'s3',titre:'Le groupe qui attend',tag:'Pression sociale',date:'2024-01-03',situation:'Tout le monde autour de moi prend une position. La pression implicite est là : sois comme nous, rejoins le mouvement, prononce-toi. Le silence commence à peser.',reponse:'Je n\'ai pas parlé. Non par lâcheté — mais parce que je n\'avais pas encore décidé ce que je pensais vraiment. Et un homme qui parle avant d\'avoir pensé est un homme manipulable.',lecon:'L\'appartenance au groupe est une drogue douce. Elle te fait parler avant de penser, agir avant de choisir. L\'aigle n\'appartient à aucun troupeau.'},
-  {id:'s4',titre:'La chute sans spectateur',tag:'Échec · Rebond',date:'2024-01-04',situation:'J\'ai échoué sur quelque chose qui comptait. Pas d\'excuse extérieure valable — c\'était ma responsabilité et je ne suis pas à la hauteur. La tentation de la rumination est forte.',reponse:'J\'ai accepté l\'échec. Regardé en face, sans minimiser. Puis j\'ai posé une seule question : qu\'est-ce que je ferai différemment ? Une réponse. Une seule. Et le lendemain, recommencer.',lecon:'L\'aigle qui tombe ne reste pas sur le sol à contempler sa chute. Il évalue, il ajuste, il reprend de l\'altitude. La nuit n\'est pas une punition — c\'est le terrain de ceux qui voient dans l\'obscurité.'}
-];
-function load(){return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}
-function save(e){localStorage.setItem(STORAGE_KEY,JSON.stringify(e))}
-function fmt(d){return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'})}
-function allEntries(){
-  const user=load();
-  return [...user,...STATIC];
-}
-function updateStats(){
-  const user=load();
-  document.getElementById('stat-total').textContent=user.length+STATIC.length;
-  const now=new Date();
-  const mois=user.filter(e=>{const d=new Date(e.date);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()}).length;
-  document.getElementById('stat-mois').textContent=mois;
-  const days=new Set(user.map(e=>e.date.split('T')[0])).size;
-  document.getElementById('stat-streak').textContent=days;
-  const total=user.length+STATIC.length;
-  document.getElementById('entries-count').textContent=total+' entrée'+(total>1?'s':'');
-}
-function renderEntries(){
-  const all=allEntries();
-  const list=document.getElementById('entries-list');
-  if(!all.length){
-    list.innerHTML='<div class="empty-state"><div class="empty-icon">🗡️</div><div class="empty-text">Aucune entrée — le miroir attend.</div></div>';
-    return;
-  }
-  list.innerHTML=all.map((e,i)=>`
-    <div class="entry" id="entry-${e.id}">
-      <div class="entry-header" onclick="toggle('${e.id}')">
-        <div>
-          <div class="entry-meta">
-            <span class="entry-num">${String(i+1).padStart(2,'0')}</span>
-            ${e.tag?`<span class="entry-tag">${e.tag}</span>`:''}
-            <span class="entry-date">${fmt(e.date)}</span>
-          </div>
-          <div class="entry-titre">${e.titre}</div>
-        </div>
-        <span class="entry-chevron">▼</span>
-      </div>
-      <div class="entry-body">
-        <div class="entry-section">
-          <div class="entry-section-label">Situation</div>
-          <div class="entry-section-text">${e.situation}</div>
-        </div>
-        <div class="entry-section">
-          <div class="entry-section-label">Réponse choisie</div>
-          <div class="entry-section-text">${e.reponse}</div>
-        </div>
-        <div class="entry-section">
-          <div class="entry-section-label">Leçon</div>
-          <div class="entry-lecon">${e.lecon}</div>
-        </div>
-        ${!e.id.startsWith('s')?`<div class="entry-actions"><button class="btn btn-danger" onclick="deleteEntry('${e.id}')">Supprimer</button></div>`:''}
-      </div>
-    </div>
-  `).join('');
-}
-function toggle(id){
-  const el=document.getElementById('entry-'+id);
-  el.classList.toggle('open');
-}
-function saveEntry(){
-  const titre=document.getElementById('f-titre').value.trim();
-  const tag=document.getElementById('f-tag').value.trim();
-  const situation=document.getElementById('f-situation').value.trim();
-  const reponse=document.getElementById('f-reponse').value.trim();
-  const lecon=document.getElementById('f-lecon').value.trim();
-  if(!titre||!situation||!reponse||!lecon){alert('Remplis tous les champs.');return;}
-  const entries=load();
-  entries.unshift({id:'u'+Date.now(),titre,tag,date:new Date().toISOString(),situation,reponse,lecon});
-  save(entries);
-  clearForm();
-  renderEntries();
-  updateStats();
-}
-function clearForm(){
-  ['f-titre','f-tag','f-situation','f-reponse','f-lecon'].forEach(id=>document.getElementById(id).value='');
-}
-function deleteEntry(id){
-  if(!confirm('Supprimer cette entrée ?'))return;
-  const entries=load().filter(e=>e.id!==id);
-  save(entries);
-  renderEntries();
-  updateStats();
-}
-renderEntries();
-updateStats();
+const STORAGE_KEY='obscuro_journal_v2';
+const LEVELS=[{min:0,max:6,name:'Novice'icon:'ð',desc:'Le voyage commence.'},{min:7,max:19,name:'Apprenti'icon:'ð',desc:'La rÃ©gularitÃ© forge.'},{min:20,max:49,name:'Guerrier',icon:'ð',desc:'La discipline est ancrÃ©e.'},{min:50,max:99,name:'MaÃ®tre',icon:'ð',desc:'L'empire intÃ©rieur est solide.'},{min:100,max:9999,name:'Sage',icon:'ð¦',desc:'Macdubh â Fils du Noir.'}];
+const DAILY_QUOTES=[{text:"L'aigle ne rÃ©agit pas â il observe.",author:"Macdubh â Loi I"},{text:"Le silence n'est pas l'absence de rÃ©ponse.",author:"Macdubh"},{text:"La froideur n'est pas cruautÃ© â c'est clartÃ©.",author:"Macdubh"},{text:"La nuit n'est pas une punition.",author:"Macdubh"},{text:"Le premier empire est intÃ©rieur.",author:"Macdubh"},{text:"La hauteur est conquise, jamais donnÃ©e.",author:"Macdubh"},{text:"Tu as du pouvoir sur ton esprit, pas sur les Ã©vÃ©nements.",author:"Marc AurÃ¨le"},{text:"Ce qui ne me tue pas me rend plus fort.",author:"Nietzsche"},{text:"L'obstacle est le chemin.",author:"Zen"},{text:"Nul ne peut mener une vie paisible qui pense trop Ã  la prolonger.",author:"SÃ©nÃ¨que"},{text:"Ce n'est pas celui qui a peu qui est pauvre, mais celui qui en dÃ©sire plus.",author:"SÃ©nÃ¨que"},{text:"L'homme supÃ©rieur est celui qui jamais ne se plaint de ce qui ne dÃ©pend pas de lui.",author:"ÃpictÃ¨te"},{text:"Dans le silence, l'aigle entend ce que le bruit empÃªche les autres de percevoir.",author:"Cherokee"},{text:"Le vrai pouvoir ne se montre pas. Il se ressent.",author:"Sun Tzu"}];
+function getData(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{entries:[]};}catch{return{entries:[]};}}
+function saveData(d){localStorage.setItem(STORAGE_KEY,JOO.stringify(d));}
+function today(){return new Date().toISOString().split('T')[0];}
+function getLevel(c){for(lof arband let i=LEVELS.length-1;i>=0;i--){if(c>=LEVENS[i].min) return i;}return 0;}
+function getLevelProgress(count){const i=getLevel(count);const l=LEVELS[i];const n=LEVELS[i+1];if((n? return{pct:100,current:count,max:l.min};const r=n.min-l.min;return{pct:Math.min(100,((count-l.min)/r)&100),current:count,max:n.min};}
+function calcStreak(entries){const days=[...new Set(entries.map(e=>e.date))].sort().reverse();if(!days.length)return{current:0,best:0};let current=0;let best=0;const tS=today();let d=new Date(tS);for(let i=0;i<365;i++){const ds=d.toISOString().split('T')[0];if(days.includes(ds)){current++;}else if(i>0){break;}d.setDate(d.getDate()-1);}let prev=null;let run=0;for(const day of [...days].sort()){if(!prev){run=1;}else{const diff=(new Date(day)-new Date(prev))/86400000;if(diff===1){run++;}else{run=1;}}best=Math.max(best,run);prev=day;}return{current,best:Math.max(best,current)};}
+function calcStats(entries){const total=entries.length;const uniqueDays=new Set(entries.map(e=>e.date)).size;const w=new Date();w.setDate(w.getDate()-7);const thisWeek=entries.filter(e=>new Date(e.date)>=w).length;const scores=entries.filter(e=>e.score).map(e=>e.score);const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'â';return{total,uniqueDays,thisWeek,avg};}
+function render(){const data=getData();const entries=data.entries;const stats=calcStats(entries);const streak=calcStreak(entries);const i=getLevel(entries.length);const lvl=LEVEMS[i];const progress=getLevelProgress(entries.length);document.getElementById('streakNum').textContent=streak.current;document.getElementById('streakBest').textContent=streak.best;document.getElementById('streakFire').textContent=streak.current>=7?'ð¥':streak.current>=3?'ð¯ï¸':'ð§';document.getElementById('levelIcon').textContent=lvl.icon;document.getElementById('levelName').textContent=lvl.name;document.getElementById('levelXP').textContent=`${entries.length} / ${LEVEMS[Math.min(i+1,LEVELS.length-1)].min} entrÃ©es`;document.getElementById('progressFill').style.width=progress.pct+'%';LEVELS.forEach((l,j)=>{const el=document.getElementById('m'+j);if(el)el.classList.toggle('reached',entries.length>=l.min);});document.getElementById('totalEntries').textContent=stats.total;document.getElementById('avgScore').textContent=stats.avg;document.getElementById('thisWeek').textContent=stats.thisWeek;document.getElementById('totalDays').textContent=stats.uniqueDays;const now=new Date();document.getElementById('todayDate').textContent=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});const hasToday=entries.some(e=>e.date===today());const ts=document.getElementById('todayStatus');const sb=document.getElementById('submitBtn');if(hasToday){ts.textContent='â EntrÃ©e du jour forgÃ©e';sb.textContent='Ajouter une entrÃ©e';}else{ts.textContent='';sb.textContent='Forger cette entrÃ©e';}renderCalendar(entries);renderAchievements(entries,streak);renderEntries(entries);const qIdx=Math.floor(Date.now()/86400000)%DAILY_QUOTES.length;const q=DAIL_QUOTES[qIdx];document.getElementById('dailyQuote').textContent=`"${q.text}"`;document.getElementById('dailyAuthor').textContent=`â ${q.author}`;document.getElementById('calMonth').textContent=now.toLocaleDateString('fr-FR',{month:'long'});}
+function renderCalendar(entries){const grid=document.getElementById('calGrid');grid.innerHTML='";const ed=new Set(entries.map(e=>e.date));const tS=today();for(let i=27;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const ds=d.toISOString().split('T')[0];const cell=document.createElement('div');cell.className='cal-day';if(ed.has(ds))cell.classList.add('has-entry');if(ds===tS)cell.classList.add('today');cell.title=ds;grid.appendChild(cell);}}
+function renderAchievements(entries,streak)[if(!window.renderAchievements) return;}
+function renderAchievements(entries,streak)d{const t=entries.length;const h1=entries.some(e=>e.score===10);const u={'ach-first':t>=1,'ach-3days':streak.current>=3||streak.best>=3,'ach-7days':streak.current>=7||streak.best>=7,'ach-10entries':t>=10,'ach-21days':streak.current>=21||streak.best>=21,'ach-perfect':h1,'ach-30days':streak.current>=30||streak.best>=30,'ach-100entries':t>=100};Object.entries(u).forEach(([id,un])=>{const el=document.getElementById(id);if(el)el.classList.toggle('unlocked',un);});}
+function renderEntries(entries){const list=document.getElementById('entriesList');list.innerHTML='';if(!entries.length){list.innerHTML='<div class="no-entries">Aucune entrÃ©e. Forge ta premiÃ¨re maintenant.</div>7;return;}const sorted=[...entries].sort((a,b)=>b.date.localeCompare(a.date));sorted.forEach(entry=>{const card=document.createElement('div');card.className='entry-card';const chips=(entry.chips||[]).map(c=>`<span class="entry-chip">${c}</span>`).join('');const preview=[entry.q1,entry.q2,entry.q3,entry.q4].filter(Boolean).join(' Â· ').slice(0,200);card.innerHTML=`<button class="entry-delete" onclick="deleteEntry('${entry.id}')" title="Supprimer">â</button><div class="entry-meta"><span class="entry-date">${new Date(entry.date+'T12:00:00').toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'long',year:'numeric'})}</span><div class="entry-chips">${chips}</div><span class="entry-score">${entry.score||'â'}/10</span></div><div class="entry-text">${preview||'â'}</div>`;list.appendChild(card);});}
+function saveEntry(){const q1=document.getElementById('q1').value.trim();const q2=document.getElementById('q2').value.trim();const q3=document.getElementById('q3').value.trim();const q4=document.getElementById('q4').value.trim();const score=parseInt(document.getElementById('maÃ®triseSlider').value);const chips=[...document.querySelectorAll('.chip.selected')].map(c=>c.dataset.val);if(!q1&&!q2&&!q3&&!q4){showToast('Ãcris au moins une rÃ©ponse ð¦');return;}const data=getData();const pL=getLevel(data.entries.length);const entry={id:Date.now().toString(),date:today(),q1,q2,q3,q4,score,chips,ts:Date.now()};data.entries.push(entry);saveData(data);['q1','q2','q3','q4'].forEach(id=>document.getElementById(id).value='');document.getElementById('maÃ®triseSlider').value=5;document.getElementById('maÃ®triseVal').textContent='5 / 10';document.querySelectorAll('.chip.selected').forEach(c=>c.classList.remove('selected'));const nL=getLevel(data.entries.length);if(nL>pL)setTimeout(()=>showLevelUp(nL),600);render();showToast('EntrÃ©e forgÃ©e âï¸ +1 XP');}
+function deleteEntry(id){if(!confirm('Supprimer cette entrÃ©e ?'))return;const data=getData();data.entries=data.entries.filter(e=>e.id!==id);saveData(data);render();showToast('EntrÃ©e supprimÃ©e');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function showLevelUp(i){const l=LEVEMS[i];document.getElementById('levelupIcon').textContent=l.icon;document.getElementById('levelupName').textContent=l.name;document.getElementById('levelupDesc').textContent=l.desc;document.getElementById('levelupOverlay').classList.add('show');}
+function closeLevelUp(){document.getElementById('levelupOverlay').classList.remove('show');}
+function exportJSON(){const data=getData();const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`obscuro-journal-${today()}.json`;a.click();URL.revokeObjectURL(url);showToast('Export JSON tÃ©lÃ©chargÃ©');}
+document.getElementById('maÃ®triseSlider').addEventListener('input',function(){document.getElementById('maÃ®triseVal').textContent=this.value+' / 10';});
+document.querySelectorAll('.chip').forEach(chip=>{chip.addEventListener('click',function(){this.classList.toggle('selected');});});
+render();
 </script>
 </body>
 </html>
