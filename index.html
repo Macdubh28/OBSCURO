@@ -112,10 +112,16 @@
       if (nav) nav.remove();
       var styles = '';
       doc.querySelectorAll('style').forEach(function(s) { styles += s.outerHTML; });
-      doc.body.querySelectorAll('script').forEach(function(s) { s.remove(); });
+      var scriptSrcs = [];
+      doc.body.querySelectorAll('script').forEach(function(s) { scriptSrcs.push(s.textContent); s.remove(); });
       var content = styles + doc.body.innerHTML;
       cache[key] = content;
       app.innerHTML = content;
+      scriptSrcs.forEach(function(src) {
+        var el = document.createElement('script');
+        el.textContent = src;
+        document.body.appendChild(el);
+      });
     });
   }
 
