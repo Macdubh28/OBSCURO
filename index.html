@@ -52,6 +52,7 @@
     <li><button data-page="citations" id="n-citations">Citations</button></li>
     <li><button data-page="techniques" id="n-techniques">Techniques</button></li>
     <li><button data-page="journal" id="n-journal">Journal</button></li>
+    <li><button data-page="outils" id="n-outils">Outils</button></li>
   </ul>
 </nav>
 <div id="loader"><div class="spin"></div></div>
@@ -145,7 +146,8 @@
     protocoles: function() { return loadPage('protocoles.html', 'protocoles'); },
     citations: function() { return loadPage('citations.html', 'citations'); },
     techniques: function() { return loadPage('techniques.html', 'techniques'); },
-    journal: function() { return loadPage('journal.html', 'journal'); }
+    journal: function() { return loadPage('journal.html', 'journal'); },
+    outils: function() { return loadPage('outils.html', 'outils'); }
   };
 
   function attachButtons() {

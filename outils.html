@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Outils — OBSCURO</title>
+<style>
+.outils-wrap{padding:8rem 2rem 4rem;max-width:960px;margin:0 auto}
+.outils-label{font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--or-clair);margin-bottom:1.2rem;opacity:0.7}
+.outils-titre{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:0.1em;color:var(--blanc);margin-bottom:0.6rem}
+.outils-sous{font-size:0.8rem;color:var(--acier-clair);opacity:0.5;font-weight:300;margin-bottom:4rem;line-height:1.7}
+.outils-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:2px;background:var(--frontiere)}
+.outil-card{background:var(--noir);padding:3rem 2.5rem;border:1px solid var(--frontiere);transition:border-color 0.3s}
+.outil-card:hover{border-color:rgba(138,155,181,0.35)}
+.outil-num{font-family:'Cinzel',serif;font-size:2.5rem;color:rgba(196,169,110,0.15);margin-bottom:1.5rem;line-height:1}
+.outil-titre{font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:0.2em;color:var(--acier-clair);margin-bottom:0.5rem}
+.outil-desc{font-size:0.75rem;color:var(--acier-clair);opacity:0.4;font-weight:300;line-height:1.7;margin-bottom:2.5rem}
+.minuteur-display{font-family:'Cinzel',serif;font-size:3.8rem;letter-spacing:0.08em;color:var(--blanc);text-align:center;margin-bottom:2rem;line-height:1;transition:color 0.3s}
+.minuteur-display.actif{color:var(--or-clair)}
+.durees{display:flex;gap:8px;margin-bottom:1.5rem;justify-content:center}
+.duree-btn{padding:7px 18px;border:1px solid var(--frontiere);background:transparent;color:var(--acier-clair);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.duree-btn:hover,.duree-btn.sel{background:rgba(196,169,110,0.1);border-color:var(--or-clair);color:var(--blanc)}
+.ctrl-row{display:flex;gap:10px;justify-content:center}
+.ctrl-btn{padding:11px 28px;border:1px solid var(--frontiere);background:transparent;color:var(--acier-clair);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.ctrl-btn:hover{background:rgba(138,155,181,0.08);border-color:var(--acier-clair)}
+.ctrl-btn.primary{background:rgba(196,169,110,0.12);border-color:var(--or-clair);color:var(--blanc)}
+.streak-nombre{font-family:'Cinzel',serif;font-size:5rem;color:var(--or-clair);text-align:center;line-height:1;margin-bottom:0.4rem}
+.streak-unit{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--acier-clair);opacity:0.4;text-align:center;margin-bottom:0.5rem}
+.streak-date{font-size:0.7rem;color:var(--acier-clair);opacity:0.3;text-align:center;margin-bottom:2.5rem;font-weight:300}
+.streak-msg{text-align:center;font-size:0.75rem;color:var(--or-clair);opacity:0.75;margin-top:1.2rem;font-style:italic;min-height:1.2em;letter-spacing:0.05em}
+</style>
+</head>
+<body>
+<div class="outils-wrap">
+  <p class="outils-label">Discipline opérationnelle</p>
+  <h1 class="outils-titre">Outils</h1>
+  <p class="outils-sous">Instruments du sang-froid. Chaque outil sert un seul but — éliminer le bruit, mesurer l'effort, ancrer la constance.</p>
+  <div class="outils-grid">
+
+    <div class="outil-card">
+      <div class="outil-num">I</div>
+      <div class="outil-titre">Minuteur de Silence</div>
+      <div class="outil-desc">Méditation, respiration, concentration profonde. Choisir la durée. Entrer dans l'immobilité.</div>
+      <div class="minuteur-display" id="mDisplay">05:00</div>
+      <div class="durees">
+        <button class="duree-btn sel" onclick="setDuree(5,this)">5 min</button>
+        <button class="duree-btn" onclick="setDuree(10,this)">10 min</button>
+        <button class="duree-btn" onclick="setDuree(20,this)">20 min</button>
+      </div>
+      <div class="ctrl-row">
+        <button class="ctrl-btn primary" id="mBtn" onclick="toggleMin()">Commencer</button>
+        <button class="ctrl-btn" onclick="resetMin()">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="outil-card">
+      <div class="outil-num">II</div>
+      <div class="outil-titre">Streak de Discipline</div>
+      <div class="outil-desc">Jours consécutifs de pratique. La constance est la seule preuve qui résiste au temps.</div>
+      <div class="streak-nombre" id="sNombre">0</div>
+      <div class="streak-unit">jours consécutifs</div>
+      <div class="streak-date" id="sDate">Aucune session enregistrée</div>
+      <div class="ctrl-row">
+        <button class="ctrl-btn primary" onclick="validerJour()">Valider aujourd'hui</button>
+        <button class="ctrl-btn" onclick="resetStreak()">Réinitialiser</button>
+      </div>
+      <div class="streak-msg" id="sMsg"></div>
+    </div>
+
+  </div>
+</div>
+<script>
+(function(){
+  var duree=5,total=300,restant=300,iv=null,run=false;
+  window.setDuree=function(m,btn){
+    if(run)return;
+    duree=m;total=m*60;restant=total;
+    afficher(restant);
+    document.querySelectorAll('.duree-btn').forEach(function(b){b.classList.remove('sel');});
+    btn.classList.add('sel');
+  };
+  function afficher(s){
+    var el=document.getElementById('mDisplay');
+    if(!el)return;
+    el.textContent=pad(Math.floor(s/60))+':'+pad(s%60);
+  }
+  function pad(n){return String(n).padStart(2,'0');}
+  window.toggleMin=function(){
+    var btn=document.getElementById('mBtn');
+    var disp=document.getElementById('mDisplay');
+    if(!btn||!disp)return;
+    if(!run){
+      run=true;btn.textContent='Suspendre';disp.classList.add('actif');
+      iv=setInterval(function(){
+        restant--;afficher(restant);
+        if(restant<=0){
+          clearInterval(iv);run=false;
+          btn.textContent='Commencer';disp.classList.remove('actif');
+          disp.textContent='—';bip();
+        }
+      },1000);
+    }else{
+      clearInterval(iv);run=false;
+      btn.textContent='Reprendre';disp.classList.remove('actif');
+    }
+  };
+  window.resetMin=function(){
+    clearInterval(iv);run=false;restant=total;
+    afficher(restant);
+    var btn=document.getElementById('mBtn');
+    var disp=document.getElementById('mDisplay');
+    if(btn)btn.textContent='Commencer';
+    if(disp)disp.classList.remove('actif');
+  };
+  function bip(){
+    try{
+      var ctx=new(window.AudioContext||window.webkitAudioContext)();
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.connect(g);g.connect(ctx.destination);
+      o.frequency.value=432;o.type='sine';
+      g.gain.setValueAtTime(0.4,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+3);
+      o.start(ctx.currentTime);o.stop(ctx.currentTime+3);
+    }catch(e){}
+  }
+  function loadStreak(){
+    var d=JSON.parse(localStorage.getItem('obscuro_streak')||'{"count":0,"lastDate":null}');
+    var el=document.getElementById('sNombre');
+    var dt=document.getElementById('sDate');
+    if(el)el.textContent=d.count;
+    if(dt&&d.lastDate)dt.textContent='Dernière session : '+d.lastDate;
+    if(d.lastDate){
+      var hier=new Date();hier.setDate(hier.getDate()-1);
+      var hierStr=hier.toISOString().split('T')[0];
+      var today=new Date().toISOString().split('T')[0];
+      if(d.lastDate!==today&&d.lastDate!==hierStr){
+        d.count=0;localStorage.setItem('obscuro_streak',JSON.stringify(d));
+        if(el)el.textContent=0;
+        var msg=document.getElementById('sMsg');
+        if(msg)msg.textContent='La chaîne est brisée. Recommencer.';
+      }
+    }
+  }
+  window.validerJour=function(){
+    var today=new Date().toISOString().split('T')[0];
+    var d=JSON.parse(localStorage.getItem('obscuro_streak')||'{"count":0,"lastDate":null}');
+    var msg=document.getElementById('sMsg');
+    if(d.lastDate===today){if(msg)msg.textContent='Déjà validé aujourd\'hui.';return;}
+    var hier=new Date();hier.setDate(hier.getDate()-1);
+    var hierStr=hier.toISOString().split('T')[0];
+    d.count=(d.lastDate===hierStr)?d.count+1:1;
+    d.lastDate=today;
+    localStorage.setItem('obscuro_streak',JSON.stringify(d));
+    var el=document.getElementById('sNombre');
+    var dt=document.getElementById('sDate');
+    if(el)el.textContent=d.count;
+    if(dt)dt.textContent='Dernière session : '+today;
+    if(msg){
+      if(d.count===1)msg.textContent='Premier pas. La discipline commence ici.';
+      else if(d.count<7)msg.textContent=d.count+' jours. Tenir.';
+      else if(d.count<30)msg.textContent=d.count+' jours. La constance prend forme.';
+      else msg.textContent=d.count+' jours. L\'aigle ne vacille pas.';
+    }
+  };
+  window.resetStreak=function(){
+    localStorage.removeItem('obscuro_streak');
+    var el=document.getElementById('sNombre');
+    var dt=document.getElementById('sDate');
+    var msg=document.getElementById('sMsg');
+    if(el)el.textContent=0;
+    if(dt)dt.textContent='Aucune session enregistrée';
+    if(msg)msg.textContent='';
+  };
+  loadStreak();
+})();
+</script>
+</body>
+</html>
