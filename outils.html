@@ -23,19 +23,59 @@
 .ctrl-btn{padding:11px 28px;border:1px solid var(--frontiere);background:transparent;color:var(--acier-clair);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
 .ctrl-btn:hover{background:rgba(138,155,181,0.08);border-color:var(--acier-clair)}
 .ctrl-btn.primary{background:rgba(196,169,110,0.12);border-color:var(--or-clair);color:var(--blanc)}
-.streak-nombre{font-family:'Cinzel',serif;font-size:5rem;color:var(--or-clair);text-align:center;line-height:1;margin-bottom:0.4rem}
-.streak-unit{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--acier-clair);opacity:0.4;text-align:center;margin-bottom:0.5rem}
-.streak-date{font-size:0.7rem;color:var(--acier-clair);opacity:0.3;text-align:center;margin-bottom:2.5rem;font-weight:300}
-.streak-msg{text-align:center;font-size:0.75rem;color:var(--or-clair);opacity:0.75;margin-top:1.2rem;font-style:italic;min-height:1.2em;letter-spacing:0.05em}
+.streak-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem}
+.streak-nombre{font-family:'Cinzel',serif;font-size:5rem;color:var(--or-clair);line-height:1}
+.streak-meta{text-align:right}
+.streak-unit{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--acier-clair);opacity:0.4;margin-bottom:0.3rem}
+.streak-record{font-size:0.7rem;color:var(--acier-clair);opacity:0.25;font-weight:300}
+.streak-date{font-size:0.7rem;color:var(--acier-clair);opacity:0.3;margin-bottom:1.8rem;font-weight:300}
+.paliers{display:flex;flex-direction:column;gap:6px;margin-bottom:2rem}
+.palier{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--frontiere);transition:all 0.4s}
+.palier.atteint{border-color:rgba(196,169,110,0.4);background:rgba(196,169,110,0.05)}
+.palier.prochain{border-color:rgba(138,155,181,0.2)}
+.palier-icone{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+.palier-info{flex:1}
+.palier-nom{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.15em;color:var(--acier-clair);margin-bottom:2px}
+.palier.atteint .palier-nom{color:var(--or-clair)}
+.palier-seuil{font-size:0.6rem;color:var(--acier-clair);opacity:0.3;letter-spacing:0.1em}
+.palier-barre-wrap{width:60px;height:2px;background:rgba(138,155,181,0.1);flex-shrink:0}
+.palier-barre{height:100%;background:var(--or-clair);transition:width 0.8s ease;width:0%}
+.palier.atteint .palier-barre{width:100%}
+.cal-label{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--acier-clair);opacity:0.3;margin-bottom:0.8rem}
+.cal-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-bottom:2.5rem}
+.cal-case{aspect-ratio:1;border:1px solid rgba(138,155,181,0.08);transition:all 0.3s}
+.cal-case.valide{background:rgba(196,169,110,0.25);border-color:rgba(196,169,110,0.4)}
+.cal-case.manque{background:rgba(180,60,60,0.1);border-color:rgba(180,60,60,0.2)}
+.cal-case.aujourd-hui{border-color:rgba(138,155,181,0.5);box-shadow:inset 0 0 6px rgba(138,155,181,0.1)}
+.cal-case.aujourd-hui.valide{box-shadow:inset 0 0 8px rgba(196,169,110,0.2)}
+.badge-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s}
+.badge-overlay.visible{opacity:1;pointer-events:all}
+.badge-box{border:1px solid var(--or-clair);padding:3rem 4rem;text-align:center;background:var(--noir);max-width:400px;animation:badgeIn 0.6s ease both}
+@keyframes badgeIn{from{transform:scale(0.85);opacity:0}to{transform:scale(1);opacity:1}}
+.badge-icone{font-size:2.5rem;margin-bottom:1rem}
+.badge-titre{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--or-clair);opacity:0.6;margin-bottom:0.8rem}
+.badge-nom{font-family:'Cinzel',serif;font-size:1.6rem;color:var(--blanc);margin-bottom:0.5rem;letter-spacing:0.05em}
+.badge-sous{font-size:0.75rem;color:var(--acier-clair);opacity:0.5;line-height:1.7;margin-bottom:2rem}
+.badge-close{padding:10px 28px;border:1px solid var(--frontiere);background:transparent;color:var(--acier-clair);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.badge-close:hover{border-color:var(--or-clair);color:var(--blanc)}
+.streak-msg{text-align:center;font-size:0.75rem;color:var(--or-clair);opacity:0.75;margin-top:1rem;font-style:italic;min-height:1.2em;letter-spacing:0.05em}
 </style>
 </head>
 <body>
+<div class="badge-overlay" id="badgeOverlay">
+  <div class="badge-box">
+    <div class="badge-icone" id="badgeIcone">🦅</div>
+    <div class="badge-titre">Palier atteint</div>
+    <div class="badge-nom" id="badgeNom">—</div>
+    <div class="badge-sous" id="badgeSous">—</div>
+    <button class="badge-close" onclick="fermerBadge()">Continuer</button>
+  </div>
+</div>
 <div class="outils-wrap">
   <p class="outils-label">Discipline opérationnelle</p>
   <h1 class="outils-titre">Outils</h1>
   <p class="outils-sous">Instruments du sang-froid. Chaque outil sert un seul but — éliminer le bruit, mesurer l'effort, ancrer la constance.</p>
   <div class="outils-grid">
-
     <div class="outil-card">
       <div class="outil-num">I</div>
       <div class="outil-titre">Minuteur de Silence</div>
@@ -51,21 +91,27 @@
         <button class="ctrl-btn" onclick="resetMin()">Réinitialiser</button>
       </div>
     </div>
-
     <div class="outil-card">
       <div class="outil-num">II</div>
       <div class="outil-titre">Streak de Discipline</div>
       <div class="outil-desc">Jours consécutifs de pratique. La constance est la seule preuve qui résiste au temps.</div>
-      <div class="streak-nombre" id="sNombre">0</div>
-      <div class="streak-unit">jours consécutifs</div>
+      <div class="streak-header">
+        <div class="streak-nombre" id="sNombre">0</div>
+        <div class="streak-meta">
+          <div class="streak-unit">jours consécutifs</div>
+          <div class="streak-record" id="sRecord">Record : 0</div>
+        </div>
+      </div>
       <div class="streak-date" id="sDate">Aucune session enregistrée</div>
+      <div class="paliers" id="paliers"></div>
+      <div class="cal-label">30 derniers jours</div>
+      <div class="cal-grid" id="calGrid"></div>
       <div class="ctrl-row">
         <button class="ctrl-btn primary" onclick="validerJour()">Valider aujourd'hui</button>
         <button class="ctrl-btn" onclick="resetStreak()">Réinitialiser</button>
       </div>
       <div class="streak-msg" id="sMsg"></div>
     </div>
-
   </div>
 </div>
 <script>
@@ -95,7 +141,7 @@
         if(restant<=0){
           clearInterval(iv);run=false;
           btn.textContent='Commencer';disp.classList.remove('actif');
-          disp.textContent='—';bip();
+          disp.textContent='--';bip();
         }
       },1000);
     }else{
@@ -122,53 +168,129 @@
       o.start(ctx.currentTime);o.stop(ctx.currentTime+3);
     }catch(e){}
   }
+  var PALIERS=[
+    {seuil:7,  nom:"L'Ombre s'installe",        icone:"🌑", sous:"Sept jours. La discipline n'est plus une intention -- elle devient habitude."},
+    {seuil:21, nom:"La Discipline prend racine", icone:"⚔️", sous:"Vingt et un jours. Ce qui était effort devient nature."},
+    {seuil:66, nom:"L'Aigle s'élève",            icone:"🦅", sous:"Soixante-six jours. L'automatisme est atteint. Tu es au-dessus du bruit."},
+    {seuil:100,nom:"Le Sang-froid absolu",       icone:"🧊", sous:"Cent jours. OBSCURO n'est plus une pratique. C'est une identité."}
+  ];
+  function renderPaliers(count){
+    var wrap=document.getElementById('paliers');
+    if(!wrap)return;
+    wrap.innerHTML='';
+    PALIERS.forEach(function(p){
+      var atteint=count>=p.seuil;
+      var pct=atteint?100:Math.min(100,Math.round((count/p.seuil)*100));
+      var div=document.createElement('div');
+      div.className='palier'+(atteint?' atteint':' prochain');
+      div.innerHTML='<div class="palier-icone">'+p.icone+'</div>'+
+        '<div class="palier-info">'+
+        '<div class="palier-nom">'+p.nom+'</div>'+
+        '<div class="palier-seuil">'+p.seuil+' jours'+(atteint?' -- Atteint':'')+'</div>'+
+        '</div>'+
+        '<div class="palier-barre-wrap"><div class="palier-barre" style="width:'+pct+'%"></div></div>';
+      wrap.appendChild(div);
+    });
+  }
+  function renderCal(history){
+    var grid=document.getElementById('calGrid');
+    if(!grid)return;
+    grid.innerHTML='';
+    var today=new Date();
+    for(var i=29;i>=0;i--){
+      var d=new Date(today);
+      d.setDate(today.getDate()-i);
+      var str=d.toISOString().split('T')[0];
+      var div=document.createElement('div');
+      div.className='cal-case';
+      if(i===0)div.classList.add('aujourd-hui');
+      if(history&&history[str]==='ok')div.classList.add('valide');
+      else if(i>0)div.classList.add('manque');
+      div.title=str;
+      grid.appendChild(div);
+    }
+  }
+  window.fermerBadge=function(){
+    var o=document.getElementById('badgeOverlay');
+    if(o)o.classList.remove('visible');
+  };
+  function afficherBadge(p){
+    var o=document.getElementById('badgeOverlay');
+    var n=document.getElementById('badgeNom');
+    var s=document.getElementById('badgeSous');
+    var ic=document.getElementById('badgeIcone');
+    if(!o||!n||!s)return;
+    if(ic)ic.textContent=p.icone;
+    n.textContent=p.nom;
+    s.textContent=p.sous;
+    o.classList.add('visible');
+  }
+  function getData(){
+    return JSON.parse(localStorage.getItem('obscuro_streak2')||'{"count":0,"lastDate":null,"best":0,"history":{}}');
+  }
+  function saveData(d){
+    localStorage.setItem('obscuro_streak2',JSON.stringify(d));
+  }
   function loadStreak(){
-    var d=JSON.parse(localStorage.getItem('obscuro_streak')||'{"count":0,"lastDate":null}');
+    var d=getData();
+    var today=new Date().toISOString().split('T')[0];
+    var hier=new Date();hier.setDate(hier.getDate()-1);
+    var hierStr=hier.toISOString().split('T')[0];
+    if(d.lastDate&&d.lastDate!==today&&d.lastDate!==hierStr){
+      d.count=0;saveData(d);
+    }
+    render(d);
+  }
+  function render(d){
     var el=document.getElementById('sNombre');
     var dt=document.getElementById('sDate');
+    var rec=document.getElementById('sRecord');
     if(el)el.textContent=d.count;
-    if(dt&&d.lastDate)dt.textContent='Dernière session : '+d.lastDate;
-    if(d.lastDate){
-      var hier=new Date();hier.setDate(hier.getDate()-1);
-      var hierStr=hier.toISOString().split('T')[0];
-      var today=new Date().toISOString().split('T')[0];
-      if(d.lastDate!==today&&d.lastDate!==hierStr){
-        d.count=0;localStorage.setItem('obscuro_streak',JSON.stringify(d));
-        if(el)el.textContent=0;
-        var msg=document.getElementById('sMsg');
-        if(msg)msg.textContent='La chaîne est brisée. Recommencer.';
-      }
-    }
+    if(dt)dt.textContent=d.lastDate?'Dernière session : '+d.lastDate:'Aucune session enregistrée';
+    if(rec)rec.textContent='Record : '+(d.best||0)+' jours';
+    renderPaliers(d.count);
+    renderCal(d.history);
   }
   window.validerJour=function(){
     var today=new Date().toISOString().split('T')[0];
-    var d=JSON.parse(localStorage.getItem('obscuro_streak')||'{"count":0,"lastDate":null}');
+    var d=getData();
     var msg=document.getElementById('sMsg');
-    if(d.lastDate===today){if(msg)msg.textContent='Déjà validé aujourd\'hui.';return;}
+    if(d.lastDate===today){if(msg)msg.textContent="Déjà validé aujourd'hui.";return;}
     var hier=new Date();hier.setDate(hier.getDate()-1);
     var hierStr=hier.toISOString().split('T')[0];
+    var prevCount=d.count;
     d.count=(d.lastDate===hierStr)?d.count+1:1;
     d.lastDate=today;
-    localStorage.setItem('obscuro_streak',JSON.stringify(d));
-    var el=document.getElementById('sNombre');
-    var dt=document.getElementById('sDate');
-    if(el)el.textContent=d.count;
-    if(dt)dt.textContent='Dernière session : '+today;
+    if(!d.history)d.history={};
+    d.history[today]='ok';
+    if(d.count>=(d.best||0))d.best=d.count;
+    saveData(d);
+    render(d);
     if(msg){
       if(d.count===1)msg.textContent='Premier pas. La discipline commence ici.';
       else if(d.count<7)msg.textContent=d.count+' jours. Tenir.';
       else if(d.count<30)msg.textContent=d.count+' jours. La constance prend forme.';
       else msg.textContent=d.count+' jours. L\'aigle ne vacille pas.';
     }
+    PALIERS.forEach(function(p){
+      if(prevCount<p.seuil&&d.count>=p.seuil){
+        setTimeout(function(){afficherBadge(p);},400);
+      }
+    });
   };
   window.resetStreak=function(){
-    localStorage.removeItem('obscuro_streak');
+    if(!confirm('Réinitialiser le streak et l\'historique ?'))return;
+    localStorage.removeItem('obscuro_streak2');
     var el=document.getElementById('sNombre');
     var dt=document.getElementById('sDate');
     var msg=document.getElementById('sMsg');
+    var rec=document.getElementById('sRecord');
     if(el)el.textContent=0;
     if(dt)dt.textContent='Aucune session enregistrée';
     if(msg)msg.textContent='';
+    if(rec)rec.textContent='Record : 0';
+    renderPaliers(0);
+    renderCal({});
   };
   loadStreak();
 })();
